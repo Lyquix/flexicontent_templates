@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Miguel Santana</author>
+	<website>www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license></license>
+	<version>1.0</version>
+	<release>01 May 2014</release>
+	<description>Presents category items in a List. Each field put in the list position will be rendered as a column</description>
+	<fields name="attribs">
+		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
+<!--- BEGIN LAYOUT ORDERING -->		
+			<field name="layout_ordering_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
+			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,sep1,sep2,sep3,sep4,sep5,sep6,sep7" default="title,image,desc,items,pagination" multiple="multiple" sortable="sortable" label="Category Layout" description="Select the elements and order to be included in the category" >
+			</field>
+<!-- END LAYOUT ORDERING -->
+<!-- BEGIN CATEGORY SETTINGS -->
+			<field name="cat_setting_sep" type="separator" hr="false" default="Category Settings" description="" level="level1" menu="hide" />
+			<field name="cat_title_override" type="text" default="" label="Title Override" description="Enter a title override for the category" filter="raw" />
+			<field name="cat_img_align" type="list" default="" label="Image Aligment" description="Select the category image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+<!-- END CATEGORY SETTINGS -->
+<!-- BEGIN FILTERS -->
+			<field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
+			<field name="cat_filters_label" type="text" default="" description="Enter the filter area heading. Include wrapping HTML tags." label="Filter Area Label" filter="raw" />
+<!-- END FILTERS -->
+<!-- BEGIN ALPHA INDEX -->
+			<field name="alphaindex_sep" type="separator" hr="false" default="Alpha Index" description="" level="level1" menu="hide" />
+			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Alpha Index Area Label" filter="raw" />
+<!-- END ALPHA INDEX -->
+<!-- BEGIN SUB-CATEGORIES -->
+			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories" level="level1" menu="hide" />
+			<field name="sub_cat_label" type="text" default="" label="Sub-Category Area Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="raw" />
+			<field name="sub_cat_ul_class" type="text" filter="raw" default="" label="Sub-Categories List CSS Class" description="Add a CSS class string for sub-categories list" />
+			<field name="sub_cat_li_class" type="text" filter="raw" default="" label="Sub-Categories Item CSS Class" description="Add a CSS class string for sub-categories items" />			
+			<field name="sub_cat_title_headding" type="list" default="h3" label="Sub-Categories Title Heading" description="Select the sub-categories heading level">
+				<option value="">Please select</option>
+				<option value="h1">H1</option>
+				<option value="h2">H2</option>
+				<option value="h3">H3</option>
+				<option value="h4">H4</option>
+				<option value="h5">H5</option>
+				<option value="h6">H6</option>
+				<option value="p">P</option>
+				<option value="div">DIV</option>
+				<option value="span">SPAN</option>
+			</field>
+			<field name="sub_cat_link_title" type="list" default="1" label="Link to Subcategory Title" description="Open Iten when clicking on the Title">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_img_align" type="list" default="" label="Image Aligment" description="Select the sub-categories image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+			<field name="sub_cat_items" type="list" default="0" label="Show Items within each subcategory" description="Show or hide items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_items_style" type="list" default="linkslist" label="Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list">
+				<option value="linkslist">Links List</option>
+				<option value="textlist">Text List</option>
+				<option value="introitems">Intro Items List Style</option>
+			</field>
+<!-- END SUB-CATEGORIES -->
+<!-- BEGIN MAP SETTINGS -->
+			<field name="map_sep" type="separator" hr="false" default="Map" description="Settings for map display" level="level1" menu="hide" />
+			<field name="map_display" type="list" default="" label="Display Map" description="Display items in a map using latitude and longitude information from a specified address field.">
+				<option value="">No Map</option>
+				<option value="map">Map Only</option>
+				<option value="map_list">Map and Items List</option>
+			</field>
+			<field name="map_addr_field" type="fields" field_type="addressint" default="" label="Map Address Field (lat/lon) " description="Select an address field that contains the latitude/longitude information for items." fieldnameasvalue="1" />
+			<field name="map_width" type="text" default="100%" label="Map Width" description="Width of the map container in px or %" />
+			<field name="map_height" type="text" default="480px" label="Map Height" description="Height of the map container in px or %" />
+			<field name="map_type" type="list" default="roadmap" label="Map Type" description="Select the type of map to show">
+				<option value="ROADMAP">Roadmap</option>
+				<option value="SATELLITE">Satellite</option>
+				<option value="HYBRID">Hybrid</option>
+				<option value="TERRAIN">Terrain</option>
+			</field>
+			<field name="map_zoom_control" type="list" default="1" label="Display Zoom Control" description="Select whether the zoom control should be displayed. This control allows the user to to zoom in and out.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="map_pan_control" type="list" default="0" label="Display Pan Control" description="Select whether the pan control should be displayed. This control allows to move the map and in some cases rotate it.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="map_type_control" type="list" default="0" label="Display Map Type Control" description="Select whether the map type control should be displayed. This control allows the user to change the map type (i.e. rodadmap, satellite, hybrid, terrain)">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="map_zoom_scrollwheel" type="list" default="0" label="Scrollwheel Zoom" description="Select whether the map will zoom in and out using the mouse scrollwheel.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="map_pretext" type="text" filter="raw" default="" label="Maps Pre-Text" description="Enter text to be displayed before the map. Include wrapping HTML tags." />
+			<field name="map_posttext" type="text" filter="raw" default="" label="Maps Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
+			<field name="map_css_class" type="text" filter="raw" default="" label="Map CSS Class" description="Add a CSS class string for map container div" />
+			<field name="map_google_api_key" type="text" default="" label="Google Maps API Key" description="Enter the Google Maps API key for use when displaying the map." />
+	<!-- BEGIN MAP ITEMS -->
+			<field name="map_items_sep" type="separator" hr="false" default="Map Items" description="" level="level2" menu="hide" />
+			<field name="map_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+				<option value="">Please select</option>
+				<option value="h1">H1</option>
+				<option value="h2">H2</option>
+				<option value="h3">H3</option>
+				<option value="h4">H4</option>
+				<option value="h5">H5</option>
+				<option value="h6">H6</option>
+				<option value="p">P</option>
+				<option value="div">DIV</option>
+				<option value="span">SPAN</option>
+			</field>
+			<field name="map_title_field" type="fields" field_type="text,textarea" default="" label="Title Field" description="Select a field to use as item title. Leave blank to use default item title." fieldnameasvalue="1" />
+			<field name="map_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+			<field name="map_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
+			<field name="map_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
+			<field name="map_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="map_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
+			<field name="map_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
+			<field name="map_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
+			<field name="map_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+				<option value="s">FLEXI_SMALL</option>
+				<option value="m">FLEXI_MEDIUM</option>
+				<option value="l">FLEXI_LARGE</option>
+				<option value="">Custom Size</option>
+			</field>
+			<field name="map_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="map_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="map_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+				<option value="0">FLEXI_SCALE</option>
+				<option value="1">FLEXI_CROP</option>
+			</field>
+			<field name="map_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="map_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+			<field name="map_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />			
+	<!-- END MAP ITEMS -->
+<!-- END MAP SETTINGS -->
+<!-- BEGIN ITEMS LIST -->
+			<field name="items_settings_sep" type="separator" hr="false" default="Items Lists Settings" description="Parameters for items lists" level="level1" menu="hide" />
+			<field name="featured_separate" type="list" default="0" label="Separate Featured Items" description="To separate Fetured Items list">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items" />
+			<field name="items_addthis" type="list" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="items_disqus" type="list" default="0" label="Comments Count" description="Show or hide Disqus comments count on individual items.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="items_no_items" type="list" default="0" label="Display &quot;No Items Found&quot;" description="Show or hide the &quot;No Items Found&quot; label">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="items_no_items_label" type="text" default="" label="&quot;No Items Found&quot; Label Override" description="Text to use for the &quot;No Items Found&quot; label. Leave blank to use default." />
+	<!-- BEGIN LEAD ITEMS -->
+			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
+			<field name="leading_label" type="text" default="" label="Lead Items List Label" description="Enter the lead items list label. Include wrapping HTML tags." />
+			<field name="leading_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+				<option value="">Please select</option>
+				<option value="h1">H1</option>
+				<option value="h2">H2</option>
+				<option value="h3">H3</option>
+				<option value="h4">H4</option>
+				<option value="h5">H5</option>
+				<option value="h6">H6</option>
+				<option value="p">P</option>
+				<option value="div">DIV</option>
+				<option value="span">SPAN</option>
+			</field>
+			<field name="leading_title_field" type="fields" field_type="text,textarea" default="" label="Title Field" description="Select a field to use as item title. Leave blank to use default item title." fieldnameasvalue="1" />
+			<field name="leading_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+			<field name="leading_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
+			<field name="leading_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
+			<field name="leading_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="leading_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
+			<field name="leading_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
+			<field name="leading_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
+			<field name="leading_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+				<option value="s">FLEXI_SMALL</option>
+				<option value="m">FLEXI_MEDIUM</option>
+				<option value="l">FLEXI_LARGE</option>
+				<option value="">Custom Size</option>
+			</field>
+			<field name="leading_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="leading_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="leading_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+				<option value="0">FLEXI_SCALE</option>
+				<option value="1">FLEXI_CROP</option>
+			</field>
+			<field name="leading_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+			<field name="leading_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />			
+	<!-- END LEAD ITEMS -->
+	<!-- BEGIN INTRO ITEMS LIST -->
+			<field name="introitems_sep" type="separator" hr="false" default="Intro Items" description="" level="level2" menu="hide" />
+			<field name="introitems_label" type="text" default="" label="Intro Items List Label" description="Enter the intro items list label. Include wrapping HTML tags." />
+			<field name="introitems_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+				<option value="">Please select</option>
+				<option value="h1">H1</option>
+				<option value="h2">H2</option>
+				<option value="h3">H3</option>
+				<option value="h4">H4</option>
+				<option value="h5">H5</option>
+				<option value="h6">H6</option>
+				<option value="p">P</option>
+				<option value="div">DIV</option>
+				<option value="span">SPAN</option>
+			</field>
+			<field name="introitems_title_field" type="fields" field_type="text,textarea" default="" label="Title Field" description="Select a field to use as item title. Leave blank to use default item title." fieldnameasvalue="1" />
+			<field name="introitems_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+			<field name="introitems_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
+			<field name="introitems_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
+			<field name="introitems_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="introitems_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />			
+			<field name="introitems_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
+			<field name="introitems_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1"/>
+			<field name="introitems_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+				<option value="s">FLEXI_SMALL</option>
+				<option value="m">FLEXI_MEDIUM</option>
+				<option value="l">FLEXI_LARGE</option>
+				<option value="">Custom Size</option>
+			</field>
+			<field name="introitems_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="introitems_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="introitems_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+				<option value="0">FLEXI_SCALE</option>
+				<option value="1">FLEXI_CROP</option>
+			</field>
+			<field name="introitems_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+			<field name="introitems_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />
+	<!-- END ITEMS  LIST -->
+	<!-- BEGIN FEATURED ITEMS -->
+			<field name="featured_sep" type="separator" hr="false" default="Featured Items" description="" level="level2" menu="hide" />
+			<field name="featured_label" type="text" default="" label="Featured Items List Label" description="Enter the featured items list label. Include wrapping HTML tags." />
+			<field name="featured_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+				<option value="">Please select</option>
+				<option value="h1">H1</option>
+				<option value="h2">H2</option>
+				<option value="h3">H3</option>
+				<option value="h4">H4</option>
+				<option value="h5">H5</option>
+				<option value="h6">H6</option>
+				<option value="p">P</option>
+				<option value="div">DIV</option>
+				<option value="span">SPAN</option>
+			</field>
+			<field name="featured_title_field" type="fields" field_type="text" default="" label="Title Field" description="Select a field to use as item title. Leave blank to use default item title." fieldnameasvalue="1" />
+			<field name="featured_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+			<field name="featured_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
+			<field name="featured_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
+			<field name="featured_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="featured_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />
+			<field name="featured_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
+			<field name="featured_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
+			<field name="featured_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+				<option value="s">FLEXI_SMALL</option>
+				<option value="m">FLEXI_MEDIUM</option>
+				<option value="l">FLEXI_LARGE</option>
+				<option value="">Custom Size</option>
+			</field>
+			<field name="featured_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="featured_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
+			<field name="featured_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+				<option value="0">FLEXI_SCALE</option>
+				<option value="1">FLEXI_CROP</option>
+			</field>
+			<field name="featured_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+				<option value="">None</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</field>
+			<field name="featured_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />
+	<!-- END FEATURED ITEMS -->
+<!-- END ALL ITEMS LIST -->
+<!-- BEGIN GROUP CLASSES -->
+			<field name="css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
+			<field name="css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
+			<field name="css_group_2" type="text" default="" label="Group 2" description="CSS class for fields group 2" />
+			<field name="css_group_3" type="text" default="" label="Group 3" description="CSS class for fields group 3" />
+			<field name="css_group_4" type="text" default="" label="Group 4" description="CSS class for fields group 4" />
+			<field name="css_group_5" type="text" default="" label="Group 5" description="CSS class for fields group 5" />
+			<field name="css_group_6" type="text" default="" label="Group 6" description="CSS class for fields group 6" />
+			<field name="css_group_7" type="text" default="" label="Group 7" description="CSS class for fields group 7" />
+<!-- END GROUP CLASSES -->
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>group_1</group>
+		<group>group_2</group>
+		<group>group_3</group>
+		<group>group_4</group>
+		<group>group_5</group>
+		<group>group_6</group>
+		<group>group_7</group>
+		<group>renderonly</group>
+	</fieldgroups>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>	
+</form>

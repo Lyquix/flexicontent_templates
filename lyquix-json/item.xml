@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<author>Lyquix</author>
+	<website>http://www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license>GPLv2</license>
+	<version>1.0</version>
+	<release>July 2013</release>
+	<description>Generates category and items in JSON/JSONP format</description>
+	<params>  
+	</params> 
+	<fieldgroups>
+		<group>renderonly</group>
+	</fieldgroups>
+	<cssitem>
+	</cssitem>
+	<jsitem>
+	</jsitem>	
+</metadata>

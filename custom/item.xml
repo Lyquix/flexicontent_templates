@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Miguel Santana</author>
+	<website>www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license></license>
+	<version>1.0</version>
+	<release>01 May 2014</release>
+	<description>Render an item placing fields in designated positions. Item Type includes additional options for other non-field elements.</description>
+	<fields name="attribs">
+		<fieldset name="attribs" addfieldpath="/administrator/components/com_flexicontent/elements">
+			<field name="item_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+<!-- BEGIN GROUP CLASSES -->
+			<field name="item_css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
+			<field name="item_css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
+			<field name="item_css_group_2" type="text" default="" label="Group 2" description="CSS class for fields group 2" />
+			<field name="item_css_group_3" type="text" default="" label="Group 3" description="CSS class for fields group 3" />
+			<field name="item_css_group_4" type="text" default="" label="Group 4" description="CSS class for fields group 4" />
+			<field name="item_css_group_5" type="text" default="" label="Group 5" description="CSS class for fields group 5" />
+			<field name="item_css_group_6" type="text" default="" label="Group 6" description="CSS class for fields group 6" />
+			<field name="item_css_group_7" type="text" default="" label="Group 7" description="CSS class for fields group 7" />
+<!-- END GROUP CLASSES -->
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>group_1</group>
+		<group>group_2</group>
+		<group>group_3</group>
+		<group>group_4</group>
+		<group>group_5</group>
+		<group>group_6</group>
+		<group>group_7</group>
+		<group>renderonly</group>
+	</fieldgroups>	
+	<cssitem>
+	</cssitem>
+	<jsitem>
+	</jsitem>	
+</form>

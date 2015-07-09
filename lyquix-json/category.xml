@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Lyquix</author>
+	<website>http://www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license>GPLv2</license>
+	<version>1.0</version>
+	<release>July 2013</release>
+	<description>Generates category and items in JSON/JSONP format</description>
+	<fields name="attribs">
+		<fieldset addpath="/administrator/components/com_flexicontent/elements">
+        	<field name="category_sep" type="separator" hr="false" default="Category" description="" level="level1" menu="hide" />
+			<field name="cat_desc" type="list" default="0" label="Show Category Description" description="Show or hide the category description.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="cat_desc_strip" type="list" default="1" label="Strip Text" description="Strip category description of any HTML and leave plain text only.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+
+
+			<field name="items_sep" type="separator" hr="false" default="Items" description="" level="level1" menu="hide" />
+
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>renderonly</group>
+	</fieldgroups>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>	
+</form>
