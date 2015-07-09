@@ -240,7 +240,9 @@ class lyquixFlexicontentTmpl {
 			// BASED ON THE CATEGORY SORTING BUT FORCING IT until parameter filed is finihed
 
 			$cat_sections = $this -> params -> get('layout_ordering', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
-
+			
+			$html .= '<div class="cat-subcats">';
+			
 			// sub categories heading
 
 			if ($this -> params -> get('show_label_subcats', 1)) {
@@ -374,6 +376,7 @@ class lyquixFlexicontentTmpl {
 
 			$html .= $this -> params -> get('subcat_posttext', '');
 			$html .= '</ul>';
+			$html .= '</div>';
 		}
 		
 		return $html;

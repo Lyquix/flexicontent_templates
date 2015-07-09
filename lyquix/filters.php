@@ -376,5 +376,5 @@ if ($ff_placement)
 	echo JHtml::_('sliders.end');
 ?>
 
-</div>			
+		
 			

@@ -12,24 +12,25 @@ if (!is_array($cat_sections[0])) {
 }
 
 if (is_array($cat_sections)) {
-		
-	$i=1;
+	
+	// keeps track of the current section number
+	$i = 1;
 	
 	echo '<div class="tmpl-'.str_replace('.category.','',$this->tmpl).' cat-'.$this->category->alias.'">';
 		
-		echo '<div class="section-'.$i.'">';
+		echo '<div class="section-' . $i . '">';
 		  
 		  foreach ($cat_sections as $cat_section){
 			  	
 			  if (strstr($cat_section, 'sep')){
 				  	
 				  $i++;
-				  echo '</div><div class="section-'.$i.'">';
+				  echo '</div><div class="section-' . $i . '">';
 			  
 			  }
 			  else {
 					
-				$section= 'renderCat'.ucfirst($cat_section);
+				$section = 'renderCat' . ucfirst($cat_section);
 				echo lyquixFlexicontentTmpl::$section();
 			  
 			  }
