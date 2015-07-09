@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<metadata>
+<<?xml version="1.0" encoding="utf-8"?>
+<form>
 	<author>Lyquix</author>
 	<website>http://www.lyquix.com</website>
 	<email>info@lyquix.com</email>
@@ -7,13 +7,15 @@
 	<version>1.0</version>
 	<release>July 2013</release>
 	<description>Generates category and items in JSON/JSONP format</description>
-	<params>  
-	</params> 
+	<fields name="attribs">
+		<fieldset addpath="/administrator/components/com_flexicontent/elements">
+		</fieldset>
+	</fields>
 	<fieldgroups>
 		<group>renderonly</group>
 	</fieldgroups>
-	<cssitem>
-	</cssitem>
-	<jsitem>
-	</jsitem>	
-</metadata>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>	
+</form>

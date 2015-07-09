@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Lyquix</author>
+	<website>http://www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license>GPLv2</license>
+	<version>1.0</version>
+	<release>July 2013</release>
+	<description>Generates category and items in JSON/JSONP format</description>
+	<fields name="attribs">
+		<fieldset addpath="/administrator/components/com_flexicontent/elements">
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>renderonly</group>
+	</fieldgroups>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>	
+</form>
