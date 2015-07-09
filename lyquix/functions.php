@@ -762,7 +762,18 @@ class lyquixFlexicontentTmpl {
 					}
 	
 					break;
+				
+				case 'created_by':
+					
+					$html .= '<div class="author ' . $field -> name . '">';
+					if ($field -> label) {
+						$html .= '<div class="label">' . $field -> label . '</div>';
+					}
 	
+					$html .= $this -> params -> get($group . '_writtenby_label', '') . $field -> display . '</div>';
+					
+					break;
+					
 				// display any other field
 	
 				default :
@@ -855,6 +866,17 @@ class lyquixFlexicontentTmpl {
 					$html .= $item -> text . '</div>';
 					break;
 	
+				case 'created_by':
+					
+					$html .= '<div class="author ' . $field -> name . '">';
+					if ($field -> label) {
+						$html .= '<div class="label">' . $field -> label . '</div>';
+					}
+	
+					$html .= $this -> params -> get('item_writtenby_label', '') . $field -> display . '</div>';
+					
+					break;
+					
 				// display any other field
 	
 				default :

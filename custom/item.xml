@@ -10,6 +10,7 @@
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/administrator/components/com_flexicontent/elements">
 			<field name="item_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
+			<field name="item_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
 <!-- BEGIN GROUP CLASSES -->
 			<field name="item_css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
 			<field name="item_css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
