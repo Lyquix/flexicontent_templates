@@ -4,7 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class lyquixFlexicontentTmplCustom {
 	
-	function customFieldRendering(&$item, &$field, $group) {
+	function customFieldRendering(&$item, &$field) {
 		
 		$html = '';
 		
