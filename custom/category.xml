@@ -4,8 +4,8 @@
 	<website>www.lyquix.com</website>
 	<email>info@lyquix.com</email>
 	<license></license>
-	<version>1.0</version>
-	<release>01 May 2014</release>
+	<version>1.0.0</version>
+	<release>2015-07-09</release>
 	<description>Presents category items in a List. Each field put in the list position will be rendered as a column</description>
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
