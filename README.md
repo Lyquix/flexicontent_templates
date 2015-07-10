@@ -4,7 +4,7 @@
 
 Lyquix has been using FLEXIcontent since 2010 and we have developed countless custom templates for FLEXIcontent. In our experience the template structure provides great flexibility to generate categories and items exactly how we need them. However, it also requires a lot of code writing.
 
-The purpose of these templates is to allow us to deploy highly-customized templated, without having to rewrite a lot of PHP code.
+The purpose of the Lyquix FLEXIcontent template is to allow us to deploy highly-customized templated, without having to rewrite a lot of PHP code. The json template can be used to provide a simple API for external systems to read content published using FLEXIcontent.
 
 ##Features##
 
@@ -53,4 +53,5 @@ In the future we want to add the option to group some of the position DIVs in or
   * Custom field display
   * CSS classes based on field values
   * File Structure
+  * json template
 
