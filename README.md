@@ -34,6 +34,9 @@ The purpose of these templates is to allow us to deploy highly-customized templa
     * Custom "written by" label for author field *
     * Custom CSS class for item tag (LI)
     * Custom headings for featured items, leading items and intro items
+    * Custom open tags, close tags, pre-text and post-text for lists and items
+    * Option to insert AddThis bar in category and item views
+    * Option to insert Disqus comment count in category view
 
 (*) While many of these customizations are available directly on the fields settings, having them on the template allow to set them on a category- and type-level.
 
@@ -45,8 +48,9 @@ It is possible to add CSS classes to each position for styling purposes.
 
 In the future we want to add the option to group some of the position DIVs in order to allow for even more complex layouts.
 
-To do:
-Custom field display
-CSS classes based on field values
-File Structure
+**README To Do:**
+
+  * Custom field display
+  * CSS classes based on field values
+  * File Structure
 
