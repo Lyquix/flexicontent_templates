@@ -918,7 +918,7 @@ class lyquixFlexicontentTmpl {
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
 		if ($this -> params -> get('item_addthis_after', 'text') == $field -> name) {
-			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
+			$html .= '<div class="addthis_toolbox addthis_default_style "><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
 		}
 		
 		return $html;
