@@ -98,8 +98,10 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_pretext" type="text" filter="raw" default="" label="Maps Pre-Text" description="Enter text to be displayed before the map. Include wrapping HTML tags." />
-			<field name="map_posttext" type="text" filter="raw" default="" label="Maps Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
+			<field name="map_pretext" type="text" filter="raw" default="" label="Maps Items Pre-Text" description="Enter text to be displayed at the beginning of each map item. Include wrapping HTML tags." />
+			<field name="map_posttext" type="text" filter="raw" default="" label="Maps Items Post-Text" description="Enter text to be displayed at the end of each map item. Include wrapping HTML tags." />
+			<field name="map_opentag" type="text" filter="raw" default="" label="Map Pre-Text" description="Enter text to be displayed before the map. Include wrapping HTML tags." />
+			<field name="map_closetag" type="text" filter="raw" default="" label="Map Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
 			<field name="map_css_class" type="text" filter="raw" default="" label="Map CSS Class" description="Add a CSS class string for map container div" />
 			<field name="map_google_api_key" type="text" default="" label="Google Maps API Key" description="Enter the Google Maps API key for use when displaying the map." />
 	<!-- BEGIN MAP ITEMS -->
@@ -121,6 +123,10 @@
 			<field name="map_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
 			<field name="map_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
 			<field name="map_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="map_readmore_after" type="fields" field_type="" default="text" label="Read More After" description="Select the position of read more link after a field" fieldnameasvalue="1" />
+			<field name="map_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
+			<field name="map_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="map_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
 			<field name="map_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
 			<field name="map_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="map_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
@@ -188,7 +194,14 @@
 			<field name="leading_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
 			<field name="leading_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
 			<field name="leading_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="leading_readmore_after" type="fields" field_type="" default="text" label="Read More After" description="Select the position of read more link after a field" fieldnameasvalue="1" />
 			<field name="leading_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
+			<field name="leading_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="leading_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
+			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="leading_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="leading_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
+			<field name="leading_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
 			<field name="leading_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
 			<field name="leading_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="leading_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
@@ -235,7 +248,14 @@
 			<field name="introitems_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
 			<field name="introitems_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
 			<field name="introitems_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="introitems_readmore_after" type="fields" field_type="" default="text" label="Read More After" description="Select the position of read more link after a field" fieldnameasvalue="1" />
 			<field name="introitems_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
+			<field name="introitems_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="introitems_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
+			<field name="introitems_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="introitems_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="introitems_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
+			<field name="introitems_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
 			<field name="introitems_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />			
 			<field name="introitems_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="introitems_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1"/>
@@ -282,7 +302,14 @@
 			<field name="featured_desc_field" type="fields" field_type="textarea,text" default="" label="Description Field" description="Select the field to use as item description. Leave blank to use item's description (main content)" fieldnameasvalue="1" />
 			<field name="featured_desc_cut" type="text" size="3" default="200" label="Description Maximum Characters" description="Enter the maximum number of characters allowed in the item description." />
 			<field name="featured_readmore_label" type="text" default="Read More" label="Read More Label" description="Label to use in read more link" filter="raw" />
+			<field name="featured_readmore_after" type="fields" field_type="" default="text" label="Read More After" description="Select the position of read more link after a field" fieldnameasvalue="1" />
 			<field name="featured_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
+			<field name="featured_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="featured_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
+			<field name="featured_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="featured_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="featured_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
+			<field name="featured_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
 			<field name="featured_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />
 			<field name="featured_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="featured_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />

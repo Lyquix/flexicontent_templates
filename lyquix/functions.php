@@ -138,10 +138,12 @@ class lyquixFlexicontentTmpl {
 		$html = '';
 
 		if ($this -> params -> get('map_display', '') != '' && $this -> params -> get('map_addr_field', '') != '') {
-				
-			$html .= $this -> params -> get('map_pretext', '');
-			$html .= '<div id="cat-map" class="' . $this -> params -> get('map_css_class', '') . '" style="width:' . $this -> params -> get('map_width', '100%') . '; height:' . $this -> params -> get('map_height', '480px') . ';"></div>';
-			$html .= $this -> params -> get('map_posttext', '');
+			
+			$html .= '<div class="cat-map ' . $this -> params -> get('map_css_class', '') . '">';	
+			$html .= $this -> params -> get('map_opentag', '');
+			$html .= '<div id="cat-map" style="width:' . $this -> params -> get('map_width', '100%') . '; height:' . $this -> params -> get('map_height', '480px') . ';"></div>';
+			$html .= $this -> params -> get('map_closetag', '');
+			$html .= '</div>';
 			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> params -> get('map_google_api_key', '') ? '?key=' . $this -> params -> get('map_google_api_key', '') : '') . '"></script>';
 			$html .= '<script>
 					var lyquix = lyquix||{};
@@ -205,19 +207,28 @@ class lyquixFlexicontentTmpl {
 				// check if field has lat/lon different than 0,0
 
 				$addr = unserialize($item -> fields[$this -> params -> get('map_addr_field', '')] -> value[0]);
+				
 				if ((float)$addr['lat'] != 0 && (float)$addr['lon'] != 0) {
+					
 					$html = '';
+					$html .= $this -> params -> get('map_pretext', '');
+					
 					for ($j = 1; $j <= 7; $j++) {
+						
 						if (isset($item -> positions['group_' . $j])) {
+							
 							$html .= '<div class="group_' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+							
 							foreach ($item->positions['group_' . $j] as $field) {
-								$html .= plgFlexicontentLyquix::renderItemField($item, $field, $group = 'map');
+								
+								$html .= plgFlexicontentLyquix::renderItemField($item, $field, 'map');
 							}
 
 							$html .= '</div>';
 						}
 					}
-
+					
+					$html .= $this -> params -> get('map_posttext', '');
 					array_push($json, array('title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
 				}
 			}
@@ -251,12 +262,14 @@ class lyquixFlexicontentTmpl {
 			}
 
 			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
-			$html .= $this -> params -> get('subcat_pretext', '');
+			
+			$html .= $this -> params -> get('subcat_opentag', '');
 			
 			foreach ($this->categories as $subcat) {
 					
 				$html .= '<li class="' . $this -> params -> get('sub_cat_li_class', '') . '">';
-				$html .= $this -> params -> get('subcat_opentag', '');
+				
+				$html .= $this -> params -> get('subcat_pretext', '');
 				
 				foreach ($cat_sections as $cat_section) {
 						
@@ -370,12 +383,12 @@ class lyquixFlexicontentTmpl {
 					}
 				}
 
-				$html .= $this -> params -> get('subcat_closetag', '');
+				$html .= $this -> params -> get('subcat_posttext', '');
 				$html .= '</li>';
 			}
 
-			$html .= $this -> params -> get('subcat_posttext', '');
 			$html .= '</ul>';
+			$html .= $this -> params -> get('subcat_closetag', '');
 			$html .= '</div>';
 		}
 		
@@ -544,8 +557,10 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
+			$html .= '<div class="' . $group . '-items">';
 			$html .= $this -> params -> get($group . '_label', '');
-			$html .= '<ul class="' . $group . '-items">';
+			$html .= $this -> params -> get($group . '_opentag', '');
+			$html .= '<ul class="' . $group . '-items-list">';
 			
 			foreach ($idx as $i) {
 				
@@ -554,6 +569,8 @@ class lyquixFlexicontentTmpl {
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 						lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) .
 						'">';
+				
+				$html .= $this -> params -> get($group . '_pretext', '');
 				
 				for ($j = 1; $j <= 7; $j++) {
 						
@@ -570,11 +587,15 @@ class lyquixFlexicontentTmpl {
 						$html .= '</div>';
 					}
 				}
-
+				
+				$html .= $this -> params -> get($group . '_posttext', '');
 				$html .= '</li>';
 			}
 
 			$html .= '</ul>';
+			$html .= $this -> params -> get($group . '_closetag', '');
+			$html .= '</div>';
+			
 		}
 		
 		return $html;
@@ -734,26 +755,12 @@ class lyquixFlexicontentTmpl {
 	
 						$html .= '<p>' . $text . '</p>';
 	
-						// add readmore link?
-	
-						if ($this -> params -> get($group . '_readmore_label', 'Read More')) {
-							$html .= '<a class="readmore" href="' . $item_link . '">' . $this -> params -> get($group . '_readmore_label', 'Read More') . '</a>';
-						}
-	
-						// add addthis toolbar for this item?
-						// to do: we need to add some parameters that indicate the configuration of the addthis bar
-	
-						if ($this -> params -> get('items_addthis', 0)) {
-							$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
-						}
-	
-						if ($this -> params -> get('items_disqus', 0)) {
-							$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
-						}
-	
 						$html .= '</div>';
+						
 					} else {
+							
 						$html .= '<div class="field field_' . $field -> name . '">';
+						
 						if ($field -> label) {
 							$html .= '<div class="label">' . $field -> label . '</div>';
 						}
@@ -787,6 +794,23 @@ class lyquixFlexicontentTmpl {
 					break;
 			}
 
+		}
+
+
+		// add readmore link?
+		if ($this -> params -> get('show_readmore') && $this -> params -> get($group . '_readmore_after', 'text') == $field -> name) {
+			$html .= '<a class="readmore" href="' . $item_link . '">' . $this -> params -> get($group . '_readmore_label', 'Read More') . '</a>';
+		}
+
+		// add addthis toolbar for this item?
+		// to do: we need to add some parameters that indicate the configuration of the addthis bar
+		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get($group . '_addthis_after', 'text') == $field -> name) {
+			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
+		}
+
+		// add disqus link?
+		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get($group . '_disqus_after', 'text') == $field -> name) {
+			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 
 		return $html;
@@ -891,6 +915,12 @@ class lyquixFlexicontentTmpl {
 
 		}
 
+		// add addthis toolbar for this item?
+		// to do: we need to add some parameters that indicate the configuration of the addthis bar
+		if ($this -> params -> get('item_addthis_after', 'text') == $field -> name) {
+			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
+		}
+		
 		return $html;
 	}
 
