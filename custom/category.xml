@@ -10,11 +10,11 @@
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
 <!--- BEGIN LAYOUT ORDERING -->		
-			<field name="layout_ordering_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
-			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,sep1,sep2,sep3,sep4,sep5,sep6,sep7" default="title,image,desc,items,pagination" multiple="multiple" sortable="sortable" label="Category Layout" description="Select the elements and order to be included in the category" />
+			<field name="cat_layout_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
+			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,sep1,sep2,sep3,sep4,sep5,sep6,sep7" default="title,image,desc,items,pagination" multiple="multiple" sortable="sortable" label="Category Sections" description="Select the elements and order to be included in the category" />
 <!-- END LAYOUT ORDERING -->
 <!-- BEGIN CATEGORY SETTINGS -->
-			<field name="cat_setting_sep" type="separator" hr="false" default="Category Settings" description="" level="level1" menu="hide" />
+			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
 			<field name="cat_title_override" type="text" default="" label="Title Override" description="Enter a title override for the category" filter="raw" />
 			<field name="cat_img_align" type="list" default="" label="Image Aligment" description="Select the category image aligment">
 				<option value="">None</option>
@@ -24,18 +24,31 @@
 <!-- END CATEGORY SETTINGS -->
 <!-- BEGIN FILTERS -->
 			<field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
-			<field name="cat_filters_label" type="text" default="" description="Enter the filter area heading. Include wrapping HTML tags." label="Filter Area Label" filter="raw" />
+			<field name="cat_filters_label" type="text" default="" description="Enter the filter area heading. Include wrapping HTML tags." label="Section Label" filter="raw" />
 <!-- END FILTERS -->
 <!-- BEGIN ALPHA INDEX -->
 			<field name="alphaindex_sep" type="separator" hr="false" default="Alpha Index" description="" level="level1" menu="hide" />
-			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Alpha Index Area Label" filter="raw" />
+			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Section Label" filter="raw" />
 <!-- END ALPHA INDEX -->
 <!-- BEGIN SUB-CATEGORIES -->
-			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories" level="level1" menu="hide" />
-			<field name="sub_cat_label" type="text" default="" label="Sub-Category Area Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="raw" />
-			<field name="sub_cat_ul_class" type="text" filter="raw" default="" label="Sub-Categories List CSS Class" description="Add a CSS class string for sub-categories list" />
-			<field name="sub_cat_li_class" type="text" filter="raw" default="" label="Sub-Categories Item CSS Class" description="Add a CSS class string for sub-categories items" />			
-			<field name="sub_cat_title_headding" type="list" default="h3" label="Sub-Categories Title Heading" description="Select the sub-categories heading level">
+			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />
+			<field name="sub_cat_label" type="text" default="" label="Section Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="raw" />
+			<!--
+			<field name="sub_cat_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the list and after the section label. Include wrapping HTML tags." />
+			<field name="sub_cat_closetag" type="text" filter="raw" default="" label="Section Post-Text" description="Enter text to be displayed after the list. Include wrapping HTML tags." />
+			-->
+			
+			<field name="sub_cat_list_sep" type="separator" hr="false" default="Sub-Categories List" description="Settings for the sub-categories list (UL)" level="level2" menu="hide" />
+			<field name="sub_cat_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for sub-categories list" />
+			
+			<field name="sub_cat_items_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for the sub-categories items (LI)" level="level2" menu="hide" />
+			<field name="sub_cat_li_class" type="text" filter="raw" default="" label="Items CSS Class" description="Add a CSS class string for sub-categories items (LI)" />			
+			<!--
+			<field name="subcat_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="subcat_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			-->
+			
+			<field name="sub_cat_title_headding" type="list" default="h3" label="Title Heading" description="Select the heading level for sub-categories titles">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
 				<option value="h2">H2</option>
@@ -47,7 +60,7 @@
 				<option value="div">DIV</option>
 				<option value="span">SPAN</option>
 			</field>
-			<field name="sub_cat_link_title" type="list" default="1" label="Link to Subcategory Title" description="Open Iten when clicking on the Title">
+			<field name="sub_cat_link_title" type="list" default="1" label="Title Clickable" description="Add link to the sub-category titles">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -56,24 +69,31 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="sub_cat_items" type="list" default="0" label="Show Items within each subcategory" description="Show or hide items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">
+			
+			<field name="sub_cat_items_items_sep" type="separator" hr="false" default="Sub-Categories Content Items" description="Settings for the content items under the sub-categories" level="level2" menu="hide" />
+			<field name="sub_cat_items" type="list" default="0" label="Show Content Items" description="Show or hide content items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="sub_cat_items_style" type="list" default="linkslist" label="Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list">
+			<field name="sub_cat_items_style" type="list" default="linkslist" label="Content Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list">
 				<option value="linkslist">Links List</option>
 				<option value="textlist">Text List</option>
 				<option value="introitems">Intro Items List Style</option>
 			</field>
 <!-- END SUB-CATEGORIES -->
 <!-- BEGIN MAP SETTINGS -->
-			<field name="map_sep" type="separator" hr="false" default="Map" description="Settings for map display" level="level1" menu="hide" />
+			<field name="map_sep" type="separator" hr="false" default="Map" description="Settings for map section" level="level1" menu="hide" />
 			<field name="map_display" type="list" default="" label="Display Map" description="Display items in a map using latitude and longitude information from a specified address field.">
 				<option value="">No Map</option>
 				<option value="map">Map Only</option>
 				<option value="map_list">Map and Items List</option>
 			</field>
-			<field name="map_addr_field" type="fields" field_type="addressint" default="" label="Map Address Field (lat/lon) " description="Select an address field that contains the latitude/longitude information for items." fieldnameasvalue="1" />
+			<field name="map_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="raw" />
+			<field name="map_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the map, after the label. Include wrapping HTML tags." />
+			<field name="map_closetag" type="text" filter="raw" default="" label="Section Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
+			<field name="map_addr_field" type="fields" field_type="addressint" default="" label="Address Field" description="Select an address field that contains the latitude/longitude information for items." fieldnameasvalue="1" />
+			
+			<field name="map_settings_sep" type="separator" hr="false" default="Map Settings" description="Settings for map display" level="level2" menu="hide" />
 			<field name="map_width" type="text" default="100%" label="Map Width" description="Width of the map container in px or %" />
 			<field name="map_height" type="text" default="480px" label="Map Height" description="Height of the map container in px or %" />
 			<field name="map_type" type="list" default="roadmap" label="Map Type" description="Select the type of map to show">
@@ -98,15 +118,12 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_pretext" type="text" filter="raw" default="" label="Maps Items Pre-Text" description="Enter text to be displayed at the beginning of each map item. Include wrapping HTML tags." />
-			<field name="map_posttext" type="text" filter="raw" default="" label="Maps Items Post-Text" description="Enter text to be displayed at the end of each map item. Include wrapping HTML tags." />
-			<field name="map_opentag" type="text" filter="raw" default="" label="Map Pre-Text" description="Enter text to be displayed before the map. Include wrapping HTML tags." />
-			<field name="map_closetag" type="text" filter="raw" default="" label="Map Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
-			<field name="map_css_class" type="text" filter="raw" default="" label="Map CSS Class" description="Add a CSS class string for map container div" />
 			<field name="map_google_api_key" type="text" default="" label="Google Maps API Key" description="Enter the Google Maps API key for use when displaying the map." />
-	<!-- BEGIN MAP ITEMS -->
-			<field name="map_items_sep" type="separator" hr="false" default="Map Items" description="" level="level2" menu="hide" />
-			<field name="map_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+			
+			<field name="map_items_sep" type="separator" hr="false" default="Map Items" description="Settings for map items" level="level3" menu="hide" />
+			<field name="map_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each map item. Include wrapping HTML tags." />
+			<field name="map_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each map item. Include wrapping HTML tags." />
+			<field name="map_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
 				<option value="h2">H2</option>
@@ -127,7 +144,7 @@
 			<field name="map_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
 			<field name="map_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="map_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			<field name="map_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
+			
 			<field name="map_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="map_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
 			<field name="map_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
@@ -151,16 +168,11 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="map_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />			
+			<field name="map_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />			
 	<!-- END MAP ITEMS -->
 <!-- END MAP SETTINGS -->
 <!-- BEGIN ITEMS LIST -->
-			<field name="items_settings_sep" type="separator" hr="false" default="Items Lists Settings" description="Parameters for items lists" level="level1" menu="hide" />
-			<field name="featured_separate" type="list" default="0" label="Separate Featured Items" description="To separate Fetured Items list">
-				<option value="0">FLEXI_NO</option>
-				<option value="1">FLEXI_YES</option>
-			</field>
-			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items" />
+			<field name="items_settings_sep" type="separator" hr="false" default="Content Items" description="Parameters for content items lists section" level="level1" menu="hide" />
 			<field name="items_addthis" type="list" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items.">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
@@ -176,8 +188,19 @@
 			<field name="items_no_items_label" type="text" default="" label="&quot;No Items Found&quot; Label Override" description="Text to use for the &quot;No Items Found&quot; label. Leave blank to use default." />
 	<!-- BEGIN LEAD ITEMS -->
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
-			<field name="leading_label" type="text" default="" label="Lead Items List Label" description="Enter the lead items list label. Include wrapping HTML tags." />
-			<field name="leading_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />
+			<field name="leading_label" type="text" default="" label="Section Label" description="Enter the lead items list label. Include wrapping HTML tags." filter="raw" />
+			<field name="leading_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list, after the section label. Include wrapping HTML tags." />
+			<field name="leading_closetag" type="text" filter="raw" default="" label="Section Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
+			
+			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
+			<field name="leading_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />						
+			
+			<field name="leading_items_sep" type="separator" hr="false" default="Items" description="Items settings" level="level3" menu="hide" />
+			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="leading_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="leading_li_class" type="text" filter="raw" default="" label="Item CSS Class" description="Add a CSS class string for items (LI)" />						
+			<field name="leading_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
 				<option value="h2">H2</option>
@@ -198,11 +221,7 @@
 			<field name="leading_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
 			<field name="leading_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="leading_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
-			<field name="leading_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="leading_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
-			<field name="leading_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			<field name="leading_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />						
+			
 			<field name="leading_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="leading_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
 			<field name="leading_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
@@ -226,12 +245,23 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="leading_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />			
+			<field name="leading_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />			
 	<!-- END LEAD ITEMS -->
+	
 	<!-- BEGIN INTRO ITEMS LIST -->
 			<field name="introitems_sep" type="separator" hr="false" default="Intro Items" description="" level="level2" menu="hide" />
-			<field name="introitems_label" type="text" default="" label="Intro Items List Label" description="Enter the intro items list label. Include wrapping HTML tags." />
-			<field name="introitems_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+			<field name="introitems_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="raw" />
+			<field name="introitems_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
+			<field name="introitems_closetag" type="text" filter="raw" default="" label="Secetion Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
+			
+			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
+			<field name="introitems_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
+			
+			<field name="introitems_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
+			<field name="introitems_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="introitems_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="introitems_li_class" type="text" filter="raw" default="" label="Items CSS Class" description="Add a CSS class string for items" />			
+			<field name="introitems_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
 				<option value="h2">H2</option>
@@ -252,11 +282,7 @@
 			<field name="introitems_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
 			<field name="introitems_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="introitems_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			<field name="introitems_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
-			<field name="introitems_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="introitems_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
-			<field name="introitems_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			<field name="introitems_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />			
+
 			<field name="introitems_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="introitems_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1"/>
 			<field name="introitems_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
@@ -280,12 +306,26 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="introitems_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />
+			<field name="introitems_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
 	<!-- END ITEMS  LIST -->
 	<!-- BEGIN FEATURED ITEMS -->
 			<field name="featured_sep" type="separator" hr="false" default="Featured Items" description="" level="level2" menu="hide" />
-			<field name="featured_label" type="text" default="" label="Featured Items List Label" description="Enter the featured items list label. Include wrapping HTML tags." />
-			<field name="featured_title_headding" type="list" default="h3" label="Title heading level" description="To select the Title heading level">
+			<field name="featured_separate" type="list" default="0" label="Separate Featured Items" description="To separate Fetured Items list">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_label" type="text" default="" label="Section Label" description="Enter the featured items list label. Include wrapping HTML tags." filter="raw" />
+			<field name="featured_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
+			<field name="featured_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
+			
+			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
+			<field name="featured_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items" />
+			
+			<field name="featured_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
+			<field name="featured_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
+			<field name="featured_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
+			<field name="featured_li_class" type="text" filter="raw" default="" label="Items CSS Class" description="Add a CSS class string for items" />
+			<field name="featured_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
 				<option value="h2">H2</option>
@@ -306,11 +346,7 @@
 			<field name="featured_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
 			<field name="featured_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="featured_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			<field name="featured_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
-			<field name="featured_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="featured_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
-			<field name="featured_closetag" type="text" filter="raw" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			<field name="featured_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for items" />
+
 			<field name="featured_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="featured_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
 			<field name="featured_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
@@ -334,7 +370,7 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="featured_img_class" type="text" filter="raw" default="" label="CSS Class" description="Add a CSS class string for item's image" />
+			<field name="featured_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
 	<!-- END FEATURED ITEMS -->
 <!-- END ALL ITEMS LIST -->
 <!-- BEGIN GROUP CLASSES -->

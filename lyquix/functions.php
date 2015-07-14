@@ -140,6 +140,7 @@ class lyquixFlexicontentTmpl {
 		if ($this -> params -> get('map_display', '') != '' && $this -> params -> get('map_addr_field', '') != '') {
 			
 			$html .= '<div class="cat-map ' . $this -> params -> get('map_css_class', '') . '">';	
+			$html .= $this -> params -> get('map_label', '');
 			$html .= $this -> params -> get('map_opentag', '');
 			$html .= '<div id="cat-map" style="width:' . $this -> params -> get('map_width', '100%') . '; height:' . $this -> params -> get('map_height', '480px') . ';"></div>';
 			$html .= $this -> params -> get('map_closetag', '');
@@ -261,9 +262,9 @@ class lyquixFlexicontentTmpl {
 				$html .= $this -> params -> get('sub_cat_label', '');
 			}
 
-			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
-			
 			$html .= $this -> params -> get('subcat_opentag', '');
+			
+			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
 			
 			foreach ($this->categories as $subcat) {
 					
@@ -560,12 +561,12 @@ class lyquixFlexicontentTmpl {
 			$html .= '<div class="' . $group . '-items">';
 			$html .= $this -> params -> get($group . '_label', '');
 			$html .= $this -> params -> get($group . '_opentag', '');
-			$html .= '<ul class="' . $group . '-items-list">';
+			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
 			
 			foreach ($idx as $i) {
 				
 				$html .= '<li class="' . 
-						$this -> params -> get($group . '_class', '') . 
+						$this -> params -> get($group . '_li_class', '') . 
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 						lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) .
 						'">';
@@ -678,7 +679,6 @@ class lyquixFlexicontentTmpl {
 	
 					$img_size_map = array('l' => 'large', 'm' => 'medium', 's' => 'small');
 					$img_field_size = $img_size_map[$this -> params -> get($group . '_img_size', 'l')];
-					$group_class = $this -> params -> get($group . '_class', '');
 					$src = str_replace(JURI::root(), '', $item -> fields[$field -> name] -> thumbs_src[$img_field_size][0]);
 	
 					// if custom size generate url with phpthumb
