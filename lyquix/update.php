@@ -30,31 +30,64 @@ if ($zip -> open('master.zip') === TRUE) {
 
 
 function copy_dir($src, $dst) {
-	$dir = opendir($src);
-	@mkdir($dst);
-	while (false !== ($file = readdir($dir))) {
-		if (($file != '.') && ($file != '..')) {
-			if (is_dir($src . '/' . $file)) {
-				copy_dir($src . '/' . $file, $dst . '/' . $file);
+	// if these are not a directories, do nothing
+	if(is_dir($src) && is_dir($dst)) {
+		// add trailing / if missing
+		if (substr($src, strlen($src) - 1, 1) != '/') {
+			$src .= '/';
+		}
+		if (substr($dst, strlen($dst) - 1, 1) != '/') {
+			$dst .= '/';
+		}
+		
+		// get list of all files and sub-directories
+		$files = scandir($src);
+		
+		foreach ($files as $file) {
+			
+			// if directory, recurse into this function
+			if (is_dir($src . $file)) {
+				
+				// ignore . and .. directories
+				if ($file != '.' && $file != '..') {
+					copy_dir($src . $file, $dst . $file);
+				}
+				
 			} else {
-				copy($src . '/' . $file, $dst . '/' . $file);
+				// copy file
+				copy($src . $file, $dst . $file);
 			}
 		}
 	}
-	closedir($dir);
 }
 
 function delete_dir($dirPath) {
-	if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
-		$dirPath .= '/';
-	}
-	$files = glob($dirPath . '*', GLOB_MARK);
-	foreach ($files as $file) {
-		if (is_dir($file)) {
-			delete_dir($file);
-		} else {
-			unlink($file);
+	// if this is not a directory, do nothing
+	if(is_dir($dirPath)) {
+		// add trailing / if missing
+		if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+			$dirPath .= '/';
 		}
+		
+		// get list of all files and sub-directories
+		$files = scandir($dirPath);
+		
+		foreach ($files as $file) {
+			
+			// if directory, recurse into this function
+			if (is_dir($dirPath . $file)) {
+				
+				// ignore . and .. directories
+				if ($file != '.' && $file != '..') {
+					delete_dir($dirPath . $file);
+				}
+				
+			} else {
+				// delete file
+				unlink($dirPath . $file);
+			}
+		}
+		// remove directory now (should be empty)
+		rmdir($dirPath);
 	}
-	rmdir($dirPath);
 }
