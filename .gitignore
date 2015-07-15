@@ -1,0 +1,8 @@
+# gitignore common files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# gitignore for lyquix fc template
+/custom/category-custom.php
+/custom/item-custom.php
