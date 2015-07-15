@@ -41,6 +41,7 @@ These templates are for advanced developers only. Don't expect to install it and
   * Customize rendering of fields
   * Use field values to add as CSS classes
   * JSON template can be used as a simple API to feed external systems, javascript code, or mobile apps
+  * One-click update
 
 (*) While many of these customizations are available directly on the fields settings, having them on the template allow to set them on a category- and type-level.
 
@@ -174,6 +175,11 @@ class lyquixFlexicontentTmplCustom {
 ```
 
 The variable $group is used to identify what list of items is currently being generated: introitems, leading, featured or map. You can modify the functions as you see fit for your project, as long as you accept the same parameters, and out a CSS class string for `customItemClass` and HTML code for `customFieldRendering`.
+
+##One-click Update##
+
+Run the script lyquix/update.php to get your template updated. This downloads the latest version of this template from this repository and updates all your files, including all the custom- templates you have created by copying the custom template. Be aware that if you have modified any of the files included in this repo, they will be overwritten by this operation.
+
 
 **README To Do:**
 
