@@ -14,10 +14,12 @@ class lyquixFlexicontentTmpl {
 		if ($this -> params -> get('show_print_icon') || $this -> params -> get('show_email_icon') || JRequest::getCmd('print') || $this -> params -> get('show_feed_icon', 1) || $add_button) {
 				
 			$html .= '<div class="buttons">' . 
+					
 					$this -> params -> get('show_addbutton', 1) ? flexicontent_html::addbutton($this -> params, $this -> category) : '' . 
 					flexicontent_html::printbutton($this -> print_link, $this -> params) . 
 					flexicontent_html::mailbutton('category', $this -> params, $this -> category -> slug) . 
 					flexicontent_html::feedbutton('category', $this -> params, $this -> category -> slug) . 
+					
 					'</div>';
 					
 		}
@@ -59,9 +61,11 @@ class lyquixFlexicontentTmpl {
 		$html = '';
 
 		if ($this -> params -> get('use_filters', 0)) {
+				
 			echo '<div class="cat-filters">' . $this -> params -> get('cat_filters_label', '');
 			include(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
 			echo '</div>';
+			
 		}
 		
 		return $html;
@@ -74,8 +78,10 @@ class lyquixFlexicontentTmpl {
 		$html = '';
 		
 		if ($this -> params -> get('show_alpha', 1)) {
+				
 			echo '<div class="cat-alphaindex">' . $this -> params -> get('cat_alphaindex_label', '');
 			include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'category_alpha_html5.php');
+			//include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'alpha-index.php');
 
 			echo '</div>';
 		}
@@ -231,6 +237,7 @@ class lyquixFlexicontentTmpl {
 					
 					$html .= $this -> params -> get('map_posttext', '');
 					array_push($json, array('title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
+					
 				}
 			}
 		}
@@ -349,35 +356,68 @@ class lyquixFlexicontentTmpl {
 
 						case "items" :
 							if ($this -> params -> get('display_subcategories_items') && $this -> params -> get('sub_cat_items', 0)) {
-								$html .= '<ul class="subcat-items">';
-								foreach ($this->items as $item) {
-
-									// check that the item is in this subcategory
-
-									foreach ($item->categories as $cat) {
-										if ($cat -> id == $subcat -> id) {
-											$html .= '<li>';
-
-											// add link if type of items list if linklist
-
-											if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
-												$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug)) . '">';
+								
+								if($this -> params -> get('sub_cat_items_style', 'linkslist') == 'introitems') {
+									
+									$subcat_items = array();
+									
+									foreach ($this->items as $i => $item) {
+	
+										// check that the item is in this subcategory
+	
+										foreach ($item->categories as $cat) {
+											
+											if ($cat -> id == $subcat -> id) {
+												
+												array_push($subcat_items, $i);
+												
 											}
-
-											$html .= htmlspecialchars($item -> title);
-
-											// close link tag
-
-											if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
-												$html .= '</a>';
+											
+										}
+										
+									}
+									
+									$html .= self::renderCatItemsSection($subcat_items, $group = 'sub_cat_items_items');
+									
+								} else {
+								
+								
+									$html .= '<ul class="subcat-items">';
+									
+									foreach ($this->items as $i => $item) {
+	
+										// check that the item is in this subcategory
+	
+										foreach ($item->categories as $cat) {
+											
+											if ($cat -> id == $subcat -> id) {
+												
+												$html .= '<li>';
+		
+												// add link if type of items list if linklist
+		
+												if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
+													$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug)) . '">';
+												}
+		
+												$html .= htmlspecialchars($item -> title);
+		
+												// close link tag
+		
+												if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
+													$html .= '</a>';
+												}
+		
+												$html .= '</li>';
+																							
 											}
-
-											$html .= '</li>';
 										}
 									}
+	
+									$html .= '</ul>';
+									
 								}
-
-								$html .= '</ul>';
+								
 							}
 
 							break;
