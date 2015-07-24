@@ -608,7 +608,7 @@ class lyquixFlexicontentTmpl {
 				$html .= '<li class="' . 
 						$this -> params -> get($group . '_li_class', '') . 
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-						lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) .
+						(class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 						'">';
 				
 				$html .= $this -> params -> get($group . '_pretext', '');
@@ -652,7 +652,7 @@ class lyquixFlexicontentTmpl {
 		
 		// try custom rendering first
 		
-		$html = lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group);
+		$html = class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
 		
 		if(!$html) {
 			
@@ -886,7 +886,7 @@ class lyquixFlexicontentTmpl {
 		
 		// try custom rendering first
 		
-		$html = lyquixFlexicontentTmplCustom::customFieldRendering($item, $field);
+		$html = class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
 		
 		if(!$html) {
 			
