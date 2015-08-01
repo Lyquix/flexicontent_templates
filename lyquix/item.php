@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'functions.php');
 
-echo '<div class="tmpl-'.str_replace('.items.','',$this->tmpl).' item-'.$this->item->alias.'">';
+echo '<div class="fc-item tmpl-'.str_replace('.items.','',$this->tmpl).' item-'.$this->item->alias.'">';
 
 for($j = 1; $j <= 7; $j++){
 		

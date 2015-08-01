@@ -16,7 +16,7 @@ if (is_array($cat_sections)) {
 	// keeps track of the current section number
 	$i = 1;
 
-	echo '<div class="tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . '">' .
+	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . '">' .
 		 '<div class="section-1">';
 
 	foreach ($cat_sections as $cat_section) {
