@@ -60,6 +60,11 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
+			<field name="sub_cat_viewall_link" type="list" default="0" label="View All Link" description="Adds a view all link to the sub-category">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_viewall_label" type="text" filter="raw" default="View All {title} Items" label="View All Link Label" description="Custom label for the view all link. Use the {title} code to replace with the title of the subcategory." />
 			
 			<field name="sub_cat_items_items_sep" type="separator" hr="false" default="Sub-Categories Content Items" description="Settings for the content items under the sub-categories" level="level2" menu="hide" />
 			<field name="sub_cat_items" type="list" default="0" label="Show Content Items" description="Show or hide content items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">

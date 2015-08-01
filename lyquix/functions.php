@@ -423,7 +423,14 @@ class lyquixFlexicontentTmpl {
 							break;
 					}
 				}
-
+				
+				if($this -> params -> get('sub_cat_viewall_link', 0)) {
+					// insert a "view all" link
+					$html .= '<a class="viewall" href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">' . 
+						str_replace('{title}', $subcat -> title, $this -> params -> get('sub_cat_viewall_label', 'View All {title} Items')) . 
+						'</a>';
+				}
+				
 				$html .= $this -> params -> get('subcat_posttext', '');
 				$html .= '</li>';
 			}
@@ -608,7 +615,7 @@ class lyquixFlexicontentTmpl {
 				$html .= '<li class="' . 
 						$this -> params -> get($group . '_li_class', '') . 
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-						(class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
+						(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 						'">';
 				
 				$html .= $this -> params -> get($group . '_pretext', '');
@@ -652,7 +659,7 @@ class lyquixFlexicontentTmpl {
 		
 		// try custom rendering first
 		
-		$html = class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
+		$html = class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
 		
 		if(!$html) {
 			
@@ -882,11 +889,13 @@ class lyquixFlexicontentTmpl {
 
 	function renderItemField(&$item, &$field) {
 		
+		$css_fields = json_decode($this -> params -> get('item_css_fields', '{}'));
+		
 		$html = '';
 		
 		// try custom rendering first
 		
-		$html = class_exists(lyquixFlexicontentTmplCustom) ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
+		$html = class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
 		
 		if(!$html) {
 			
@@ -899,7 +908,7 @@ class lyquixFlexicontentTmpl {
 					// show item title?
 	
 					if ($this -> params -> get('show_title', 1)) {
-						$html .= '<h1>' . htmlspecialchars($field -> display) . '</h1>';
+						$html .= '<h1' . (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>' . htmlspecialchars($field -> display) . '</h1>';
 					}
 	
 					break;
@@ -908,7 +917,7 @@ class lyquixFlexicontentTmpl {
 	
 				case "created" :
 				case "modified" :
-					$html .= '<div class="date ' . $field -> name . '">';
+					$html .= '<div class="date ' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
@@ -919,7 +928,7 @@ class lyquixFlexicontentTmpl {
 				// item description field or override field
 	
 				case "text" :
-					$html .= '<div class="description">';
+					$html .= '<div class="description' . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 	
 					// add label?
 	
@@ -932,7 +941,7 @@ class lyquixFlexicontentTmpl {
 	
 				case 'created_by':
 					
-					$html .= '<div class="author ' . $field -> name . '">';
+					$html .= '<div class="author ' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
@@ -944,7 +953,7 @@ class lyquixFlexicontentTmpl {
 				// display any other field
 	
 				default :
-					$html .= '<div class="field field_' . $field -> name . '">';
+					$html .= '<div class="field field_' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
