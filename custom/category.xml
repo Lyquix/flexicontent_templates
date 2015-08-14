@@ -30,7 +30,7 @@
 			<field name="alphaindex_sep" type="separator" hr="false" default="Alpha Index" description="" level="level1" menu="hide" />
 			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Section Label" filter="raw" />
 <!-- END ALPHA INDEX -->
-<!-- BEGIN SUB-CATEGORIES -->
+<!-- BEGIN SUB-CATEGORIES -->	
 			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />
 			<field name="sub_cat_label" type="text" default="" label="Section Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="raw" />
 			
@@ -67,10 +67,6 @@
 			<field name="sub_cat_viewall_label" type="text" filter="raw" default="View All {title} Items" label="View All Link Label" description="Custom label for the view all link. Use the {title} code to replace with the title of the subcategory." />
 			
 			<field name="sub_cat_items_items_sep" type="separator" hr="false" default="Sub-Categories Content Items" description="Settings for the content items under the sub-categories" level="level2" menu="hide" />
-			<field name="sub_cat_items" type="list" default="0" label="Show Content Items" description="Show or hide content items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">
-				<option value="0">FLEXI_NO</option>
-				<option value="1">FLEXI_YES</option>
-			</field>
 			<field name="sub_cat_items_style" type="list" default="linkslist" label="Content Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list">
 				<option value="linkslist">Links List</option>
 				<option value="textlist">Text List</option>
@@ -84,8 +80,11 @@
 			
 			<field name="sub_cat_items_items_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
-			
-			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
+			<field name="sub_cat_linked_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+		</field>
+			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" /> 
 			<field name="sub_cat_items_items_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_li_class" type="text" filter="raw" default="" label="Items CSS Class" description="Add a CSS class string for items" />			
@@ -250,7 +249,10 @@
 			
 			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />						
-			
+			<field name="leading_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="leading_items_sep" type="separator" hr="false" default="Items" description="Items settings" level="level3" menu="hide" />
 			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="leading_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -303,7 +305,7 @@
 			<field name="leading_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />			
 	<!-- END LEAD ITEMS -->
 	
-	<!-- BEGIN INTRO ITEMS LIST -->
+	<!-- BEGIN INTRO ITEMS LIST -->	
 			<field name="introitems_sep" type="separator" hr="false" default="Intro Items" description="" level="level2" menu="hide" />
 			<field name="introitems_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="raw" />
 			<field name="introitems_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
@@ -311,7 +313,10 @@
 			
 			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
-			
+			<field name="introitems_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="introitems_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="introitems_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="introitems_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -375,7 +380,10 @@
 			
 			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items" />
-			
+			<field name="featured_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="featured_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="featured_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="featured_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />

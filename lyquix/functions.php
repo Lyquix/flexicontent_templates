@@ -274,9 +274,9 @@ class lyquixFlexicontentTmpl {
 			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
 			
 			foreach ($this->categories as $subcat) {
-					
-				$html .= '<li class="' . $this -> params -> get('sub_cat_li_class', '') . '">';
+				//Redner the subcategories as links
 				
+				$html .= '<li class="' . $this -> params -> get('sub_cat_li_class', '') . '">';
 				$html .= $this -> params -> get('subcat_pretext', '');
 				
 				foreach ($cat_sections as $cat_section) {
@@ -407,9 +407,9 @@ class lyquixFlexicontentTmpl {
 												if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
 													$html .= '</a>';
 												}
-		
+												
 												$html .= '</li>';
-																							
+															
 											}
 										}
 									}
@@ -609,7 +609,6 @@ class lyquixFlexicontentTmpl {
 			$html .= $this -> params -> get($group . '_label', '');
 			$html .= $this -> params -> get($group . '_opentag', '');
 			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
-			
 			foreach ($idx as $i) {
 				
 				$html .= '<li class="' . 
@@ -617,11 +616,14 @@ class lyquixFlexicontentTmpl {
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 						(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 						'">';
-				
+				if (($this -> params -> get($group . '_link_item', 1))) {
+						$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
+						$html .= '<a href="' . $item_link . '">';
+				}
 				$html .= $this -> params -> get($group . '_pretext', '');
-				
+					
 				for ($j = 1; $j <= 7; $j++) {
-						
+					
 					if (isset($this -> items[$i] -> positions['group_' . $j])) {
 							
 						$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
@@ -634,9 +636,14 @@ class lyquixFlexicontentTmpl {
 
 						$html .= '</div>';
 					}
+					
 				}
 				
 				$html .= $this -> params -> get($group . '_posttext', '');
+				// close the link element
+				if (($this -> params -> get($group . '_link_item', 1))) {
+						$html .= '</a>';
+				}
 				$html .= '</li>';
 			}
 
