@@ -83,7 +83,7 @@
 			<field name="sub_cat_linked_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
-		</field>
+			</field>
 			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" /> 
 			<field name="sub_cat_items_items_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -436,8 +436,18 @@
 			<field name="featured_img_class" type="text" filter="raw" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
 	<!-- END FEATURED ITEMS -->
 <!-- END ALL ITEMS LIST -->
+<!-- BEGIN SEPARATOR CLASSES -->
+			<field name="css_section_sep" type="separator" hr="false" default="Layout Sections CSS Classes" description="Adds CSS classes to the category layout sections" level="level1" menu="hide" />
+			<field name="css_section_1" type="text" default="" label="Section 1" description="CSS class for section 1" />
+			<field name="css_section_2" type="text" default="" label="Section 2" description="CSS class for section 2" />
+			<field name="css_section_3" type="text" default="" label="Section 3" description="CSS class for section 3" />
+			<field name="css_section_4" type="text" default="" label="Section 4" description="CSS class for section 4" />
+			<field name="css_section_5" type="text" default="" label="Section 5" description="CSS class for section 5" />
+			<field name="css_section_6" type="text" default="" label="Section 6" description="CSS class for section 6" />
+			<field name="css_section_7" type="text" default="" label="Section 7" description="CSS class for section 7" />
+<!-- END SEPARATOR CLASSES -->
 <!-- BEGIN GROUP CLASSES -->
-			<field name="css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
+			<field name="css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the item field groups" level="level1" menu="hide" />
 			<field name="css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
 			<field name="css_group_2" type="text" default="" label="Group 2" description="CSS class for fields group 2" />
 			<field name="css_group_3" type="text" default="" label="Group 3" description="CSS class for fields group 3" />

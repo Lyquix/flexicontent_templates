@@ -17,19 +17,25 @@ if (is_array($cat_sections)) {
 	$i = 1;
 
 	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . '">' .
-		 '<div class="section-1">';
+		 '<div class="section-1 ' . $this -> params -> get('css_section_1') . '">';
 
 	foreach ($cat_sections as $cat_section) {
 
 		if (strstr($cat_section, 'sep')) {
 
 			$i++;
-			echo '</div><div class="section-' . $i . '">';
+			echo '</div><div class="section-' . $i . ' ' . $this -> params -> get('css_section_' . $i) . '">';
 
 		} else {
-
+			
+			$html = '';
 			$section = 'renderCat' . ucfirst($cat_section);
-			echo lyquixFlexicontentTmpl::$section();
+			
+			if (class_exists('lyquixFlexicontentTmplCustom')) {
+				$html =  lyquixFlexicontentTmplCustom::customSectionRendering($section);
+			}
+			
+			echo $html ? $html : lyquixFlexicontentTmpl::$section();
 
 		}
 

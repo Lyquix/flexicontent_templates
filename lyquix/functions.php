@@ -63,7 +63,8 @@ class lyquixFlexicontentTmpl {
 		if ($this -> params -> get('use_filters', 0)) {
 				
 			echo '<div class="cat-filters">' . $this -> params -> get('cat_filters_label', '');
-			include(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
+			include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
+			//include(JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'filters.php');
 			echo '</div>';
 			
 		}
@@ -81,7 +82,7 @@ class lyquixFlexicontentTmpl {
 				
 			echo '<div class="cat-alphaindex">' . $this -> params -> get('cat_alphaindex_label', '');
 			include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'category_alpha_html5.php');
-			//include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'alpha-index.php');
+			//include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'alpha-index.php');
 
 			echo '</div>';
 		}
@@ -274,7 +275,6 @@ class lyquixFlexicontentTmpl {
 			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
 			
 			foreach ($this->categories as $subcat) {
-				//Redner the subcategories as links
 				
 				$html .= '<li class="' . $this -> params -> get('sub_cat_li_class', '') . '">';
 				$html .= $this -> params -> get('subcat_pretext', '');
@@ -616,10 +616,13 @@ class lyquixFlexicontentTmpl {
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 						(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 						'">';
+				
+				// wrap item in link
 				if (($this -> params -> get($group . '_link_item', 1))) {
-						$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
-						$html .= '<a href="' . $item_link . '">';
+					$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
+					$html .= '<a href="' . $item_link . '">';
 				}
+				
 				$html .= $this -> params -> get($group . '_pretext', '');
 					
 				for ($j = 1; $j <= 7; $j++) {
@@ -640,11 +643,14 @@ class lyquixFlexicontentTmpl {
 				}
 				
 				$html .= $this -> params -> get($group . '_posttext', '');
+				
 				// close the link element
 				if (($this -> params -> get($group . '_link_item', 1))) {
 						$html .= '</a>';
 				}
+				
 				$html .= '</li>';
+				
 			}
 
 			$html .= '</ul>';
