@@ -62,10 +62,24 @@ class lyquixFlexicontentTmpl {
 
 		if ($this -> params -> get('use_filters', 0)) {
 				
-			echo '<div class="cat-filters">' . $this -> params -> get('cat_filters_label', '');
-			include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
-			//include(JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'filters.php');
-			echo '</div>';
+			$html .= '<div class="cat-filters ' . $this -> params -> get('cat_filters_class', '') . '">';
+			$html .= $this -> params -> get('cat_filters_label', '');
+			
+			if($this -> params -> get('cat_filters_engine', 0)) {
+					
+				require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
+				$html .= lyquixFlexicontentTmplFilters::renderFilters();
+				$html .= '</div>';
+				
+			}
+			else {
+				
+				echo $html;
+				include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
+				echo '</div>';
+				$html = '';
+				
+			}
 			
 		}
 		
@@ -80,9 +94,23 @@ class lyquixFlexicontentTmpl {
 		
 		if ($this -> params -> get('show_alpha', 1)) {
 				
-			echo '<div class="cat-alphaindex">' . $this -> params -> get('cat_alphaindex_label', '');
-			include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'category_alpha_html5.php');
-			//include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'alpha-index.php');
+			$html .= '<div class="cat-filters ' . $this -> params -> get('cat_alphaindex_class', '') . '">';
+			$html .= $this -> params -> get('cat_alphaindex_label', '');
+			
+			if($this -> params -> get('cat_alphaindex_engine', 0)) {
+				
+				// Lyquix alphaindex engine
+				$html .= 'Sorry, the Lyquix alphaindex engine has not been implemented yet.</div>';
+				
+			}
+			else {
+				
+				echo $html;
+				include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'category_alpha_html5.php');
+				echo '</div>';
+				$html = '';
+				
+			}
 
 			echo '</div>';
 		}
@@ -229,7 +257,7 @@ class lyquixFlexicontentTmpl {
 							
 							foreach ($item->positions['group_' . $j] as $field) {
 								
-								$html .= plgFlexicontentLyquix::renderItemField($item, $field, 'map');
+								$html .= self::renderItemField($item, $field, 'map');
 							}
 
 							$html .= '</div>';
@@ -261,7 +289,7 @@ class lyquixFlexicontentTmpl {
 
 			$cat_sections = $this -> params -> get('layout_ordering', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
 			
-			$html .= '<div class="cat-subcats">';
+			$html .= '<div class="cat-subcats ' . $this -> params -> get('sub_cat_class', '') . '">';
 			
 			// sub categories heading
 
@@ -450,7 +478,8 @@ class lyquixFlexicontentTmpl {
 		
 		if ($this -> params -> get('map_display', '') != 'map') {
 				
-			$html .= '<div class="cat-items">';
+			$html .= '<div class="cat-items ' . $this -> params -> get('items_css_class', '') . '">';
+			$html .= $this -> params -> get('items_label', '');
 			
 			if (count($this -> items)) {
 				
@@ -681,7 +710,7 @@ class lyquixFlexicontentTmpl {
 				// if title or the title override field
 	
 				case "title" :
-				case $this->params->get($group . '_title_field', 0) :
+				case $this->params->get($group . '_title_field', '') :
 	
 					// format title
 	
@@ -864,12 +893,14 @@ class lyquixFlexicontentTmpl {
 
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
-		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get($group . '_addthis_after', 'text') == $field -> name) {
-			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
+		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get('items_addthis_after', '') == $field -> name) {
+			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
+				$this -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				'</div>';
 		}
 
 		// add disqus link?
-		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get($group . '_disqus_after', 'text') == $field -> name) {
+		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get('items_disqus_after', '') == $field -> name) {
 			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 
@@ -882,18 +913,16 @@ class lyquixFlexicontentTmpl {
 		$html = '';
 		
 		if ($this -> params -> get('show_pagination', 0)) {
-			if (FLEXI_J16GE) {
-				$html .= '<div class="pagination">';
-			}
-
+			
+			$html .= '<div class="pagination ' . $this -> params -> get('pagination_css_class', '') . '">';
+			$html .= $this -> params -> get('pagination_label', '');
 			$html .= '<div class="pageslinks">' . $this -> pageNav -> getPagesLinks() . '</div>';
+			
 			if ($this -> params -> get('show_pagination_results', 1)) {
 				$html .= '<div class="pagescounter">' . $this -> pageNav -> getPagesCounter() . '</div>';
 			}
 
-			if (FLEXI_J16GE) {
-				$html .= '</div>';
-			}
+			$html .= '</div>';
 		}
 		
 		return $html;
