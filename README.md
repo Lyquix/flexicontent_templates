@@ -139,6 +139,27 @@ class lyquixFlexicontentTmplCustom {
 		
 	}
 	
+	function customSectionRendering($section) {
+		
+		$html = '';
+
+	        switch ($section) {
+	
+        	    /*
+	            case 'renderCatTitle': // use same name as in functions.php
+        	        // your custom code for field_name here
+	                break;
+	            */
+				
+	            default:
+                	break;
+
+        	}
+		
+		return $html;
+		
+	}
+	
 }
 ```
 
