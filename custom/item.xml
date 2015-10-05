@@ -11,7 +11,17 @@
 		<fieldset name="attribs" addfieldpath="/administrator/components/com_flexicontent/elements">
 			<field name="item_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
 			<field name="item_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="raw" />
-			<field name="item_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="items_addthis" type="list" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="items_addthis_after" type="fields" field_type="" default="" label="Sharing Buttons After" description="Select the position of AddThis sharing buttons after a field" fieldnameasvalue="1" />
+			<field name="items_addthis_services" type="textarea" filter="raw" default="&lt;a class=&quot;addthis_button_facebook_like&quot; fb:like:layout=&quot;button_count&quot;&gt;&lt;/a&gt;&lt;a class=&quot;addthis_button_tweet&quot;&gt;&lt;/a&gt;&lt;a class=&quot;addthis_counter addthis_pill_style&quot;&gt;&lt;/a&gt;" label="AddThis Services" description="Add the necessary AddThis services (raw HTML)" />
+			<field name="items_disqus" type="list" default="0" label="Comments Count" description="Show or hide Disqus comments count on individual items.">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="items_disqus_after" type="fields" field_type="" default="" label="Comments Count After" description="Select the position of Disqus comments count after a field" fieldnameasvalue="1" />
 <!-- BEGIN GROUP CLASSES -->
 			<field name="item_css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
 			<field name="item_css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />

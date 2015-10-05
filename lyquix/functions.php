@@ -634,7 +634,7 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
-			$html .= '<div class="' . $group . '-items '. $this -> params -> get($group.'_class'). '">';
+			$html .= '<div class="' . $group . '-items">';
 			$html .= $this -> params -> get($group . '_label', '');
 			$html .= $this -> params -> get($group . '_opentag', '');
 			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
@@ -1008,8 +1008,15 @@ class lyquixFlexicontentTmpl {
 
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
-		if ($this -> params -> get('item_addthis_after', 'text') == $field -> name) {
-			$html .= '<div class="addthis_toolbox addthis_default_style "><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>';
+		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get('items_addthis_after', '') == $field -> name) {
+			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
+				$this -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				'</div>';
+		}
+
+		// add disqus link?
+		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get('items_disqus_after', '') == $field -> name) {
+			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 		
 		return $html;
