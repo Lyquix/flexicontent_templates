@@ -14,8 +14,6 @@ class JFormFieldLqxfccatlayout extends JFormField {
 
 	function getInput() {
 		$doc = JFactory::getDocument();
-		$doc -> addScript(JURI::root() . 'components' . DS . 'com_flexicontent' . DS . 'librairies' . DS . 'select2' . DS . 'select2.js');
-		$doc -> addStyleSheet(JURI::root() . 'components' . DS . 'com_flexicontent' . DS . 'librairies' . DS . 'select2' . DS . 'select2.css');
 		$db = JFactory::getDBO();
 		$cparams = JComponentHelper::getParams('com_flexicontent');
 
@@ -27,9 +25,6 @@ class JFormFieldLqxfccatlayout extends JFormField {
 			$attributes = &$node -> _attributes;
 		}
 
-		// ***********************************
-		// Values, form field name and id, etc
-		// ***********************************
 		$values = FLEXI_J16GE ? $this -> value : $value;
 
 		if (empty($values))
@@ -45,22 +40,13 @@ class JFormFieldLqxfccatlayout extends JFormField {
 
 		$element_id = FLEXI_J16GE ? $this -> id . '_' . rand(1, 100) : $control_name . $name . '_' . rand(1, 100);
 
-		// *******************************************
-		// HTML Tag parameters parameters, and styling
-		// *******************************************
-
 		$style = "float:left; white-space:nowrap; margin:2px 8px 0px;" . (!FLEXI_J16GE ? "margin-right:12px; " : "");
 
-		// *******************************************
-		// ONLY FOR SELECT2 MULTI SELECT AND SORTABLE
-		// OTHER SELECT2 OPTIIONS TO BE DEVELOP
-		// *******************************************
-		if (@$attributes['sortable'] == 'sortable' || @$attributes['sortable'] == 'true') {// TO support Select2 drag and drop sorting of selected choices.
-			$fieldname .= !FLEXI_J16GE ? "[]" : "";
-			// NOTE: this added automatically in J2.5
-			$html .= '<input id="' . $element_id . '_options" name="' . $fieldname . ' "type="hidden" class="' . @$attributes['class'] . '" style="' . $style . '" value="' . $values[0] . '">';
+		$fieldname .= !FLEXI_J16GE ? "[]" : "";
 
-			$js = '<script>
+		$html .= '<input id="' . $element_id . '_options" name="' . $fieldname . ' "type="hidden" class="' . @$attributes['class'] . '" style="' . $style . '" value="' . $values[0] . '">';
+		
+		$html .= '<script>
 jQuery(document).ready(function() {
   jQuery("#' . $element_id . '_options").select2({
 	  createSearchChoice: null, // to restrict any user inputs
@@ -76,13 +62,8 @@ jQuery(document).ready(function() {
   });
 });
 </script>';
-			//		$doc->addScriptDeclaration($js);
-			$html .= $js;
-		} else {// needs to be develop in order to handles all SELECT2 options
-			$html = JHTML::_('select.genericlist', $fields, $fieldname, $attribs, 'value', 'text', $values, $element_id);
-		}
+		
 		return $html;
 	}
 
 }
-?>
