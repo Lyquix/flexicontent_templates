@@ -10,7 +10,7 @@ for($j = 1; $j <= 7; $j++){
 		
 	if(isset($this->item->positions['group_'.$j])){
 		
-		echo '<div class="group_'.$j.' '.$this->params->get('item_css_group_'.$j, '').'">';
+		echo '<div class="group-'.$j.' '.$this->params->get('item_css_group_'.$j, '').'">';
 		
 		foreach ($this->item->positions['group_'.$j] as $field){
 							
