@@ -288,8 +288,8 @@ class lyquixFlexicontentTmpl {
 			// BASED ON THE CATEGORY SORTING BUT FORCING IT until parameter filed is finihed
 
 			$cat_sections = $this -> params -> get('cat_layout_order', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
-			if (!is_array($cat_sections[0])) {
-				$cat_sections = explode(",", $cat_sections[0]);
+			if (!is_array($cat_sections)) {
+				$cat_sections = explode(",", $cat_sections);
 			}
 			
 			$html .= '<div class="cat-subcats ' . $this -> params -> get('sub_cat_class', '') . '">';

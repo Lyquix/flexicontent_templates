@@ -7,8 +7,8 @@ require_once (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 't
 // Category sections ordering
 $cat_sections = $this -> params -> get('cat_layout_order', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
 
-if (!is_array($cat_sections[0])) {
-	$cat_sections = explode(",", $cat_sections[0]);
+if (!is_array($cat_sections)) {
+	$cat_sections = explode(",", $cat_sections);
 }
 
 if (is_array($cat_sections)) {
