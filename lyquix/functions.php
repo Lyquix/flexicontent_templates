@@ -229,20 +229,20 @@ class lyquixFlexicontentTmpl {
 	function renderCatMapItems() {
 
 		// json array
-
 		$json = array();
+		
+		$field_name = $this -> params -> get('map_addr_field', '');
 
 		// generate json object of items
-
 		foreach ($this->items as $i => $item) {
 
 			// check if item has address field
 
-			if (array_key_exists($this -> params -> get('map_addr_field', ''), $item -> fields)) {
+			if (array_key_exists($field_name, $item -> fields)) {
 
 				// check if field has lat/lon different than 0,0
 
-				$addr = unserialize($item -> fields[$this -> params -> get('map_addr_field', '')] -> value[0]);
+				$addr = unserialize($item -> fields[$field_name] -> value[0]);
 				
 				if ((float)$addr['lat'] != 0 && (float)$addr['lon'] != 0) {
 					
@@ -253,11 +253,11 @@ class lyquixFlexicontentTmpl {
 						
 						if (isset($item -> positions['group_' . $j])) {
 							
-							$html .= '<div class="group_' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+							$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
 							
 							foreach ($item->positions['group_' . $j] as $field) {
 								
-								$html .= self::renderItemField($item, $field, 'map');
+								$html .= self::renderCatItemsField($item, $field, 'map');
 							}
 
 							$html .= '</div>';
