@@ -637,7 +637,7 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
-			$html .= '<div class="' . $group . '-items">';
+			$html .= '<div class="' . $group . '-items ' . $this -> params -> get($group . '_class', '') . '">';
 			$html .= $this -> params -> get($group . '_label', '');
 			$html .= $this -> params -> get($group . '_opentag', '');
 			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
