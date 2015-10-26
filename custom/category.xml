@@ -265,7 +265,7 @@
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
 			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />
 			<field name="leading_label" type="text" default="" label="Section Label" description="Enter the lead items list label. Include wrapping HTML tags." filter="raw" />
-			<field name="lead_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
+			<field name="leading_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 			<field name="leading_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list, after the section label. Include wrapping HTML tags." />
 			<field name="leading_closetag" type="text" filter="raw" default="" label="Section Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
 			
