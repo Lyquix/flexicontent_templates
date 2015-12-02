@@ -195,6 +195,8 @@ class lyquixFlexicontentTmpl {
 					};
 					lyquix.catMapBounds = new google.maps.LatLngBounds();
 					lyquix.catMapItems = ' . self::renderCatMapItems() . ';
+					lyquix.catMapInfoWindows = {};
+					lyquix.catMapMarker ={};
 					jQuery(document).ready(function(){
 						lyquix.catMap = new google.maps.Map(document.getElementById(\'cat-map\'), lyquix.catMapOptions);
 						google.maps.event.addListenerOnce(lyquix.catMap, \'bounds_changed\', function(event){
@@ -205,16 +207,17 @@ class lyquixFlexicontentTmpl {
 							if(lyquix.catMapItems[i].lat && lyquix.catMapItems[i].lon) {
 								var itemLatLon = new google.maps.LatLng(lyquix.catMapItems[i].lat, lyquix.catMapItems[i].lon);
 								lyquix.catMapBounds.extend(itemLatLon);
-								var infowindow = new google.maps.InfoWindow({content: lyquix.catMapItems[i].html});
-								var marker = new google.maps.Marker({
+								var itemid = lyquix.catMapItems[i].id;
+								lyquix.catMapInfoWindows[itemid] = new google.maps.InfoWindow({content: lyquix.catMapItems[i].html});
+								lyquix.catMapMarker[itemid] = new google.maps.Marker({
 									position: itemLatLon,
 									map: lyquix.catMap,
 									title: lyquix.catMapItems[i].title,
 									html: lyquix.catMapItems[i].html
 								});
-								google.maps.event.addListener(marker, \'click\', function() {
-									infowindow.setContent(this.html);
-									infowindow.open(lyquix.catMap,this);
+								google.maps.event.addListener(lyquix.catMapMarker[itemid], \'click\', function() {
+									lyquix.catMapInfoWindows[itemid].setContent(this.html);
+									lyquix.catMapInfoWindows[itemid].open(lyquix.catMap,this);
 								});
 							}
 						}
@@ -647,7 +650,7 @@ class lyquixFlexicontentTmpl {
 						$this -> params -> get($group . '_li_class', '') . 
 						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 						(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
-						'">';
+						'" data-itemid="'. $this -> items[$i] -> id .'">';
 				
 				// wrap item in link
 				if (($this -> params -> get($group . '_link_item', 1))) {
