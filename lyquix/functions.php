@@ -956,7 +956,7 @@ class lyquixFlexicontentTmpl {
 					// show item title?
 	
 					if ($this -> params -> get('show_title', 1)) {
-						$html .= '<h1' . (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>' . htmlspecialchars($field -> display) . '</h1>';
+						$html .= '<h1' . (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>' . htmlspecialchars($item -> fields[$field -> name] -> value[0]) . '</h1>';
 					}
 	
 					break;
