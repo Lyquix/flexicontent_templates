@@ -50,14 +50,7 @@ foreach($this -> items as $item) {
 				foreach($position as $field) {
 					$fields[$field -> name] = array();
 					if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
-					if($this -> params -> get ('display_item_field_value', 1)) {
-						if($item -> fields[$field -> name] -> iscore) {
-							$fields[$field -> name]['value'] = $item -> {$field -> name};
-						}
-						else {
-							$fields[$field -> name]['value'] = $item -> fieldvalues [$field -> id];
-						}
-					}
+					if($this -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
 					if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 					
 				}
