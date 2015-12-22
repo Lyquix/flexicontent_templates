@@ -16,7 +16,7 @@
 <!-- BEGIN CATEGORY SETTINGS -->
 			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
 			<field name="cat_title_override" type="text" default="" label="Title Override" description="Enter a title override for the category" filter="raw" />
-			<field name="cat_img_align" type="list" default="" label="Image Aligment" description="Select the category image aligment">
+			<field name="cat_img_align" type="radio" default="" label="Image Aligment" description="Select the category image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
@@ -26,7 +26,7 @@
 			<field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
 			<field name="cat_filters_label" type="text" default="" description="Enter the filter area heading. Include wrapping HTML tags." label="Section Label" filter="raw" />
 			<field name="cat_filters_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
-			<field name="cat_filters_engine" type="list" default="0" label="Render Engine" description="Select the filters section render engine. Default is FLEXIcontent.">
+			<field name="cat_filters_engine" type="radio" default="0" label="Render Engine" description="Select the filters section render engine. Default is FLEXIcontent." class="btn-group group-fcinfo">
 				<option value="0">FLEXIcontent</option>
 				<option value="1">Lyquix</option>
 			</field>
@@ -35,7 +35,7 @@
 			<field name="alphaindex_sep" type="separator" hr="false" default="Alpha Index" description="" level="level1" menu="hide" />
 			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Section Label" filter="raw" />
 			<field name="cat_alphaindex_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
-			<field name="cat_alphaindex_engine" type="list" default="0" label="Render Engine" description="Select the alpha index section render engine. Default is FLEXIcontent.">
+			<field name="cat_alphaindex_engine" type="radio" default="0" label="Render Engine" description="Select the alpha index section render engine. Default is FLEXIcontent." class="btn-group group-fcinfo">
 				<option value="0">FLEXIcontent</option>
 				<option value="1">Lyquix</option>
 			</field>
@@ -62,27 +62,27 @@
 				<option value="div">DIV</option>
 				<option value="span">SPAN</option>
 			</field>
-			<field name="sub_cat_link_title" type="list" default="1" label="Title Clickable" description="Add link to the sub-category titles">
+			<field name="sub_cat_link_title" type="radio" default="1" label="Title Clickable" description="Add link to the sub-category titles" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="sub_cat_img_align" type="list" default="" label="Image Aligment" description="Select the sub-categories image aligment">
+			<field name="sub_cat_img_align" type="radio" default="" label="Image Aligment" description="Select the sub-categories image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="sub_cat_viewall_link" type="list" default="0" label="View All Link" description="Adds a view all link to the sub-category">
+			<field name="sub_cat_viewall_link" type="radio" default="0" label="View All Link" description="Adds a view all link to the sub-category" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="sub_cat_viewall_label" type="text" filter="raw" default="View All {title} Items" label="View All Link Label" description="Custom label for the view all link. Use the {title} code to replace with the title of the subcategory." />
 			
 			<field name="sub_cat_items_items_sep" type="separator" hr="false" default="Sub-Categories Content Items" description="Settings for the content items under the sub-categories" level="level2" menu="hide" />
-			<field name="sub_cat_items" type="list" default="0" label="Show Content Items" description="Show or hide items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list.">
+			<field name="sub_cat_items" type="radio" default="0" label="Show Content Items" description="Show or hide items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="sub_cat_items_style" type="list" default="linkslist" label="Content Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list">
+			<field name="sub_cat_items_style" type="radio" default="linkslist" label="Content Items Style" description="If showing subcategories items, select whether such list is a plain list, a list of links, or use the same settings from the intro items list" class="btn-group group-fcinfo">
 				<option value="linkslist">Links List</option>
 				<option value="textlist">Text List</option>
 				<option value="introitems">Intro Items List Style</option>
@@ -95,7 +95,7 @@
 			
 			<field name="sub_cat_items_items_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
-			<field name="sub_cat_linked_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+			<field name="sub_cat_linked_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -127,7 +127,7 @@
 
 			<field name="sub_cat_items_items_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1"/>
-			<field name="sub_cat_items_items_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+			<field name="sub_cat_items_items_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
 				<option value="s">FLEXI_SMALL</option>
 				<option value="m">FLEXI_MEDIUM</option>
 				<option value="l">FLEXI_LARGE</option>
@@ -135,11 +135,11 @@
 			</field>
 			<field name="sub_cat_items_items_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
 			<field name="sub_cat_items_items_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
-			<field name="sub_cat_items_items_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+			<field name="sub_cat_items_items_img_method" type="radio" default="0" label="Processing Method" description="Select the processing method for custom size images" class="btn-group group-fcinfo">
 				<option value="0">FLEXI_SCALE</option>
 				<option value="1">FLEXI_CROP</option>
 			</field>
-			<field name="sub_cat_items_items_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+			<field name="sub_cat_items_items_img_link" type="radio" default="1" label="Image Clickable" description="Make the image a link to the item" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -152,10 +152,10 @@
 <!-- END SUB-CATEGORIES -->
 <!-- BEGIN MAP SETTINGS -->
 			<field name="map_sep" type="separator" hr="false" default="Map" description="Settings for map section" level="level1" menu="hide" />
-			<field name="map_display" type="list" default="" label="Display Map" description="Display items in a map using latitude and longitude information from a specified address field.">
+			<field name="map_display" type="radio" default="" label="Display Map" description="Display items in a map using latitude and longitude information from a specified address field." class="btn-group btn-group-yesno">
 				<option value="">No Map</option>
 				<option value="map">Map Only</option>
-				<option value="map_list">Map and Items List</option>
+				<option value="map_list">Map + Items List</option>
 			</field>
 			<field name="map_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="raw" />
 			<field name="map_css_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
@@ -166,25 +166,25 @@
 			<field name="map_settings_sep" type="separator" hr="false" default="Map Settings" description="Settings for map display" level="level2" menu="hide" />
 			<field name="map_width" type="text" default="100%" label="Map Width" description="Width of the map container in px or %" />
 			<field name="map_height" type="text" default="480px" label="Map Height" description="Height of the map container in px or %" />
-			<field name="map_type" type="list" default="roadmap" label="Map Type" description="Select the type of map to show">
+			<field name="map_type" type="radio" default="roadmap" label="Map Type" description="Select the type of map to show" class="btn-group group-fcinfo">
 				<option value="ROADMAP">Roadmap</option>
 				<option value="SATELLITE">Satellite</option>
 				<option value="HYBRID">Hybrid</option>
 				<option value="TERRAIN">Terrain</option>
 			</field>
-			<field name="map_zoom_control" type="list" default="1" label="Display Zoom Control" description="Select whether the zoom control should be displayed. This control allows the user to to zoom in and out.">
+			<field name="map_zoom_control" type="radio" default="1" label="Display Zoom Control" description="Select whether the zoom control should be displayed. This control allows the user to to zoom in and out." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_pan_control" type="list" default="0" label="Display Pan Control" description="Select whether the pan control should be displayed. This control allows to move the map and in some cases rotate it.">
+			<field name="map_pan_control" type="radio" default="0" label="Display Pan Control" description="Select whether the pan control should be displayed. This control allows to move the map and in some cases rotate it." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_type_control" type="list" default="0" label="Display Map Type Control" description="Select whether the map type control should be displayed. This control allows the user to change the map type (i.e. rodadmap, satellite, hybrid, terrain)">
+			<field name="map_type_control" type="radio" default="0" label="Display Map Type Control" description="Select whether the map type control should be displayed. This control allows the user to change the map type (i.e. rodadmap, satellite, hybrid, terrain)" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_zoom_scrollwheel" type="list" default="0" label="Scrollwheel Zoom" description="Select whether the map will zoom in and out using the mouse scrollwheel.">
+			<field name="map_zoom_scrollwheel" type="radio" default="0" label="Scrollwheel Zoom" description="Select whether the map will zoom in and out using the mouse scrollwheel." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -217,7 +217,7 @@
 			
 			<field name="map_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="map_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
-			<field name="map_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+			<field name="map_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
 				<option value="s">FLEXI_SMALL</option>
 				<option value="m">FLEXI_MEDIUM</option>
 				<option value="l">FLEXI_LARGE</option>
@@ -225,15 +225,15 @@
 			</field>
 			<field name="map_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
 			<field name="map_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
-			<field name="map_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+			<field name="map_img_method" type="radio" default="0" label="Processing Method" description="Select the processing method for custom size images" class="btn-group group-fcinfo">
 				<option value="0">FLEXI_SCALE</option>
 				<option value="1">FLEXI_CROP</option>
 			</field>
-			<field name="map_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+			<field name="map_img_link" type="radio" default="1" label="Image Clickable" description="Make the image a link to the item" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="map_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+			<field name="map_img_align" type="radio" default="" label="Image Aligment" description="Select the item image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
@@ -245,18 +245,18 @@
 			<field name="items_settings_sep" type="separator" hr="false" default="Content Items" description="Parameters for content items lists section" level="level1" menu="hide" />
 			<field name="items_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="raw" />
 			<field name="items_css_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
-			<field name="items_addthis" type="list" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items.">
+			<field name="items_addthis" type="radio" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_addthis_after" type="fields" field_type="" default="" label="Sharing Buttons After" description="Select the position of AddThis sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="items_addthis_services" type="textarea" filter="raw" default="&lt;a class=&quot;addthis_button_facebook_like&quot; fb:like:layout=&quot;button_count&quot;&gt;&lt;/a&gt;&lt;a class=&quot;addthis_button_tweet&quot;&gt;&lt;/a&gt;&lt;a class=&quot;addthis_counter addthis_pill_style&quot;&gt;&lt;/a&gt;" label="AddThis Services" description="Add the necessary AddThis services (raw HTML)" />
-			<field name="items_disqus" type="list" default="0" label="Comments Count" description="Show or hide Disqus comments count on individual items.">
+			<field name="items_disqus" type="radio" default="0" label="Comments Count" description="Show or hide Disqus comments count on individual items." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_disqus_after" type="fields" field_type="" default="" label="Comments Count After" description="Select the position of Disqus comments count after a field" fieldnameasvalue="1" />
-			<field name="items_no_items" type="list" default="0" label="Display &quot;No Items Found&quot;" description="Show or hide the &quot;No Items Found&quot; label">
+			<field name="items_no_items" type="radio" default="0" label="Display &quot;No Items Found&quot;" description="Show or hide the &quot;No Items Found&quot; label" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -271,7 +271,7 @@
 			
 			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />						
-			<field name="leading_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+			<field name="leading_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -303,7 +303,7 @@
 			
 			<field name="leading_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="leading_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
-			<field name="leading_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+			<field name="leading_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
 				<option value="s">FLEXI_SMALL</option>
 				<option value="m">FLEXI_MEDIUM</option>
 				<option value="l">FLEXI_LARGE</option>
@@ -311,15 +311,15 @@
 			</field>
 			<field name="leading_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
 			<field name="leading_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
-			<field name="leading_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+			<field name="leading_img_method" type="radio" default="0" label="Processing Method" description="Select the processing method for custom size images" class="btn-group group-fcinfo">
 				<option value="0">FLEXI_SCALE</option>
 				<option value="1">FLEXI_CROP</option>
 			</field>
-			<field name="leading_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+			<field name="leading_img_link" type="radio" default="1" label="Image Clickable" description="Make the image a link to the item" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="leading_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+			<field name="leading_img_align" type="radio" default="" label="Image Aligment" description="Select the item image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
@@ -336,7 +336,7 @@
 			
 			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
-			<field name="introitems_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+			<field name="introitems_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -368,7 +368,7 @@
 
 			<field name="introitems_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="introitems_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1"/>
-			<field name="introitems_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+			<field name="introitems_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
 				<option value="s">FLEXI_SMALL</option>
 				<option value="m">FLEXI_MEDIUM</option>
 				<option value="l">FLEXI_LARGE</option>
@@ -376,15 +376,15 @@
 			</field>
 			<field name="introitems_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
 			<field name="introitems_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
-			<field name="introitems_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+			<field name="introitems_img_method" type="radio" default="0" label="Processing Method" description="Select the processing method for custom size images" class="btn-group group-fcinfo">
 				<option value="0">FLEXI_SCALE</option>
 				<option value="1">FLEXI_CROP</option>
 			</field>
-			<field name="introitems_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+			<field name="introitems_img_link" type="radio" default="1" label="Image Clickable" description="Make the image a link to the item" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="introitems_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+			<field name="introitems_img_align" type="radio" default="" label="Image Aligment" description="Select the item image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
@@ -393,7 +393,7 @@
 	<!-- END ITEMS  LIST -->
 	<!-- BEGIN FEATURED ITEMS -->
 			<field name="featured_sep" type="separator" hr="false" default="Featured Items" description="" level="level2" menu="hide" />
-			<field name="featured_separate" type="list" default="0" label="Separate Featured Items" description="To separate Fetured Items list">
+			<field name="featured_separate" type="radio" default="0" label="Separate Featured Items" description="To separate Fetured Items list" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -404,7 +404,7 @@
 			
 			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items" />
-			<field name="featured_link_item" type="list" default="0" label="Linked Items" description="Render list items and their children wrapped in a link">
+			<field name="featured_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -436,7 +436,7 @@
 
 			<field name="featured_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="featured_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
-			<field name="featured_img_size" type="list" default="s" label="Image Size" description="Select image size to use">
+			<field name="featured_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
 				<option value="s">FLEXI_SMALL</option>
 				<option value="m">FLEXI_MEDIUM</option>
 				<option value="l">FLEXI_LARGE</option>
@@ -444,15 +444,15 @@
 			</field>
 			<field name="featured_img_width" type="text" size="4" default="160" label="Width (px)" description="Specify image width in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
 			<field name="featured_img_height" type="text" size="4" default="90" label="Height (px)" description="Specify image height in pixels. Only applicable when selecting &lt;strong&gt;Custom Size&lt;/strong&gt; in &lt;strong&gt;Image Size&lt;/strong&gt;" />
-			<field name="featured_img_method" type="list" default="0" label="Processing Method" description="Select the processing method for custom size images">
+			<field name="featured_img_method" type="radio" default="0" label="Processing Method" description="Select the processing method for custom size images" class="btn-group group-fcinfo">
 				<option value="0">FLEXI_SCALE</option>
 				<option value="1">FLEXI_CROP</option>
 			</field>
-			<field name="featured_img_link" type="list" default="1" label="Image Clickable" description="Make the image a link to the item">
+			<field name="featured_img_link" type="radio" default="1" label="Image Clickable" description="Make the image a link to the item" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			<field name="featured_img_align" type="list" default="" label="Image Aligment" description="Select the item image aligment">
+			<field name="featured_img_align" type="radio" default="" label="Image Aligment" description="Select the item image aligment" class="btn-group group-fcinfo">
 				<option value="">None</option>
 				<option value="left">Left</option>
 				<option value="right">Right</option>
