@@ -22,7 +22,6 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_disqus_after" type="fields" field_type="" default="" label="Comments Count After" description="Select the position of Disqus comments count after a field" fieldnameasvalue="1" />
-<!-- BEGIN GROUP CLASSES -->
 			<field name="item_css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
 			<field name="item_css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
 			<field name="item_css_group_2" type="text" default="" label="Group 2" description="CSS class for fields group 2" />
@@ -31,7 +30,8 @@
 			<field name="item_css_group_5" type="text" default="" label="Group 5" description="CSS class for fields group 5" />
 			<field name="item_css_group_6" type="text" default="" label="Group 6" description="CSS class for fields group 6" />
 			<field name="item_css_group_7" type="text" default="" label="Group 7" description="CSS class for fields group 7" />
-<!-- END GROUP CLASSES -->
+			<field name="item_css_field_sep" type="separator" hr="false" default="Fields CSS Classes" description="Adds CSS classes to the individual fields" level="level1" menu="hide" />
+			<field name="item_css_fields" type="textarea" default="{}" label="Fields CSS array" description="An array in json format that uses field names as keys and the CSS strings as value. For example: {'image': 'right blk4', 'text': 'cf containter'}" />
 		</fieldset>
 	</fields>
 	<fieldgroups>

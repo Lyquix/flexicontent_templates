@@ -699,6 +699,8 @@ class lyquixFlexicontentTmpl {
 
 	function renderCatItemsField(&$item, &$field, $group) {
 		
+		$css_fields = (object) json_decode($this -> params -> get('item_css_fields', '{}'));
+		
 		$html = '';
 		
 		// link to item
@@ -725,7 +727,8 @@ class lyquixFlexicontentTmpl {
 						// show item title?
 	
 						if ($this -> params -> get('show_title', 1)) {
-							$html .= '<' . $this -> params -> get($group . '_title_headding', 'h3') . '>';
+							$html .= '<' . $this -> params -> get($group . '_title_headding', 'h3');
+							$html .= (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>';
 	
 							// make title clickable?
 	
@@ -758,7 +761,7 @@ class lyquixFlexicontentTmpl {
 	
 				case "created" :
 				case "modified" :
-					$html .= '<div class="date ' . $field -> name . '">';
+					$html .= '<div class="date ' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
@@ -797,7 +800,10 @@ class lyquixFlexicontentTmpl {
 	
 					$group_img_class = $this -> params -> get($group . '_img_class', '');
 					$group_img_align = $this -> params -> get($group . '_img_align', '');
-					$html .= '<div class="image field_' . $field -> name . ($group_img_align ? ' ' . $group_img_align : '') . ($group_img_class ? ' ' . $group_img_class : '') . '">';
+					$html .= '<div class="image field_' . $field -> name 
+						. ($group_img_align ? ' ' . $group_img_align : '') . ($group_img_class ? ' ' . $group_img_class : '')
+						. (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '')
+						. '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
@@ -840,7 +846,7 @@ class lyquixFlexicontentTmpl {
 							}
 						}
 	
-						$html .= '<div class="description">';
+						$html .= '<div class="description' . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 	
 						// add label?
 	
@@ -867,7 +873,7 @@ class lyquixFlexicontentTmpl {
 				
 				case 'created_by':
 					
-					$html .= '<div class="author ' . $field -> name . '">';
+					$html .= '<div class="author ' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
@@ -879,7 +885,7 @@ class lyquixFlexicontentTmpl {
 				// display any other field
 	
 				default :
-					$html .= '<div class="field field_' . $field -> name . '">';
+					$html .= '<div class="field field_' . $field -> name . (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '') . '">';
 					
 					if ($field -> label) {
 						$html .= '<div class="label">' . $field -> label . '</div>';
@@ -937,7 +943,7 @@ class lyquixFlexicontentTmpl {
 
 	function renderItemField(&$item, &$field) {
 		
-		$css_fields = json_decode($this -> params -> get('item_css_fields', '{}'));
+		$css_fields = (object) json_decode($this -> params -> get('item_css_fields', '{}'));
 		
 		$html = '';
 		
