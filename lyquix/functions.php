@@ -657,7 +657,7 @@ class lyquixFlexicontentTmpl {
 						'" data-itemid="'. $this -> items[$i] -> id .'">';
 				
 				// wrap item in link
-				if (($this -> params -> get($group . '_link_item', 1))) {
+				if (($this -> params -> get($group . '_link_item', 0))) {
 					$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
 					$html .= '<a href="' . $item_link . '">';
 				}

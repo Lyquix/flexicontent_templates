@@ -95,7 +95,7 @@
 			
 			<field name="sub_cat_items_items_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
-			<field name="sub_cat_linked_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
+			<field name="sub_cat_items_items_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
