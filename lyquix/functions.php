@@ -310,7 +310,11 @@ class lyquixFlexicontentTmpl {
 			
 			foreach ($this->categories as $subcat) {
 				
-				$html .= '<li class="' . $this -> params -> get('sub_cat_li_class', '') . '">';
+				$html .= '<li class="' 
+					. $this -> params -> get('sub_cat_li_class', '') 
+					. (class_exists('lyquixFlexicontentTmplCustom') ? ' ' . lyquixFlexicontentTmplCustom::customSubcatClass($subcat) : '') 
+					. '">';
+					
 				$html .= $this -> params -> get('subcat_pretext', '');
 				
 				foreach ($cat_sections as $cat_section) {
