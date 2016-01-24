@@ -221,6 +221,10 @@ class lyquixFlexicontentTmpl {
 								});
 							}
 						}
+						jQuery(window).on("screensizechange", function() {
+							lyquix.catMap.fitBounds(lyquix.catMapBounds);
+							lyquix.catMap.panToBounds(lyquix.catMapBounds);
+						});
 					});
 				 </script>';
 		}
