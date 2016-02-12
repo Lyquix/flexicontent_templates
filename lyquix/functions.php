@@ -444,7 +444,7 @@ class lyquixFlexicontentTmpl {
 											
 											if ($cat -> id == $subcat -> id) {
 												
-												$html .= '<li data-item-id="' . $item -> id . '">';
+												$html .= '<li data-itemid="' . $item -> id . '">';
 		
 												// add link if type of items list if linklist
 		
@@ -670,7 +670,7 @@ class lyquixFlexicontentTmpl {
 							$this -> params -> get($group . '_li_class', '') . 
 							($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
 							(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
-							'" data-item-id="'. $this -> items[$i] -> id .'">';
+							'" data-itemid="'. $this -> items[$i] -> id .'">';
 					
 					// wrap item in link
 					if (($this -> params -> get($group . '_link_item', 0))) {
