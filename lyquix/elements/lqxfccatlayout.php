@@ -1,12 +1,11 @@
 <?php
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
-if (FLEXI_J16GE) {
-	jimport('joomla.html.html');
-	jimport('joomla.form.formfield');
-	jimport('joomla.form.helper');
-	JFormHelper::loadFieldClass('list');
-}
+
+jimport('joomla.html.html');
+jimport('joomla.form.formfield');
+jimport('joomla.form.helper');
+JFormHelper::loadFieldClass('list');
 
 class JFormFieldLqxfccatlayout extends JFormField {
 
@@ -16,6 +15,7 @@ class JFormFieldLqxfccatlayout extends JFormField {
 		$doc = JFactory::getDocument();
 		$db = JFactory::getDBO();
 		$cparams = JComponentHelper::getParams('com_flexicontent');
+		$html = '';
 
 		if (FLEXI_J16GE) {
 			$node = &$this -> element;

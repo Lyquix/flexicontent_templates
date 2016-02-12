@@ -89,7 +89,14 @@
 				<option value="introitems">Intro Items List Style</option>
 			</field>
 			
-			<field name="sub_cat_items_items_introitems_sep" type="separator" hr="false" default="Intro Items Style Settings" description="" level="level3" menu="hide" />
+			<field name="sub_cat_items_items_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
+			<field name="sub_cat_items_items_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
+				<option value="0">Exclude</option>
+				<option value="1">Include</option>
+			</field>
+			<field name="sub_cat_items_items_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			
+			<field name="sub_cat_items_items_introitems_sep" type="separator" hr="false" default="Content Items" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="raw" />
 			<field name="sub_cat_items_items_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_closetag" type="text" filter="raw" default="" label="Secetion Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
@@ -158,6 +165,15 @@
 				<option value="map">Map Only</option>
 				<option value="map_list">Map + Items List</option>
 			</field>
+			
+			<field name="map_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
+			<field name="map_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
+				<option value="0">Exclude</option>
+				<option value="1">Include</option>
+			</field>
+			<field name="map_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			
+			<field name="map_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="map_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="raw" />
 			<field name="map_css_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 			<field name="map_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the map, after the label. Include wrapping HTML tags." />
@@ -265,12 +281,19 @@
 	<!-- BEGIN LEAD ITEMS -->
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
 			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />
+			
+			<field name="leading_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
+			<field name="leading_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
+				<option value="0">Exclude</option>
+				<option value="1">Include</option>
+			</field>
+			<field name="leading_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			
+			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_label" type="text" default="" label="Section Label" description="Enter the lead items list label. Include wrapping HTML tags." filter="raw" />
 			<field name="leading_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 			<field name="leading_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list, after the section label. Include wrapping HTML tags." />
 			<field name="leading_closetag" type="text" filter="raw" default="" label="Section Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			
-			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />						
 			<field name="leading_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
@@ -330,12 +353,19 @@
 	
 	<!-- BEGIN INTRO ITEMS LIST -->	
 			<field name="introitems_sep" type="separator" hr="false" default="Intro Items" description="" level="level2" menu="hide" />
+			
+			<field name="introitems_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
+			<field name="introitems_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
+				<option value="0">Exclude</option>
+				<option value="1">Include</option>
+			</field>
+			<field name="introitems_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			
+			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="raw" />
 			<field name="introitems_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 			<field name="introitems_opentag" type="text" filter="raw" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
 			<field name="introitems_closetag" type="text" filter="raw" default="" label="Secetion Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			
-			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_ul_class" type="text" filter="raw" default="" label="List CSS Class" description="Add a CSS class string for items list" />
 			<field name="introitems_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
@@ -398,6 +428,15 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			
+			<field name="featured_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
+			<field name="featured_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
+				<option value="0">Exclude</option>
+				<option value="1">Include</option>
+			</field>
+			<field name="featured_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			
+			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_label" type="text" default="" label="Section Label" description="Enter the featured items list label. Include wrapping HTML tags." filter="raw" />
 			<field name="featured_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 			<field name="featured_opentag" type="text" filter="raw" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />

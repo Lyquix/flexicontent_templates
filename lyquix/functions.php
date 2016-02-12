@@ -242,38 +242,41 @@ class lyquixFlexicontentTmpl {
 
 		// generate json object of items
 		foreach ($this->items as $i => $item) {
-
-			// check if item has address field
-
-			if (array_key_exists($field_name, $item -> fields)) {
-
-				// check if field has lat/lon different than 0,0
-
-				$addr = unserialize($item -> fields[$field_name] -> value[0]);
+			
+			// include/exclude by content type
+			if(!($this -> params -> get('map_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get('map_inc_exc_types_list', array())))) {
 				
-				if ((float)$addr['lat'] != 0 && (float)$addr['lon'] != 0) {
+				// check if item has address field
+				if (array_key_exists($field_name, $item -> fields)) {
+	
+					// check if field has lat/lon different than 0,0
+	
+					$addr = unserialize($item -> fields[$field_name] -> value[0]);
 					
-					$html = '';
-					$html .= $this -> params -> get('map_pretext', '');
-					
-					for ($j = 1; $j <= 7; $j++) {
+					if ((float)$addr['lat'] != 0 && (float)$addr['lon'] != 0) {
 						
-						if (isset($item -> positions['group_' . $j])) {
+						$html = '';
+						$html .= $this -> params -> get('map_pretext', '');
+						
+						for ($j = 1; $j <= 7; $j++) {
 							
-							$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
-							
-							foreach ($item->positions['group_' . $j] as $field) {
+							if (isset($item -> positions['group_' . $j])) {
 								
-								$html .= self::renderCatItemsField($item, $field, 'map');
+								$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+								
+								foreach ($item->positions['group_' . $j] as $field) {
+									
+									$html .= self::renderCatItemsField($item, $field, 'map');
+								}
+	
+								$html .= '</div>';
 							}
-
-							$html .= '</div>';
 						}
+						
+						$html .= $this -> params -> get('map_posttext', '');
+						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
+						
 					}
-					
-					$html .= $this -> params -> get('map_posttext', '');
-					array_push($json, array('title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
-					
 				}
 			}
 		}
@@ -661,45 +664,48 @@ class lyquixFlexicontentTmpl {
 			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
 			foreach ($idx as $i) {
 				
-				$html .= '<li class="' . 
-						$this -> params -> get($group . '_li_class', '') . 
-						($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-						(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
-						'" data-itemid="'. $this -> items[$i] -> id .'">';
-				
-				// wrap item in link
-				if (($this -> params -> get($group . '_link_item', 0))) {
-					$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
-					$html .= '<a href="' . $item_link . '">';
-				}
-				
-				$html .= $this -> params -> get($group . '_pretext', '');
+				// include/exclude by content type
+				if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
+					$html .= '<li class="' . 
+							$this -> params -> get($group . '_li_class', '') . 
+							($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
+							(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
+							'" data-item-id="'. $this -> items[$i] -> id .'">';
 					
-				for ($j = 1; $j <= 7; $j++) {
-					
-					if (isset($this -> items[$i] -> positions['group_' . $j])) {
-							
-						$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
-						
-						foreach ($this->items[$i]->positions['group_' . $j] as $field) {
-							
-							$html .= self::renderCatItemsField($this -> items[$i], $field, $group);
-							
-						}
-
-						$html .= '</div>';
+					// wrap item in link
+					if (($this -> params -> get($group . '_link_item', 0))) {
+						$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
+						$html .= '<a href="' . $item_link . '">';
 					}
 					
+					$html .= $this -> params -> get($group . '_pretext', '');
+						
+					for ($j = 1; $j <= 7; $j++) {
+						
+						if (isset($this -> items[$i] -> positions['group_' . $j])) {
+								
+							$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+							
+							foreach ($this->items[$i]->positions['group_' . $j] as $field) {
+								
+								$html .= self::renderCatItemsField($this -> items[$i], $field, $group);
+								
+							}
+	
+							$html .= '</div>';
+						}
+						
+					}
+					
+					$html .= $this -> params -> get($group . '_posttext', '');
+					
+					// close the link element
+					if (($this -> params -> get($group . '_link_item', 1))) {
+							$html .= '</a>';
+					}
+					
+					$html .= '</li>';
 				}
-				
-				$html .= $this -> params -> get($group . '_posttext', '');
-				
-				// close the link element
-				if (($this -> params -> get($group . '_link_item', 1))) {
-						$html .= '</a>';
-				}
-				
-				$html .= '</li>';
 				
 			}
 
