@@ -12,22 +12,25 @@ These templates are for advanced developers only. Don't expect to install it and
 
 ##Features##
 
-  * Provides a select2 sortable field for defining what parts of the category should be included and in what order (description, image, subcategories, buttons, filters, items, pagination...)
-  * Allows to override the category title
-  * Select alignment of category image
-  * Override heading label for filters, alpha-index, subcategories and items section
-  * Add custom CSS classes for sub-categories and itemss (UL and LI tags), and for field positions
-  * Add custom HTML at the beginning and end of each section, and at the beginning and end of each item
+  * General layout
+    * Provides a select2 sortable field for defining what parts of the category should be included and in what order (description, image, subcategories, buttons, filters, items, pagination...)
+    * Create complex HTML layouts by addition of separators that create DIV wrappers around the various category sections, with the option for custom CSS classes
+    * Allows to override the category title
+    * Select alignment of category image
+    * Override heading label for filters, alpha-index, subcategories and items sections
+    * Add custom CSS classes for sub-categories and items lists (UL and LI tags), and for field positions
+    * Add custom HTML at the beginning and end of each section, and at the beginning and end of each item
   * Sub-categories
     * Select tag for sub-category titles
     * Set sub-category image alignment
+    * Custom ordering of sub-category elements (title, image, description and sub-category items)
     * Option to display sub-category items and to and choose whether to exclude them from main item lists
   * Map
     * Control Google map dimensions and controls
     * Render pins on map using lat/lon coordinates from AddressInt field
     * Include item information in map bubbles
   * Item lists
-    * Ability to separate featured items in a separate list (UL)
+    * Ability to separate featured items in its own list (UL)
     * Control whether the "No Items Found" label should be displayed, and what text to use
     * Select the tag for items title *
     * Select field to be used as title string
@@ -36,12 +39,15 @@ These templates are for advanced developers only. Don't expect to install it and
     * Custom date format *
     * Custom label for read more button
     * Custom "written by" label for author field *
-    * Option to insert AddThis bar in category and item views
+    * Option to insert AddThis bar in category and item views, and customize AddThis embed code
     * Option to insert Disqus comment count in category view
-  * Customize rendering of fields
-  * Use field values to add as CSS classes
-  * JSON template can be used as a simple API to feed external systems, javascript code, or mobile apps
-  * One-click update
+    * Custom CSS classes for each field position
+    * Custom CSS classes for field wrappers
+  * Advanced development
+    * Customize rendering of any section of categories (title, description, image, alphaindex, filters, items, subcategories, pagination)
+    * Customize rendering of fields
+    * Use PHP to generate custom CSS classes for subcategories and items 
+    * JSON template can be used as a simple API to feed external systems, javascript code, or mobile apps
 
 (*) While many of these customizations are available directly on the fields settings, having them on the template allow to set them on a category- and type-level.
 
@@ -57,9 +63,9 @@ In the future we want to add the option to group some of the position DIVs in or
 
 The template is structured in two directories: `lyquix` and `custom`.
 
-The `**lyquix**` directory contains the common code. You should not use this template with categories or content types.
+The **`lyquix`** directory contains the common code. You should not use this template with categories or content types.
 
-The `**custom**` directory contains the base files for your custom templates. You can assign this template directly to categories and types, but it is not recommended. Instead make copies of this template for your project. For example: custom-services, custom-people, etc.
+The **`custom`** directory contains the base files for your custom templates. You can assign this template directly to categories and types, but it is not recommended. Instead make copies of this template for your project. For example: custom-services, custom-people, etc.
 
 In your custom directories you will find the typical files:
 
@@ -89,120 +95,44 @@ There aren't as many features for the item view as for the category view.
 
 The file `item.php` is similar to the category counterpart. It loads the file `functions.php` that provide the function for rendering fields. It is possible to define where to load the sharing buttons, and specify custom CSS classes for the field positions.
 
-##Custom Field Display##
+##Advanced Customization##
 
-The template allows to define how fields should be rendered. This feature is available for category and item views. This is implemented by adding files `category-custom.php` and `item-custom.php` in your template folder that are loaded only if they exist.
+The template allows for advanced customization. You can add custom CSS classes to subcategories and items using PHP, customize the rendering of fields, and the rendering of category sections (title, image, description, alphaindex, filters, sub-categories, items and pagination) to fit your needs. This feature is available for category and item views. 
 
-The way this work is, as the fields are rendered in their positions, the code will attempt to get the custom rendering first, and if there is no output, it uses the default rendering.
+This is implemented by adding files `category-custom.php` and `item-custom.php` in your template folder that are loaded only if they exist. Refer to the files `category-custom.dist.php` and `item-custom.dist.php` as samples of the basic structures that these customizations must have. They load a PHP class with specific functions that are executed by the template. Remember that you can use `$this` to access all the information of the category, subcategories and items.
 
-To enable custom field rendering you need to add the file `category-custom.php` and/or `item-custom.php` in your template folder (for example: `custom-services`). In both cases you need to define the class `lyquixFlexicontentTmplCustom`. In the case of category you need to define the functions `customItemClass` and `customFieldRendering`. The first one is used for adding custom CSS class to the LI element for the item based on field values (explained below), and the other is for custom field rendering.
+**`customSubcatClass`**
 
-Sample `category-custom.php`:
+Inputs: 
+  * `$subcat` an object representing the current sub category being rendered
 
-```php
-<?php
+Output: 
+  * Array containing the CSS classes to be applied to the sub-category element.
 
-defined('_JEXEC') or die('Restricted access');
+**`customItemClass`**
 
-class lyquixFlexicontentTmplCustom {
-	
-	function customItemClass(&$item, $group) {
-		
-		$css = array();
-		
-		/* your custom code here
-		 * use $item->fields['field_name'] to get the field value, properties and display
-		 * add your classes to the array $css using $css[] = 'myclass'
-		*/
-		
-		return implode(' ', $css);
-		
-	}
-	
-	function customFieldRendering(&$item, &$field, $group) {
-		
-		$html = '';
-		
-		switch ($field->name) {
-			
-			/*
-			case 'field_name':
-				// your custom code for field_name here
-				break;
-			*/
-			
-			default:
-				break;
-				
-		}
-		return $html;
-		
-	}
-	
-	function customSectionRendering($section) {
-		
-		$html = '';
+Inputs: 
+  * `$item` an object representing the current item being rendered
+  * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-	        switch ($section) {
-	
-        	    /*
-	            case 'renderCatTitle': // use same name as in functions.php
-        	        // your custom code for field_name here
-	                break;
-	            */
-				
-	            default:
-                	break;
+Output: 
+  * Array containing the CSS classes to be applied to the item element.
 
-        	}
-		
-		return $html;
-		
-	}
-	
-}
-```
+**`customFieldRendering`**
 
-Sample `item-custom.php`:
+Inputs: 
+  * `$item` an object representing the current item being rendered
+  * `$field` an object representing the current field object
+  * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-```php
-<?php
+Output: 
+  * String containing the rendered HTML
 
-defined('_JEXEC') or die('Restricted access');
+**`customSectionRendering`**
 
-class lyquixFlexicontentTmplCustom {
-	
-	function customFieldRendering(&$item, &$field) {
-		
-		$html = '';
-		
-		switch ($field->name) {
-			
-			/*
-			case 'field_name':
-				// your custom code for field_name here
-				break;
-			*/
-			
-			default:
-				break;
-				
-		}
-		return $html;
-		
-	}
-	
-}
-```
+Inputs: 
+  * `$section` a string that indicates what section is currently being rendered
 
-The variable $group is used to identify what list of items is currently being generated: introitems, leading, featured or map. You can modify the functions as you see fit for your project, as long as you accept the same parameters, and out a CSS class string for `customItemClass` and HTML code for `customFieldRendering`.
-
-##One-click Update##
-
-Run the script lyquix/update.php to get your template updated. This downloads the latest version of this template from this repository and updates all your files, including all the custom- templates you have created by copying the custom template. Be aware that if you have modified any of the files included in this repo, they will be overwritten by this operation.
-
-
-**README To Do:**
-
-  * json template
+Output:
+  * String containing the rendered HTML
 
