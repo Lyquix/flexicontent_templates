@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'functions.php');
 
 // Item sections ordering
-$item_sections = $this -> params -> get('item_layout_order', array("group_1", "group_2", "group_3", "group_4", "group_5", "group_6", "group_7"));
+$item_sections = $this -> params -> get('item_layout_order', array("group1", "group2", "group3", "group4", "group5", "group6", "group7"));
 
 if (!is_array($item_sections)) {
 	$item_sections = explode(",", $item_sections);
@@ -26,7 +26,7 @@ if (is_array($item_sections)) {
 			$i++;
 			echo '</div><div class="section-' . $i . ' ' . $this -> params -> get('css_section_' . $i) . '">';
 
-		} elseif (strstr($item_section, 'group_')) {
+		} elseif (strstr($item_section, 'group')) {
 			
 			$j = substr($item_section, -1);
 			
