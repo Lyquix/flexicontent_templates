@@ -196,7 +196,7 @@ class lyquixFlexicontentTmpl {
 					lyquix.catMapBounds = new google.maps.LatLngBounds();
 					lyquix.catMapItems = ' . self::renderCatMapItems() . ';
 					lyquix.catMapInfoWindows = {};
-					lyquix.catMapMarker ={};
+					lyquix.catMapMarker = {};
 					jQuery(document).ready(function(){
 						lyquix.catMap = new google.maps.Map(document.getElementById(\'cat-map\'), lyquix.catMapOptions);
 						google.maps.event.addListenerOnce(lyquix.catMap, \'bounds_changed\', function(event){
@@ -441,7 +441,7 @@ class lyquixFlexicontentTmpl {
 											
 											if ($cat -> id == $subcat -> id) {
 												
-												$html .= '<li>';
+												$html .= '<li data-item-id="' . $item -> id . '">';
 		
 												// add link if type of items list if linklist
 		
