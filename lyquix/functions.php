@@ -321,9 +321,16 @@ class lyquixFlexicontentTmpl {
 					
 				$html .= $this -> params -> get('subcat_pretext', '');
 				
-				foreach ($cat_sections as $cat_section) {
+				// Subub-categories sections ordering
+				$sub_cat_sections = $this -> params -> get('sub_cat_layout_order', array("title", "image", "desc", "items"));
+				
+				if (!is_array($sub_cat_sections)) {
+					$sub_cat_sections = explode(",", $sub_cat_sections);
+				}
+				
+				foreach ($sub_cat_sections as $sub_cat_section) {
 						
-					switch ($cat_section) {
+					switch ($sub_cat_section) {
 
 						// sub-category title
 
