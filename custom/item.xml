@@ -23,6 +23,16 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_disqus_after" type="fields" field_type="" default="" label="Comments Count After" description="Select the position of Disqus comments count after a field" fieldnameasvalue="1" />
+
+			<field name="item_css_section_sep" type="separator" hr="false" default="Layout Sections CSS Classes" description="Adds CSS classes to the category layout sections" level="level1" menu="hide" />
+			<field name="item_css_section_1" type="text" default="" label="Section 1" description="CSS class for section 1" />
+			<field name="item_css_section_2" type="text" default="" label="Section 2" description="CSS class for section 2" />
+			<field name="item_css_section_3" type="text" default="" label="Section 3" description="CSS class for section 3" />
+			<field name="item_css_section_4" type="text" default="" label="Section 4" description="CSS class for section 4" />
+			<field name="item_css_section_5" type="text" default="" label="Section 5" description="CSS class for section 5" />
+			<field name="item_css_section_6" type="text" default="" label="Section 6" description="CSS class for section 6" />
+			<field name="item_css_section_7" type="text" default="" label="Section 7" description="CSS class for section 7" />
+
 			<field name="item_css_group_sep" type="separator" hr="false" default="Field Groups CSS Classes" description="Adds CSS classes to the field groups" level="level1" menu="hide" />
 			<field name="item_css_group_1" type="text" default="" label="Group 1" description="CSS class for fields group 1" />
 			<field name="item_css_group_2" type="text" default="" label="Group 2" description="CSS class for fields group 2" />
