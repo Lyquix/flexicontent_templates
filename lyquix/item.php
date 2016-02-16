@@ -32,13 +32,10 @@ if (is_array($item_sections)) {
 			if(isset($this->item->positions['group_'.$j])){
 				
 				echo '<div class="group-'.$j.' '.$this->params->get('item_css_group_'.$j, '').'">';
-				$counter = 1;
 				foreach ($this->item->positions['group_'.$j] as $field){
-					var_dump($counter);
 					echo lyquixFlexicontentTmpl::renderItemField($this->item,$field);
-					$counter ++;
 				}
-				
+
 				echo '</div>';
 				
 			}
