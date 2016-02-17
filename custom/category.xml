@@ -278,6 +278,7 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_no_items_label" type="text" default="" label="&quot;No Items Found&quot; Label Override" description="Text to use for the &quot;No Items Found&quot; label. Leave blank to use default." />
+			<field name="items_list_layout_order" type="lqxfccatlayout"  options="featured,intro,leading" default="leading,featured,intro," label="Item List Order" description="Select and order the item lists that will be shown." />
 	<!-- BEGIN LEAD ITEMS -->
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
 			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />

@@ -508,10 +508,11 @@ class lyquixFlexicontentTmpl {
 			if (count($this -> items)) {
 				
 				// create arrays for items
+				
 				$featured_items = array();
 				$leading_items = array();
 				$intro_items = array();
-
+				
 				// display featured items in separate list?
 
 				if ($this -> params -> get('featured_separate', 0)) {
@@ -542,7 +543,7 @@ class lyquixFlexicontentTmpl {
 
 					// cycle through all featured items
 
-					$html .= self::renderCatItemsSection($featured_items, $group = 'featured');
+					//$html .= self::renderCatItemsSection($featured_items, $group = 'featured');
 				}
 
 				// get number of leading items, leading items are shown only in first page
@@ -594,8 +595,9 @@ class lyquixFlexicontentTmpl {
 
 					// cycle through all leading items
 
-					$html .= self::renderCatItemsSection($leading_items, $group = 'leading');
+					//$html .= self::renderCatItemsSection($leading_items, $group = 'leading');
 				}
+
 
 				// display intro items if there are any left after displaying featured and leading items
 
@@ -632,7 +634,28 @@ class lyquixFlexicontentTmpl {
 
 					// cycle through all intro items
 
-					$html .= self::renderCatItemsSection($intro_items, $group = 'introitems');
+					//$html .= self::renderCatItemsSection($intro_items, $group = 'introitems');
+				}
+				
+				$items_list_layout_order = $this -> params -> get('items_list_layout_order', array("featured", "leading","intro"));
+				if (!is_array($items_list_layout_order)) {
+					$items_list_layout_order = explode(",", $items_list_layout_order);
+				}
+				
+				foreach ($items_list_layout_order as $list_section) {
+						
+					switch ($list_section) {
+
+						case "intro" :
+							$html .= self::renderCatItemsSection($intro_items, $group = 'introitems');
+							break;
+						case "leading":
+							$html .= self::renderCatItemsSection($leading_items, $group = 'leading');
+							break;
+						case "featured":
+							$html .= self::renderCatItemsSection($featured_items, $group = 'featured');
+							break;
+					}
 				}
 			} else {
 
