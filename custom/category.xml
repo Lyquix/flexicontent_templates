@@ -107,6 +107,28 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="sub_cat_items_items_html_json" type="radio" default="html" label="Generate JSON" description="Generates the items in JSON format" class="btn-group group-fcinfo">
+				<option value="html">HTML only</option>
+				<option value="html+json">HTML + JSON</option>
+				<option value="json">JSON only</option>
+			</field>
+			<field name="sub_cat_items_items_json_itemid" type="radio" default="1" label="ID in JSON" description="Include item ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_items_items_json_url" type="radio" default="1" label="URL in JSON" description="Include item URK in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_items_items_json_group_fields" type="radio" default="1" label="Group fields in JSON" description="Include item fields in group-N positions in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_items_items_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			
 			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" /> 
 			<field name="sub_cat_items_items_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -300,6 +322,28 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="leading_html_json" type="radio" default="html" label="Generate JSON" description="Generates the items in JSON format" class="btn-group group-fcinfo">
+				<option value="html">HTML only</option>
+				<option value="html+json">HTML + JSON</option>
+				<option value="json">JSON only</option>
+			</field>
+			<field name="leading_json_itemid" type="radio" default="1" label="ID in JSON" description="Include item ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_json_url" type="radio" default="1" label="URL in JSON" description="Include item URK in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_json_group_fields" type="radio" default="1" label="Group fields in JSON" description="Include item fields in group-N positions in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			
 			<field name="leading_items_sep" type="separator" hr="false" default="Items" description="Items settings" level="level3" menu="hide" />
 			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="leading_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -372,6 +416,28 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="introitems_html_json" type="radio" default="html" label="Generate JSON" description="Generates the items in JSON format" class="btn-group group-fcinfo">
+				<option value="html">HTML only</option>
+				<option value="html+json">HTML + JSON</option>
+				<option value="json">JSON only</option>
+			</field>
+			<field name="introitems_json_itemid" type="radio" default="1" label="ID in JSON" description="Include item ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_url" type="radio" default="1" label="URL in JSON" description="Include item URK in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_group_fields" type="radio" default="1" label="Group fields in JSON" description="Include item fields in group-N positions in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			
 			<field name="introitems_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="introitems_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="introitems_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
@@ -449,6 +515,28 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="featured_html_json" type="radio" default="html" label="Generate JSON" description="Generates the items in JSON format" class="btn-group group-fcinfo">
+				<option value="html">HTML only</option>
+				<option value="html+json">HTML + JSON</option>
+				<option value="json">JSON only</option>
+			</field>
+			<field name="featured_json_itemid" type="radio" default="1" label="ID in JSON" description="Include item ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_url" type="radio" default="1" label="URL in JSON" description="Include item URK in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_group_fields" type="radio" default="1" label="Group fields in JSON" description="Include item fields in group-N positions in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+
 			<field name="featured_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="featured_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="featured_posttext" type="text" filter="raw" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />

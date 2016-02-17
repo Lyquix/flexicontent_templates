@@ -681,60 +681,123 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
-			$html .= '<div class="' . $group . '-items ' . $this -> params -> get($group . '_class', '') . '">';
-			$html .= $this -> params -> get($group . '_label', '');
-			$html .= $this -> params -> get($group . '_opentag', '');
-			$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
-			foreach ($idx as $i) {
-				
-				// include/exclude by content type
-				if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
-					$html .= '<li class="' . 
-							$this -> params -> get($group . '_li_class', '') . 
-							($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-							(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
-							'" data-itemid="'. $this -> items[$i] -> id .'">';
+			$html_json = $this -> params -> get($group . '_html_json', 0);
+			
+			// generate html
+			if($html_json != 'json') {
+				$html .= '<div class="' . $group . '-items ' . $this -> params -> get($group . '_class', '') . '">';
+				$html .= $this -> params -> get($group . '_label', '');
+				$html .= $this -> params -> get($group . '_opentag', '');
+				$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
+				foreach ($idx as $i) {
 					
-					// wrap item in link
-					if (($this -> params -> get($group . '_link_item', 0))) {
-						$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
-						$html .= '<a href="' . $item_link . '">';
-					}
-					
-					$html .= $this -> params -> get($group . '_pretext', '');
+					// include/exclude by content type
+					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
+						$html .= '<li class="' . 
+								$this -> params -> get($group . '_li_class', '') . 
+								($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
+								(class_exists('lyquixFlexicontentTmplCustom') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
+								'" data-itemid="'. $this -> items[$i] -> id .'">';
 						
-					for ($j = 1; $j <= 7; $j++) {
-						
-						if (isset($this -> items[$i] -> positions['group_' . $j])) {
-								
-							$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
-							
-							foreach ($this->items[$i]->positions['group_' . $j] as $field) {
-								
-								$html .= self::renderCatItemsField($this -> items[$i], $field, $group);
-								
-							}
-	
-							$html .= '</div>';
+						// wrap item in link
+						if (($this -> params -> get($group . '_link_item', 0))) {
+							$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
+							$html .= '<a href="' . $item_link . '">';
 						}
 						
+						$html .= $this -> params -> get($group . '_pretext', '');
+							
+						for ($j = 1; $j <= 7; $j++) {
+							
+							if (isset($this -> items[$i] -> positions['group_' . $j])) {
+									
+								$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+								
+								foreach ($this->items[$i]->positions['group_' . $j] as $field) {
+									
+									$html .= self::renderCatItemsField($this -> items[$i], $field, $group);
+									
+								}
+		
+								$html .= '</div>';
+							}
+							
+						}
+						
+						$html .= $this -> params -> get($group . '_posttext', '');
+						
+						// close the link element
+						if (($this -> params -> get($group . '_link_item', 1))) {
+								$html .= '</a>';
+						}
+						
+						$html .= '</li>';
 					}
 					
-					$html .= $this -> params -> get($group . '_posttext', '');
-					
-					// close the link element
-					if (($this -> params -> get($group . '_link_item', 1))) {
-							$html .= '</a>';
-					}
-					
-					$html .= '</li>';
 				}
+	
+				$html .= '</ul>';
+				$html .= $this -> params -> get($group . '_closetag', '');
+				$html .= '</div>';
+			}
+			
+			// generate json
+			if($html_json != 'html') {
+				$json = array();
+				foreach ($idx as $i) {
+					
+					$item_json = array();
+					
+					// include/exclude by content type
+					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
+						
+						if($this -> params -> get($group . '_json_itemid', 1)) $item_json['id'] = $this -> items[$i] -> id;
+						if($this -> params -> get($group . '_json_url', 1)) $item_json['url'] = JRoute::_(JURI::base() . FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));
+						
+						// get fields in the group 1-7 positions
+						if($this -> params -> get($group . '_json_group_fields', 1)) {
+							for ($j = 1; $j <= 7; $j++) {
+								
+								if (isset($this -> items[$i] -> positions['group_' . $j])) {
+										
+									foreach ($this->items[$i]->positions['group_' . $j] as $field) {
+										
+										$item_json[$field -> name] = array(
+											'value' => $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id],
+											'display' => self::renderCatItemsField($this -> items[$i], $field, $group)
+										);
+										
+									}
+								
+								}
+								
+							}
+						}
+						
+						// get fields in the renderonly position
+						if ($this -> params -> get($group . '_json_renderonly_fields', 1) && isset($this -> items[$i] -> positions['renderonly'])) {
+								
+							foreach ($this->items[$i]->positions['renderonly'] as $field) {
+								
+								$item_json[$field -> name] = array(
+									'value' => $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id],
+									'display' => self::renderCatItemsField($this -> items[$i], $field, $group)
+								);
+								
+							}
+						
+						}
+						
+						
+					}
+
+					if(count($item_json)) array_push($json, $item_json); 
+					
+				}
+
+				$html .= '<script>var ' . ($group == 'sub_cat_items_items' ? 'subcat' : $group) . 'Items = ' . json_encode($json) . ';</script>';
 				
 			}
-
-			$html .= '</ul>';
-			$html .= $this -> params -> get($group . '_closetag', '');
-			$html .= '</div>';
 			
 		}
 		
