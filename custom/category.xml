@@ -128,6 +128,14 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="sub_cat_items_items_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="sub_cat_items_items_json_field_display" type="radio" default="1" label="Field display in JSON" description="Include item field display string in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			
 			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" /> 
 			<field name="sub_cat_items_items_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
@@ -343,6 +351,14 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="leading_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="leading_json_field_display" type="radio" default="1" label="Field display in JSON" description="Include item field display string in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			
 			<field name="leading_items_sep" type="separator" hr="false" default="Items" description="Items settings" level="level3" menu="hide" />
 			<field name="leading_pretext" type="text" filter="raw" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
@@ -434,6 +450,14 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="introitems_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_field_display" type="radio" default="1" label="Field display in JSON" description="Include item field display string in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -533,6 +557,14 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="featured_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_field_display" type="radio" default="1" label="Field display in JSON" description="Include item field display string in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
