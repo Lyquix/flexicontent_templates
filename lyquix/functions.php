@@ -182,48 +182,49 @@ class lyquixFlexicontentTmpl {
 			$html .= '</div>';
 			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> params -> get('map_google_api_key', '') ? '?key=' . $this -> params -> get('map_google_api_key', '') : '') . '"></script>';
 			$html .= '<script>
-					var lyquix = lyquix||{};
-					lyquix.catMapOptions = {
-						center: new google.maps.LatLng(0,0),
-						mapTypeId: google.maps.MapTypeId.' . $this -> params -> get('map_type', 'ROADMAP') . ',
-						scrollwheel: ' . ($this -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
-						mapTypeControl: ' . ($this -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
-						panControl: ' . ($this -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
-						zoomControl: ' . ($this -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
-						streetViewControl: false,
-						zoom: 8
-					};
-					lyquix.catMapBounds = new google.maps.LatLngBounds();
-					lyquix.catMapItems = ' . self::renderCatMapItems() . ';
-					lyquix.catMapInfoWindows = {};
-					lyquix.catMapMarker = {};
+					var catMap = {
+						options : {
+							center: new google.maps.LatLng(0,0),
+							mapTypeId: google.maps.MapTypeId.' . $this -> params -> get('map_type', 'ROADMAP') . ',
+							scrollwheel: ' . ($this -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
+							mapTypeControl: ' . ($this -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
+							panControl: ' . ($this -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
+							zoomControl: ' . ($this -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
+							streetViewControl: false,
+							zoom: 8
+						},
+						bounds : new google.maps.LatLngBounds(),
+						items : ' . self::renderCatMapItems() . ',
+						infoWindows : {},
+						markers : {},
+					}
 					jQuery(document).ready(function(){
-						lyquix.catMap = new google.maps.Map(document.getElementById(\'cat-map\'), lyquix.catMapOptions);
-						google.maps.event.addListenerOnce(lyquix.catMap, \'bounds_changed\', function(event){
-							lyquix.catMap.fitBounds(lyquix.catMapBounds);
-							lyquix.catMap.panToBounds(lyquix.catMapBounds);
+						catMap.map = new google.maps.Map(document.getElementById(\'cat-map\'), catMap.options);
+						google.maps.event.addListenerOnce(catMap.map, \'bounds_changed\', function(event){
+							catMap.map.fitBounds(catMap.bounds);
+							catMap.map.panToBounds(catMap.bounds);
 						});
-						for (var i = 0; i < lyquix.catMapItems.length; i++) {
-							if(lyquix.catMapItems[i].lat && lyquix.catMapItems[i].lon) {
-								var itemLatLon = new google.maps.LatLng(lyquix.catMapItems[i].lat, lyquix.catMapItems[i].lon);
-								lyquix.catMapBounds.extend(itemLatLon);
-								var itemid = lyquix.catMapItems[i].id;
-								lyquix.catMapInfoWindows[itemid] = new google.maps.InfoWindow({content: lyquix.catMapItems[i].html});
-								lyquix.catMapMarker[itemid] = new google.maps.Marker({
+						for (var i = 0; i < catMap.items.length; i++) {
+							if(catMap.items[i].lat && catMap.items[i].lon) {
+								var itemLatLon = new google.maps.LatLng(catMap.items[i].lat, catMap.items[i].lon);
+								catMap.bounds.extend(itemLatLon);
+								var itemid = catMap.items[i].id;
+								catMap.infoWindows[itemid] = new google.maps.InfoWindow({content: catMap.items[i].html});
+								catMap.markers[itemid] = new google.maps.Marker({
 									position: itemLatLon,
-									map: lyquix.catMap,
-									title: lyquix.catMapItems[i].title,
-									html: lyquix.catMapItems[i].html
+									map: catMap.map,
+									title: catMap.items[i].title,
+									html: catMap.items[i].html
 								});
-								google.maps.event.addListener(lyquix.catMapMarker[itemid], \'click\', function() {
-									lyquix.catMapInfoWindows[itemid].setContent(this.html);
-									lyquix.catMapInfoWindows[itemid].open(lyquix.catMap,this);
+								google.maps.event.addListener(catMap.markers[itemid], \'click\', function() {
+									catMap.infoWindows[itemid].setContent(this.html);
+									catMap.infoWindows[itemid].open(catMap.map,this);
 								});
 							}
 						}
 						jQuery(window).on("screensizechange", function() {
-							lyquix.catMap.fitBounds(lyquix.catMapBounds);
-							lyquix.catMap.panToBounds(lyquix.catMapBounds);
+							catMap.map.fitBounds(catMap.bounds);
+							catMap.map.panToBounds(catMap.bounds);
 						});
 					});
 				 </script>';
