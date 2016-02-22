@@ -13,19 +13,19 @@ if (!is_array($item_sections)) {
 if (is_array($item_sections)) {
 
 	// keeps track of the current section number
-	$i = 1;
+	$i = 0;
 
 	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id 
 		. (class_exists('lyquixFlexicontentTmplCustom') ? ' ' . lyquixFlexicontentTmplCustom::customItemClass($this -> item) : '')
 		. ($this -> params -> get('item_css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
-		. '"><div class="section-1 ' . $this -> params -> get('item_css_section_1') . '">';
+		. '">';
 
 	foreach ($item_sections as $item_section) {
 
-		if (strstr($item_section, 'sep')) {
+		if (strstr($item_section, 'open')) {
 
 			$i++;
-			echo '</div><div class="section-' . $i . ' ' . $this -> params -> get('item_css_section_' . $i) . '">';
+			echo '<div class="section-' . $i . ' ' . $this -> params -> get('item_css_section_' . $i) . '">';
 
 		} elseif (strstr($item_section, 'group')) {
 
@@ -42,8 +42,12 @@ if (is_array($item_sections)) {
 				echo '</div>';
 
 			}
+		} elseif (strstr($item_section, 'close')){
+			
+			echo '</div>';
+			
 		}
 	}
 
-	echo '</div>' . '</div>';
+	echo '</div>';
 }

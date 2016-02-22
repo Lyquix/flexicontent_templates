@@ -11,7 +11,7 @@
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
 <!--- BEGIN LAYOUT ORDERING -->		
 			<field name="cat_layout_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
-			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,sep1,sep2,sep3,sep4,sep5,sep6,sep7" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
+			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
 <!-- END LAYOUT ORDERING -->
 <!-- BEGIN CATEGORY SETTINGS -->
 			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
