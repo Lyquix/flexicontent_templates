@@ -16,8 +16,10 @@ if (is_array($cat_sections)) {
 	// keeps track of the current section number
 	$i = 1;
 
-	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . '">' .
-		 '<div class="section-1 ' . $this -> params -> get('css_section_1') . '">';
+	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . ' cat-' . $this -> category -> id 
+		. (class_exists('lyquixFlexicontentTmplCustom') ? ' ' . lyquixFlexicontentTmplCustom::customCatClass($this -> category) : '')
+		. ($this -> params -> get('css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
+		. '"><div class="section-1 ' . $this -> params -> get('css_section_1') . '">';
 
 	foreach ($cat_sections as $cat_section) {
 

@@ -4,6 +4,22 @@ defined('_JEXEC') or die('Restricted access');
 
 class lyquixFlexicontentTmplCustom {
 
+    function customItemClass(&$item) {
+
+        $css = array();
+
+        /* your custom code here
+		 * 
+         * you can use $item->fields['field_name'] to get the field value, properties and display
+         * add your custom classes to the $css array, for example: 
+		 * $css[] = 'prefix-' . $item->alias;
+		 * 
+        */
+
+        return implode(' ', $css);
+
+    }
+
     function customFieldRendering(&$item, &$field) {
 
         $html = '';

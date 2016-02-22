@@ -4,6 +4,21 @@ defined('_JEXEC') or die('Restricted access');
 
 class lyquixFlexicontentTmplCustom {
 
+    function customCatClass(&$category) {
+
+        $css = array();
+
+        /* your custom code here
+		 * 
+         * you can use $category to get the properties
+		 * $css[] = 'prefix-' . $category->alias;
+		 * 
+        */
+
+        return implode(' ', $css);
+
+    }
+
     function customSubcatClass(&$subcat) {
 
         $css = array();

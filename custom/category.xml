@@ -626,6 +626,8 @@
 			<field name="pagination_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="raw" />
 			<field name="pagination_css_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" filter="raw" />
 <!-- BEGIN PAGINATION -->
+			<field name="css_wrapper_sep" type="separator" hr="false" default="Category Wrapper" description="" level="level1" menu="hide" />
+			<field name="css_wrapper" type="textarea" default="" label="CSS class" description="Add CSS class for the category DIV wrapper" />
 <!-- BEGIN SEPARATOR CLASSES -->
 			<field name="css_section_sep" type="separator" hr="false" default="Layout Sections CSS Classes" description="Adds CSS classes to the category layout sections" level="level1" menu="hide" />
 			<field name="css_section_1" type="text" default="" label="Section 1" description="CSS class for section 1" />
