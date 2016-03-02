@@ -681,7 +681,7 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
-			$html_json = $this -> params -> get($group . '_html_json', 0);
+			$html_json = $this -> params -> get($group . '_html_json', 'html');
 			
 			// generate html
 			if($html_json != 'json') {
