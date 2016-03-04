@@ -325,7 +325,7 @@ class lyquixFlexicontentTmpl {
 				$html .= $this -> params -> get('subcat_pretext', '');
 				
 				// Subub-categories sections ordering
-				$sub_cat_sections = $this -> params -> get('sub_cat_layout_order', array("title", "image", "desc", "items"));
+				$sub_cat_sections = $this -> params -> get('sub_cat_layout_order', array("title", "image", "desc", "items", "teaser-image", "teaser-text"));
 				
 				if (!is_array($sub_cat_sections)) {
 					$sub_cat_sections = explode(",", $sub_cat_sections);
@@ -473,6 +473,51 @@ class lyquixFlexicontentTmpl {
 							}
 
 							break;
+						//Custom teaser image if the category image can't be used due to its proportions	
+						case "teaser-image":
+							
+							if ($this -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('cat_teaser_img')) {
+
+								// get sub category image from its parameters
+
+								$src = $subcat -> params -> get('cat_teaser_img');
+
+								// set the url parameters for resizing image
+
+								$w = '&amp;w=' . $this -> params -> get('subcat_image_width', 80);
+								$h = '&amp;h=' . $this -> params -> get('subcat_image_height', 80);
+								$aoe = '&amp;aoe=1';
+								$q = '&amp;q=95';
+								$zc = $this -> params -> get('subcat_image_method', 1) ? '&amp;zc=' . $this -> params -> get('subcat_image_method', 1) : '';
+								$ext = pathinfo($src, PATHINFO_EXTENSION);
+								$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
+								$conf = $w . $h . $aoe . $q . $zc . $f;
+								$base_url = (!preg_match("#^http|^https|^ftp#i", $src)) ? JURI::base(true) . '/' : '';
+								$image_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $src . $conf;
+								$html .= '<div class="subcat-image">';
+
+								// add link to sub category?
+
+								if ($this -> params -> get('subcat_link_image', 0)) {
+									$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">';
+								}
+
+								$html .= '<img src="' . $image_url . '" />';
+
+								// close link tag
+
+								if ($this -> params -> get('subcat_link_image', 0)) {
+									$html .= '</a>';
+								}
+
+								$html .= '</div>';
+							}
+							break;
+						case "teaser-text":
+							if ($this -> params -> get('show_description_subcat', 0) && $subcat -> params ->get('cat_teaser_text',1)) {
+								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> params ->get('cat_teaser_text'), $this -> params -> get('description_cut_text_subcat', 120)) . '</div>';
+							}
+							break;	
 					}
 				}
 				
