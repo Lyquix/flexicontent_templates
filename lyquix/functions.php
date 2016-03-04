@@ -1264,10 +1264,10 @@ class lyquixFlexicontentTmpl {
 		}
 		
 		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
-			echo JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
+			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
 		}
 		else {
-			echo json_encode($json);
+			return json_encode($json);
 		}
 	}
 	
@@ -1310,10 +1310,10 @@ class lyquixFlexicontentTmpl {
 		}
 		
 		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
-			echo JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
+			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
 		}
 		else {
-			echo json_encode($json);
+			return json_encode($json);
 		}
 		
 
