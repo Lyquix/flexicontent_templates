@@ -70,7 +70,14 @@ class lyquixFlexicontentTmplCustom {
          * 
         */
 
-        return $attrs;
+        $html = array();
+        if(count($attrs)) {
+            foreach($attrs as $attr => $value) {
+                $html[] = $attr . '="' . htmlspecialchars($value) . '"';
+            }
+
+        }
+        return $implode(' ', $html);
 
     }
 
@@ -103,7 +110,14 @@ class lyquixFlexicontentTmplCustom {
          * 
         */
 
-        return $attrs;
+        $html = array();
+        if(count($attrs)) {
+            foreach($attrs as $attr => $value) {
+                $html[] = $attr . '="' . htmlspecialchars($value) . '"';
+            }
+
+        }
+        return $implode(' ', $html);
 
     }
 
