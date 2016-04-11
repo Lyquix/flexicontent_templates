@@ -1225,10 +1225,10 @@ class lyquixFlexicontentTmpl {
 
 		$json['total_items'] = $this -> pageNav -> total;
 		$json['items_per_page'] = $this -> pageNav -> limit;
-		$json['current_page'] = $this -> pageNav -> {'pages.current'};
-		$json['total_pages'] = $this -> pageNav -> {'pages.total'};
-		$json['prev_page'] = ($this -> pageNav -> {'pages.current'} <= 1 ? '' : $url_prev);
-		$json['next_page'] = ($this -> pageNav -> {'pages.current'} >= $this -> pageNav -> {'pages.total'} ? '' : $url_next);
+		$json['current_page'] = $this -> pageNav -> pagesCurrent;
+		$json['total_pages'] = $this -> pageNav -> pagesTotal;
+		$json['prev_page'] = ($this -> pageNav -> pagesCurrent <= 1 ? '' : $url_prev);
+		$json['next_page'] = ($this -> pageNav -> pagesCurrent >= $this -> pageNav -> pagesTotal ? '' : $url_next);
 		
 		// process category items
 		$json['items'] = array();
