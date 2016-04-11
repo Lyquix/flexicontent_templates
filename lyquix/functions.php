@@ -710,7 +710,7 @@ class lyquixFlexicontentTmpl {
 		return $html;
 	}
 
-	function renderCatItemsSection($idx, $group) {
+	function renderCatItemsSection($idx, $group, &$subcat) {
 		
 		$html = '';
 		
@@ -832,7 +832,9 @@ class lyquixFlexicontentTmpl {
 					
 				}
 
-				$html .= '<script>var ' . ($group == 'sub_cat_items_items' ? 'subcat' : $group) . 'Items = ' . json_encode($json) . ';</script>';
+				$subcat = $subcat ? preg_replace("/[^A-Za-z0-9]/", '', $subcat -> title) : '';
+
+				$html .= '<script>var ' . ($group == 'sub_cat_items_items' ? 'subcat' . $subcat : $group) . 'Items = ' . json_encode($json) . ';</script>';
 				
 			}
 			
