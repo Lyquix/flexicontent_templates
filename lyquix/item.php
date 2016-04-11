@@ -18,6 +18,7 @@ if (is_array($item_sections)) {
 	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id 
 		. (method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? ' ' . lyquixFlexicontentTmplCustom::customItemClass($this -> item) : '')
 		. ($this -> params -> get('item_css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
+		. '"'
 		. (method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? ' ' . lyquixFlexicontentTmplCustom::customItemAttrs($this -> item) : '')
 		.'>';
 
