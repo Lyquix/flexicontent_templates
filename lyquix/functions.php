@@ -710,7 +710,7 @@ class lyquixFlexicontentTmpl {
 		return $html;
 	}
 
-	function renderCatItemsSection($idx, $group, &$subcat) {
+	function renderCatItemsSection($idx, $group, &$subcat = null) {
 		
 		$html = '';
 		
@@ -734,7 +734,7 @@ class lyquixFlexicontentTmpl {
 								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 								'" data-itemid="' . $this -> items[$i] -> id . '"' .
 								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? lyquixFlexicontentTmplCustom::customItemAttrs($this -> items[$i], $group) : '') .
-								.'>';
+								'>';
 						
 						// wrap item in link
 						if (($this -> params -> get($group . '_link_item', 0))) {
