@@ -431,7 +431,7 @@ class lyquixFlexicontentTmpl {
 										
 									}
 									
-									$html .= self::renderCatItemsSection($subcat_items, $group = 'sub_cat_items_items');
+									$html .= self::renderCatItemsSection($subcat_items, 'sub_cat_items_items', $subcat);
 									
 								} else {
 								
@@ -587,10 +587,6 @@ class lyquixFlexicontentTmpl {
 							}
 						}
 					}
-
-					// cycle through all featured items
-
-					//$html .= self::renderCatItemsSection($featured_items, $group = 'featured');
 				}
 
 				// get number of leading items, leading items are shown only in first page
@@ -639,10 +635,6 @@ class lyquixFlexicontentTmpl {
 							break;
 						}
 					}
-
-					// cycle through all leading items
-
-					//$html .= self::renderCatItemsSection($leading_items, $group = 'leading');
 				}
 
 
@@ -678,10 +670,6 @@ class lyquixFlexicontentTmpl {
 							}
 						}
 					}
-
-					// cycle through all intro items
-
-					//$html .= self::renderCatItemsSection($intro_items, $group = 'introitems');
 				}
 				
 				$items_list_layout_order = $this -> params -> get('items_list_layout_order', array("featured", "leading","intro"));
@@ -694,13 +682,13 @@ class lyquixFlexicontentTmpl {
 					switch ($list_section) {
 
 						case "intro" :
-							$html .= self::renderCatItemsSection($intro_items, $group = 'introitems');
+							$html .= self::renderCatItemsSection($intro_items, 'introitems');
 							break;
 						case "leading":
-							$html .= self::renderCatItemsSection($leading_items, $group = 'leading');
+							$html .= self::renderCatItemsSection($leading_items, 'leading');
 							break;
 						case "featured":
-							$html .= self::renderCatItemsSection($featured_items, $group = 'featured');
+							$html .= self::renderCatItemsSection($featured_items, 'featured');
 							break;
 					}
 				}
