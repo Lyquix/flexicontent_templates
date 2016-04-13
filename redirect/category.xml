@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Ruben Reyes</author>
+	<website>http://www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license></license>
+	<version>1.0.0</version>
+	<release>2016-04-13</release>
+	<description>Use this template to force redirects of category view</description>
+	<fields name="attribs">
+		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
+			<field name="redirect_url" type="text" default="/" label="Redirect URL" description="" />
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>renderonly</group>
+	</fieldgroups>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>	
+</form>
