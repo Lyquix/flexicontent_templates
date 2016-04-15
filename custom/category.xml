@@ -130,6 +130,10 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="sub_cat_items_items_json_field_id" type="radio" default="0" label="Field ID in JSON" description="Include item field ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="sub_cat_items_items_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
@@ -353,6 +357,10 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
+			<field name="leading_json_field_id" type="radio" default="0" label="Field ID in JSON" description="Include item field ID in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="leading_json_field_value" type="radio" default="1" label="Field values in JSON" description="Include item field values in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
@@ -452,6 +460,10 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="introitems_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="introitems_json_field_id" type="radio" default="0" label="Field ID in JSON" description="Include item field ID in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
@@ -559,6 +571,10 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="featured_json_renderonly_fields" type="radio" default="1" label="Render only fields in JSON" description="Include item fields in renderonly position in json output" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="featured_json_field_id" type="radio" default="0" label="Field ID in JSON" description="Include item field ID in json output" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
