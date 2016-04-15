@@ -800,6 +800,8 @@ class lyquixFlexicontentTmpl {
 										
 									foreach ($this->items[$i]->positions['group_' . $j] as $field) {
 										
+										if($this -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this -> items[$i] -> fields[$field -> name] -> id;
+
 										$item_json[$field -> name] = array();
 										
 										if($this -> params -> get($group . '_json_field_value', 1)) $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
@@ -817,6 +819,8 @@ class lyquixFlexicontentTmpl {
 								
 							foreach ($this->items[$i]->positions['renderonly'] as $field) {
 								
+								if($this -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this -> items[$i] -> fields[$field -> name] -> id;
+
 								$item_json[$field -> name] = array();
 								
 								if($this -> params -> get($group . '_json_field_value', 1)) $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
