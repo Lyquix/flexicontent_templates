@@ -39,7 +39,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
 
@@ -77,7 +77,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
 
@@ -117,7 +117,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
 
