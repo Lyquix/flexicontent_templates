@@ -209,22 +209,12 @@ class lyquixFlexicontentTmpl {
 								lyquix.catMapBounds.extend(itemLatLon);
 								var itemid = lyquix.catMapItems[i].id;
 								lyquix.catMapInfoWindows[itemid] = new google.maps.InfoWindow({content: lyquix.catMapItems[i].html});
-
-								// default marker parameters
-								var markerParams = {
+								lyquix.catMapMarker[itemid] = new google.maps.Marker({
 									position: itemLatLon,
-									map: catMap.map,
-									title: catMap.items[i].title,
-									html: catMap.items[i].html,
-								};
-
-								// if the custom_marker value is not empty, add icon parameter to render custom map marker
-								if (catMap.items[i].marker != "")
-									markerParams.icon = catMap.items[i].marker;
-								
-								// create new marker based on the parameters
-								catMap.markers[itemid] = new google.maps.Marker(markerParams);
-
+									map: lyquix.catMap,
+									title: lyquix.catMapItems[i].title,
+									html: lyquix.catMapItems[i].html
+								});
 								google.maps.event.addListener(lyquix.catMapMarker[itemid], \'click\', function() {
 									lyquix.catMapInfoWindows[itemid].setContent(this.html);
 									lyquix.catMapInfoWindows[itemid].open(lyquix.catMap,this);
@@ -284,10 +274,6 @@ class lyquixFlexicontentTmpl {
 						}
 						
 						$html .= $this -> params -> get('map_posttext', '');
-
-						// call custoMapMarker to see if there is a custom map marker override.
-						$marker = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? lyquixFlexicontentTmplCustom::customMapMarker($item) : '';
-
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
 						
 					}

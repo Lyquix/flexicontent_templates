@@ -43,19 +43,6 @@ class lyquixFlexicontentTmplCustom {
 
     }
 
-    function customMapMarker(&$item){
-
-        $marker = '';
-
-        /* your custom code here
-         *
-         * example: $marker = '/templates/lyquix/images/map-marker.png';
-         *
-        */
-
-        return $marker;
-    }
-
     function customSubcatClass(&$subcat) {
 
         $css = array();
