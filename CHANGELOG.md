@@ -1,6 +1,87 @@
+## 2.0.0
+ New major release
+ WARNING: this major release is not backward compatible. If you upgrade from 1.x you will need to update your code and settings.
+ - Category layout mechanism has changed: instead of using separators we use now open and close tags. This change will break your category structure. You may need to reset it and adjust your CSS as well.
+ - Change category map Javascript namespace to catMap: this will break your category if you have additional code that interacts with the map.
+ - Serialized field values are processed into arrays before converting them to JSON: this will break your site if you have Javascript that reads JSON output, and you have fields that include serialized data
+
+## 1.23.0
+ Add
+ - Custom Google Map marker icons
+
+## 1.22.0
+ Add
+ - New redirect template allows to set a redirect URL for categories and items, allowing the creation of URLs but preventing visitors from reaching those pages
+
+## 1.21.4
+ Fix
+ - Correct syntax errors
+
+## 1.21.3
+ Fix
+ - Append category alias to Javascript variable to avoid multiple subcategories overriding each other
+
+## 1.21.2
+ Change
+ - Code cleanup
+
+## 1.21.1
+ Change
+- Process attributes into a string before returning them
+
+## 1.21.0
+ Add
+ - New function to add custom HTML attributes to categories and items
+
+## 1.20.1
+ Change
+ - Make JSON functions return values instead of echoing them
+
+## 1.20.0
+ Change
+ - Moved JSON template functionality from the json folder to functions.php to allow for easy copying of the json template
+ - Refactored the whole logic that generates JSON output
+
+## 1.19.1
+ Remove
+ - Update script was removed because it can accidentally update templates
+
+## 1.19.0
+ Add
+ - New parameter to set teaser text and image for subcategories
+
+## 1.18.1
+ Fix
+ - Correct default parameter value for JSON functionality
+
+## 1.18.0
+ Add
+ - New parameter to set custom CSS classes for category and item page wrappers
+ - New function to programmatically set custom CSS classes for category and item page wrappers
+
+## 1.17.1
+ Change
+ - Include option for control whether field values and/or display should be included in JSON output
+
+## 1.17.0
+ Add
+ - New options to generate JSON output in category and items view, in addition or instead of HTML
+
+## 1.16.0
+ Add
+ - New functionality to control ordering of intro/featured/leading items in categories
+
+## 1.15.2
+ Remove
+ - Unnecessary counter code
+
+## 1.15.1
+ Add
+ - CHANGELOG file
+
 ## 1.15.0
  Add
- - Params for item sections CSS classes
+ - CSS section parameters to allow custom CSS classes to be added to item sections
  
 ## 1.14.2
  Fix
