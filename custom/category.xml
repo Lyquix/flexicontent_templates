@@ -225,6 +225,7 @@
 				<option value="HYBRID">Hybrid</option>
 				<option value="TERRAIN">Terrain</option>
 			</field>
+			<field name="map_marker_icon" type="text" default="" label="Marker Icon" description="URL of PNG image to be used as default marker icon, leave blank to use default Google Maps icon. This value will be overriden by customMapMarker function" />
 			<field name="map_zoom_control" type="radio" default="1" label="Display Zoom Control" description="Select whether the zoom control should be displayed. This control allows the user to to zoom in and out." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>

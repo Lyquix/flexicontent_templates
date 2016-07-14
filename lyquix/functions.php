@@ -210,12 +210,14 @@ class lyquixFlexicontentTmpl {
 								catMap.bounds.extend(itemLatLon);
 								var itemid = catMap.items[i].id;
 								catMap.infoWindows[itemid] = new google.maps.InfoWindow({content: catMap.items[i].html});
-								catMap.markers[itemid] = new google.maps.Marker({
+								var markerParams = {
 									position: itemLatLon,
 									map: catMap.map,
 									title: catMap.items[i].title,
 									html: catMap.items[i].html
-								});
+								}
+								if(catMap.items[i].icon != \'\') markerParams.icon = catMap.items[i].icon;
+								catMap.markers[itemid] = new google.maps.Marker(markerParams);
 								google.maps.event.addListener(catMap.markers[itemid], \'click\', function() {
 									catMap.infoWindows[itemid].setContent(this.html);
 									catMap.infoWindows[itemid].open(catMap.map,this);
@@ -275,7 +277,10 @@ class lyquixFlexicontentTmpl {
 						}
 						
 						$html .= $this -> params -> get('map_posttext', '');
-						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html));
+
+                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? lyquixFlexicontentTmplCustom::customMapMarker($item) : $this -> params -> get('map_marker_icon', '');
+
+						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 						
 					}
 				}
