@@ -14,21 +14,25 @@ if (!is_array($cat_sections)) {
 if (is_array($cat_sections)) {
 
 	// keeps track of the current section number
-	$i = 1;
+	$i = 0;
 
 	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . ' cat-' . $this -> category -> id 
 		. (method_exists('lyquixFlexicontentTmplCustom','customCatClass') ? ' ' . lyquixFlexicontentTmplCustom::customCatClass($this -> category) : '')
 		. ($this -> params -> get('css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
 		. (method_exists('lyquixFlexicontentTmplCustom','customCatAttrs') ? ' ' . lyquixFlexicontentTmplCustom::customCatAttrs($this -> category) : '')
-		.'><div class="section-1 ' . $this -> params -> get('css_section_1') . '">';
+		.'>';
 
 	foreach ($cat_sections as $cat_section) {
 
-		if (strstr($cat_section, 'sep')) {
+		if (strstr($cat_section, 'open')) {
 
 			$i++;
-			echo '</div><div class="section-' . $i . ' ' . $this -> params -> get('css_section_' . $i) . '">';
+			echo '<div class="section-' . $i . ' ' . $this -> params -> get('css_section_' . $i) . '">';
+
+		} elseif (strstr($cat_section, 'close')){
+			
+			echo '</div>';
 
 		} else {
 			
@@ -49,7 +53,6 @@ if (is_array($cat_sections)) {
 
 	}
 	
-	echo '</div>' .
-		 '</div>';
+	echo '</div>';
 
 }

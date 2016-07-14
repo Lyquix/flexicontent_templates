@@ -40,7 +40,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
     

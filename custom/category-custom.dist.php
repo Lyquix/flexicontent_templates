@@ -39,8 +39,21 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
+    }
+
+    function customMapMarker(&$item){
+
+        $marker = '';
+
+        /* your custom code here
+         *
+         * example: $marker = '/templates/lyquix/images/map-marker.png';
+         *
+        */
+
+        return $marker;
     }
 
     function customSubcatClass(&$subcat) {
@@ -77,7 +90,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
 
@@ -117,7 +130,7 @@ class lyquixFlexicontentTmplCustom {
             }
 
         }
-        return $implode(' ', $html);
+        return implode(' ', $html);
 
     }
 
