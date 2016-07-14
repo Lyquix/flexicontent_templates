@@ -834,6 +834,12 @@ class lyquixFlexicontentTmpl {
 							}
 						
 						}
+
+						// process serialized data in the value field into arrays
+						if($this -> params -> get($group . '_json_field_value', 1)) {
+							var $value = unserialize($item_json[$field -> name]['value']);
+							if($value) $item_json[$field -> name]['value'] = $value;
+						}
 						
 						
 					}
@@ -1266,7 +1272,12 @@ class lyquixFlexicontentTmpl {
 						foreach($position as $field) {
 							$fields[$field -> name] = array();
 							if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
-							if($this -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
+							if($this -> params -> get ('display_item_field_value', 1)) {
+								$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
+								// process serialized data in the value field into arrays
+								var $value = unserialize($fields[$field -> name]['value']);
+								if($value) $fields[$field -> name]['value'] = $value;
+							}
 							if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						}
 					}
@@ -1314,6 +1325,12 @@ class lyquixFlexicontentTmpl {
 						$fields[$field -> name] = array();
 						if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
 						if($this -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
+						if($this -> params -> get ('display_item_field_value', 1)) {
+							$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
+							// process serialized data in the value field into arrays
+							var $value = unserialize($fields[$field -> name]['value']);
+							if($value) $fields[$field -> name]['value'] = $value;
+						}
 						if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						
 					}
