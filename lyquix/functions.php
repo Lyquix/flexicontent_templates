@@ -278,7 +278,7 @@ class lyquixFlexicontentTmpl {
 						
 						$html .= $this -> params -> get('map_posttext', '');
 
-                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? lyquixFlexicontentTmplCustom::customMapMarker($item) : $this -> params -> get('map_marker_icon', '');
+                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? @lyquixFlexicontentTmplCustom::customMapMarker($item) : $this -> params -> get('map_marker_icon', '');
 
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 						
@@ -325,9 +325,9 @@ class lyquixFlexicontentTmpl {
 				
 				$html .= '<li class="' 
 					. $this -> params -> get('sub_cat_li_class', '') 
-					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatClass') ? ' ' . lyquixFlexicontentTmplCustom::customSubcatClass($subcat) : '')
+					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatClass') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatClass($subcat) : '')
 					. '"'
-					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatAttrs') ? ' ' . lyquixFlexicontentTmplCustom::customSubcatAttrs($subcat) : '') 
+					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatAttrs($subcat) : '') 
 					. ">";
 					
 				$html .= $this -> params -> get('subcat_pretext', '');
@@ -757,9 +757,9 @@ class lyquixFlexicontentTmpl {
 						$html .= '<li class="' . 
 								$this -> params -> get($group . '_li_class', '') . 
 								($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
+								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? @lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
 								'" data-itemid="' . $this -> items[$i] -> id . '"' .
-								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? lyquixFlexicontentTmplCustom::customItemAttrs($this -> items[$i], $group) : '') .
+								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? @lyquixFlexicontentTmplCustom::customItemAttrs($this -> items[$i], $group) : '') .
 								'>';
 						
 						// wrap item in link
@@ -890,12 +890,12 @@ class lyquixFlexicontentTmpl {
 		$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
 		
 		// try custom rendering first
-		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
+		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? @lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
 		
 		if(!$html) {
 			
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
 
 			switch ($field->name) {
 	
@@ -1080,7 +1080,7 @@ class lyquixFlexicontentTmpl {
 			}
 
 			// field posttext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
 			
 		}
 
@@ -1135,12 +1135,12 @@ class lyquixFlexicontentTmpl {
 		
 		// try custom rendering first
 		
-		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
+		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? @lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
 		
 		if(!$html) {
 			
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
 
 			switch ($field->name) {
 	
@@ -1206,7 +1206,7 @@ class lyquixFlexicontentTmpl {
 			}
 
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
 
 		}
 
