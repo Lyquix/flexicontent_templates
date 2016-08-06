@@ -338,10 +338,25 @@ class lyquixFlexicontentTmpl {
 				if (!is_array($sub_cat_sections)) {
 					$sub_cat_sections = explode(",", $sub_cat_sections);
 				}
+
+				$i = 1;
 				
 				foreach ($sub_cat_sections as $sub_cat_section) {
 						
 					switch ($sub_cat_section) {
+
+						// Open Tag for Section
+						
+						case strstr($sub_cat_section, 'open'):
+							$html .= '<div class="section-' . $i .'">';
+							break;
+
+						// Close Tag for Section
+
+						case strstr($sub_cat_section, 'close'):
+							$html .= '</div>';
+							$i++;
+							break;	
 
 						// sub-category title
 
