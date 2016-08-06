@@ -39,6 +39,10 @@ class lyquixFlexicontentTmpl {
 
 			$cat_title = $this -> params -> get('cat_title_override', htmlspecialchars($this -> category -> title));
 
+			// Get custom css class for title
+
+			$cat_title_css = $this -> params -> get('cat_title_css', '');
+
 			// Limit max length of title of param > 0
 
 			if ($this -> params -> get('title_cut_text', 120) > 0) {
@@ -47,7 +51,7 @@ class lyquixFlexicontentTmpl {
 				
 			}
 
-			$html .= '<h1>' . $cat_title . '</h1>';
+			$html .= '<h1' . ($cat_title_css ? '' : ' class="' . $cat_title_css . '"') . '>' . $cat_title . '</h1>';
 			
 		}
 		

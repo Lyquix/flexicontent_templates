@@ -16,6 +16,7 @@
 <!-- BEGIN CATEGORY SETTINGS -->
 			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
 			<field name="cat_title_override" type="text" default="" label="Title Override" description="Enter a title override for the category" filter="raw" />
+			<field name="cat_title_css" type="text" default="" label="Title CSS" description="Enter css class for the category title" filter="raw" />
 			<field name="cat_teaser_text" type="textarea" default="" label="Teaser Text" description="Custom teaser text." fieldnameasvalue="1" />
 			<field name="cat_teaser_img" type="media" field_type="image" default="" label="Teaser Image" description="Upload an image to use for teasers. Image has a 1:1 aspect ratio and should be at least 300 x 300" fieldnameasvalue="1"/>
 			<field name="cat_img_align" type="radio" default="" label="Image Aligment" description="Select the category image aligment" class="btn-group group-fcinfo">
