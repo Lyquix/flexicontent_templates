@@ -829,7 +829,16 @@ class lyquixFlexicontentTmpl {
 
 										$item_json[$field -> name] = array();
 										
-										if($this -> params -> get($group . '_json_field_value', 1)) $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+										if($this -> params -> get($group . '_json_field_value', 1)) {
+											$value = $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+											foreach($value as $index => $v) {
+												$v = @unserialize($v);
+												if($v) $value[$index] = $v;
+											}
+
+											$item_json[$field -> name]['value'] = $value;
+										}
+
 										if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
 										
 									}
@@ -848,7 +857,16 @@ class lyquixFlexicontentTmpl {
 
 								$item_json[$field -> name] = array();
 								
-								if($this -> params -> get($group . '_json_field_value', 1)) $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+								if($this -> params -> get($group . '_json_field_value', 1)) {
+									$value = $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+									foreach($value as $index => $v) {
+										$v = @unserialize($v);
+										if($v) $value[$index] = $v;
+									}
+
+									$item_json[$field -> name]['value'] = $value;
+								}
+
 								if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
 								
 							}
