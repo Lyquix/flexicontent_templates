@@ -496,7 +496,9 @@ class lyquixFlexicontentTmpl {
 							}
 
 							break;
-						//Custom teaser image if the category image can't be used due to its proportions	
+						
+						// Custom teaser image if the category image can't be used due to its proportions	
+						
 						case "teaser-image":
 							
 							if ($this -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('cat_teaser_img')) {
@@ -536,6 +538,9 @@ class lyquixFlexicontentTmpl {
 								$html .= '</div>';
 							}
 							break;
+						
+						// Custom teaser text
+
 						case "teaser-text":
 							if ($this -> params -> get('show_description_subcat', 0) && $subcat -> params ->get('cat_teaser_text',1)) {
 								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> params ->get('cat_teaser_text'), $this -> params -> get('description_cut_text_subcat', 120)) . '</div>';
