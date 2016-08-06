@@ -17,10 +17,10 @@ if (is_array($cat_sections)) {
 	$i = 0;
 
 	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . ' cat-' . $this -> category -> id 
-		. (method_exists('lyquixFlexicontentTmplCustom','customCatClass') ? ' ' . lyquixFlexicontentTmplCustom::customCatClass($this -> category) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customCatClass') ? ' ' . @lyquixFlexicontentTmplCustom::customCatClass($this -> category) : '')
 		. ($this -> params -> get('css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
-		. (method_exists('lyquixFlexicontentTmplCustom','customCatAttrs') ? ' ' . lyquixFlexicontentTmplCustom::customCatAttrs($this -> category) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customCatAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customCatAttrs($this -> category) : '')
 		.'>';
 
 	foreach ($cat_sections as $cat_section) {
@@ -39,12 +39,12 @@ if (is_array($cat_sections)) {
 			$html = '';
 			$section = 'renderCat' . ucfirst($cat_section);
 			
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRendering') ? lyquixFlexicontentTmplCustom::customSectionRendering($section) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRendering') ? @lyquixFlexicontentTmplCustom::customSectionRendering($section) : '';
 			
 			if(!$html) {
-				$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRenderingPretext') ? lyquixFlexicontentTmplCustom::customSectionRenderingPretext($section) : '';
-				$html .= lyquixFlexicontentTmpl::$section();
-				$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRenderingPosttext') ? lyquixFlexicontentTmplCustom::customSectionRenderingPosttext($section) : '';
+				$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRenderingPretext') ? @lyquixFlexicontentTmplCustom::customSectionRenderingPretext($section) : '';
+				$html .= @lyquixFlexicontentTmpl::$section();
+				$html .= method_exists('lyquixFlexicontentTmplCustom','customSectionRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customSectionRenderingPosttext($section) : '';
 			}
 
 			echo $html;

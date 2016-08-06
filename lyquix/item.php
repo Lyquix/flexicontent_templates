@@ -16,10 +16,10 @@ if (is_array($item_sections)) {
 	$i = 0;
 
 	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id 
-		. (method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? ' ' . lyquixFlexicontentTmplCustom::customItemClass($this -> item) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? ' ' . @lyquixFlexicontentTmplCustom::customItemClass($this -> item) : '')
 		. ($this -> params -> get('item_css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
-		. (method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? ' ' . lyquixFlexicontentTmplCustom::customItemAttrs($this -> item) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customItemAttrs($this -> item) : '')
 		.'>';
 
 	foreach ($item_sections as $item_section) {
@@ -38,7 +38,7 @@ if (is_array($item_sections)) {
 				echo '<div class="group-' . $j . ' ' . $this -> params -> get('item_css_group_' . $j, '') . '">';
 				
 				foreach ($this->item->positions['group_'.$j] as $field) {
-					echo lyquixFlexicontentTmpl::renderItemField($this -> item, $field);
+					echo @lyquixFlexicontentTmpl::renderItemField($this -> item, $field);
 				}
 
 				echo '</div>';
