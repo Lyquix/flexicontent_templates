@@ -872,13 +872,6 @@ class lyquixFlexicontentTmpl {
 							}
 						
 						}
-
-						// process serialized data in the value field into arrays
-						if($this -> params -> get($group . '_json_field_value', 1)) {
-							$value = unserialize($item_json[$field -> name]['value']);
-							if($value) $item_json[$field -> name]['value'] = $value;
-						}
-						
 						
 					}
 
