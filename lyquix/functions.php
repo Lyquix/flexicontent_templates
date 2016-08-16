@@ -134,18 +134,8 @@ class lyquixFlexicontentTmpl {
 
 			$src = $this -> params -> get('image');
 
-			// prepare image url for resizing
-
-			$w = '&amp;w=' . $this -> params -> get('cat_image_width', 80);
-			$h = '&amp;h=' . $this -> params -> get('cat_image_height', 80);
-			$aoe = '&amp;aoe=1';
-			$q = '&amp;q=95';
-			$zc = $this -> params -> get('cat_image_method', 1) ? '&amp;zc=' . $this -> params -> get('cat_image_method', 1) : '';
-			$ext = pathinfo($src, PATHINFO_EXTENSION);
-			$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
-			$conf = $w . $h . $aoe . $q . $zc . $f;
-			$base_url = (!preg_match("#^http|^https|^ftp#i", $src)) ? JURI::base(true) . '/' : '';
-			$image_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $src . $conf;
+			// get resized image url
+			$image_url = self::getCatImage($src, $this -> params -> get('cat_image_width', 240), $this -> params -> get('cat_image_height', 240), $this -> params -> get('cat_image_method', 1));
 			
 			$html .= '<div class="cat-image ' . $this -> params -> get('cat_img_align', '') . '"><img src="' . $image_url . '" /></div>';
 		}
@@ -389,18 +379,9 @@ class lyquixFlexicontentTmpl {
 
 								$src = $subcat -> params -> get('image');
 
-								// set the url parameters for resizing image
+								// get resized image url
+								$image_url = self::getCatImage($src, $this -> params -> get('subcat_image_width', 240), $this -> params -> get('subcat_image_height', 240), $this -> params -> get('subcat_image_method', 1));
 
-								$w = '&amp;w=' . $this -> params -> get('subcat_image_width', 80);
-								$h = '&amp;h=' . $this -> params -> get('subcat_image_height', 80);
-								$aoe = '&amp;aoe=1';
-								$q = '&amp;q=95';
-								$zc = $this -> params -> get('subcat_image_method', 1) ? '&amp;zc=' . $this -> params -> get('subcat_image_method', 1) : '';
-								$ext = pathinfo($src, PATHINFO_EXTENSION);
-								$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
-								$conf = $w . $h . $aoe . $q . $zc . $f;
-								$base_url = (!preg_match("#^http|^https|^ftp#i", $src)) ? JURI::base(true) . '/' : '';
-								$image_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $src . $conf;
 								$html .= '<div class="subcat-image">';
 
 								// add link to sub category?
@@ -511,18 +492,9 @@ class lyquixFlexicontentTmpl {
 
 								$src = $subcat -> params -> get('cat_teaser_img');
 
-								// set the url parameters for resizing image
+								// get resized image url
+								$image_url = self::getCatImage($src, $this -> params -> get('subcat_image_width', 240), $this -> params -> get('subcat_image_height', 240), $this -> params -> get('subcat_image_method', 1));
 
-								$w = '&amp;w=' . $this -> params -> get('subcat_image_width', 80);
-								$h = '&amp;h=' . $this -> params -> get('subcat_image_height', 80);
-								$aoe = '&amp;aoe=1';
-								$q = '&amp;q=95';
-								$zc = $this -> params -> get('subcat_image_method', 1) ? '&amp;zc=' . $this -> params -> get('subcat_image_method', 1) : '';
-								$ext = pathinfo($src, PATHINFO_EXTENSION);
-								$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
-								$conf = $w . $h . $aoe . $q . $zc . $f;
-								$base_url = (!preg_match("#^http|^https|^ftp#i", $src)) ? JURI::base(true) . '/' : '';
-								$image_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $src . $conf;
 								$html .= '<div class="subcat-image">';
 
 								// add link to sub category?
@@ -972,6 +944,9 @@ class lyquixFlexicontentTmpl {
 	
 				case $this->params->get($group . '_img', '') :
 	
+					$image = self::getItemImage($item, $this->params->get($group . '_img', ''), $this -> params -> get($group . '_img_size', 'l'), $this -> params -> get($group . '_img_width', 160), $this -> params -> get($group . '_img_height', 90), $this -> params -> get($group . '_img_method', '0'));
+
+					/*
 					// get image source, use selected size or get large
 	
 					$img_size_map = array('l' => 'large', 'm' => 'medium', 's' => 'small');
@@ -994,7 +969,8 @@ class lyquixFlexicontentTmpl {
 					} else {
 						$img_url = $src;
 					}
-	
+					*/
+
 					// set wrapping div
 	
 					$group_img_class = $this -> params -> get($group . '_img_class', '');
@@ -1013,7 +989,7 @@ class lyquixFlexicontentTmpl {
 						$html .= '<a href="' . $item_link . '">';
 					}
 	
-					$html .= '<img src="' . $img_url . '" alt="' . htmlspecialchars($item -> title) . '" />';
+					$html .= '<img src="' . $image['url'] . '" alt="' . htmlspecialchars($item -> title) . '" />';
 	
 					// image clickable?
 	
@@ -1384,4 +1360,102 @@ class lyquixFlexicontentTmpl {
 
 	}
 
+	function getCatImage($image_src, $image_width = 240, $image_height = 240, $image_resize = 1) {
+
+		// prepare resized image url
+
+		$w		= '&amp;w=' . $image_width;
+		$h		= '&amp;h=' . $image_height;
+		$aoe	= '&amp;aoe=1';
+		$q		= '&amp;q=95';
+		$ar 	= '&amp;ar=x';
+		$zc		= $image_resize ? '&amp;zc=1' : '';
+		$ext    = strtolower(pathinfo($image_src, PATHINFO_EXTENSION));
+		$f      = in_array( $ext, array('png', 'ico', 'gif') ) ? '&amp;f='.$ext : '';
+		$conf	= $w . $h . $aoe . $q . $ar . $zc . $f;
+
+		$base_url = (!preg_match("#^http|^https|^ftp#i", $image_src)) ? JURI::base(true) . '/' : '';
+		$image_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $image_src . $conf;
+		
+		return $image_url;
+
+	}
+
+	function getItemImage(&$item, $fieldname, $image_size, $image_width = null, $image_height = null, $image_resize = null) {
+					
+		$url = '';
+		$value = '';
+
+		if (isset($item -> fieldvalues[$item -> fields[$fieldname] -> id])) {
+
+			// Unserialize value's properties and check for empty original name property
+			$value = unserialize($item -> fieldvalues[$item -> fields[$fieldname] -> id][0]);
+			$image_name = trim(@$value['originalname']);
+
+			if (strlen($image_name)) {
+
+				$field = $item -> fields[$fieldname];
+				$field -> parameters = json_decode($field -> attribs, true);
+				$image_source = $field -> parameters['image_source'];
+				$dir_url = str_replace('\\', '/', $field -> parameters['dir']);
+				$multiple_image_usages = !$image_source && $field -> parameters['list_all_media_files'] && $field -> parameters['unique_thumb_method'] == 0;
+				$extra_prefix = $multiple_image_usages ? 'fld' . $field -> id . '_' : '';
+				$of_usage = $field -> untranslatable ? 1 : $field -> parameters['of_usage'];
+				$u_item_id = ($of_usage && $item -> lang_parent_id && $item -> lang_parent_id != $item -> id) ? $item -> lang_parent_id : $item -> id;
+				$extra_folder = '/item_' . $u_item_id . '_field_' . $field -> id;
+						
+				if ($image_size == 'custom') {
+					
+					// get the original image file path
+					$image_file = JPATH_SITE . '/';
+					
+					// supports only db mode and item-field folder mode
+					if ($image_source == 0) {
+						// db mode
+						$cparams = JComponentHelper::getParams('com_flexicontent');
+						$image_file .= str_replace('\\', '/', $cparams -> get('file_path', 'components/com_flexicontent/uploads'));
+					} else if ($image_source == 1) {
+						// item+field specific folder
+						$image_file .= $dir_url . $extra_folder . '/original';
+					}
+					
+					$image_file .= '/' .  $image_name;
+
+					$w		= '&amp;w=' . $image_width;
+					$h		= '&amp;h=' . $image_height;
+					$aoe	= '&amp;aoe=1';
+					$q		= '&amp;q=95';
+					$ar 	= '&amp;ar=x';
+					$zc		= $image_resize ? '&amp;zc=1' : '';
+					$ext    = strtolower(pathinfo($image_file, PATHINFO_EXTENSION));
+					$f      = in_array( $ext, array('png', 'ico', 'gif') ) ? '&amp;f='.$ext : '';
+					$conf	= $w . $h . $aoe . $q . $ar . $zc . $f;
+
+					$url = JURI::root(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . urlencode($image_file) . $conf;
+					
+				}
+				
+				else {
+					
+					// Create thumbs URL path
+					$url = JURI::root(true) . '/' . $dir_url;
+					
+					// Extra thumbnails sub-folder
+					if ($image_source == 1) {
+						// item+field specific folder
+						$url .= $extra_folder;
+					}
+
+					$url .= '/' . $image_size . '_' . $extra_prefix . $image_name;
+					
+				}
+
+			}
+
+			$value['url'] = $url;
+
+		}
+
+		return $value;
+	}
 }
