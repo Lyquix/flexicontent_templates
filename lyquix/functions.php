@@ -806,13 +806,18 @@ class lyquixFlexicontentTmpl {
 										$item_json[$field -> name] = array();
 										
 										if($this -> params -> get($group . '_json_field_value', 1)) {
-											$value = $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
-											foreach($value as $index => $v) {
-												$v = @unserialize($v);
-												if($v) $value[$index] = $v;
+											$item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+											// process serialized data
+											if(is_array($item_json[$field -> name]['value'])) {
+												foreach($item_json[$field -> name]['value'] as $value_idx => $value) {
+													$value = @unserialize($value);
+													if($value) $item_json[$field -> name]['value'][$value_idx] = $value;
+												}
 											}
-
-											$item_json[$field -> name]['value'] = $value;
+											else {
+												$value = @unserialize($item_json[$field -> name]['value']);
+												if($value) $item_json[$field -> name]['value'] = $value;
+											}
 										}
 
 										if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
@@ -834,13 +839,18 @@ class lyquixFlexicontentTmpl {
 								$item_json[$field -> name] = array();
 								
 								if($this -> params -> get($group . '_json_field_value', 1)) {
-									$value = $item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
-									foreach($value as $index => $v) {
-										$v = @unserialize($v);
-										if($v) $value[$index] = $v;
+									$item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+									// process serialized data
+									if(is_array($item_json[$field -> name]['value'])) {
+										foreach($item_json[$field -> name]['value'] as $value_idx => $value) {
+											$value = @unserialize($value);
+											if($value) $item_json[$field -> name]['value'][$value_idx] = $value;
+										}
 									}
-
-									$item_json[$field -> name]['value'] = $value;
+									else {
+										$value = @unserialize($item_json[$field -> name]['value']);
+										if($value) $item_json[$field -> name]['value'] = $value;
+									}
 								}
 
 								if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
@@ -1285,9 +1295,17 @@ class lyquixFlexicontentTmpl {
 							if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
 							if($this -> params -> get ('display_item_field_value', 1)) {
 								$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
-								// process serialized data in the value field into arrays
-								$value = unserialize($fields[$field -> name]['value']);
-								if($value) $fields[$field -> name]['value'] = $value;
+								// process serialized data
+								if(is_array($fields[$field -> name]['value'])) {
+									foreach($fields[$field -> name]['value'] as $value_idx => $value) {
+										$value = @unserialize($value);
+										if($value) $fields[$field -> name]['value'][$value_idx] = $value;
+									}
+								}
+								else {
+									$value = @unserialize($fields[$field -> name]['value']);
+									if($value) $fields[$field -> name]['value'] = $value;
+								}
 							}
 							if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						}
@@ -1338,9 +1356,17 @@ class lyquixFlexicontentTmpl {
 						if($this -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
 						if($this -> params -> get ('display_item_field_value', 1)) {
 							$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
-							// process serialized data in the value field into arrays
-							$value = unserialize($fields[$field -> name]['value']);
-							if($value) $fields[$field -> name]['value'] = $value;
+							// process serialized data
+							if(is_array($fields[$field -> name]['value'])) {
+								foreach($fields[$field -> name]['value'] as $value_idx => $value) {
+									$value = @unserialize($value);
+									if($value) $fields[$field -> name]['value'][$value_idx] = $value;
+								}
+							}
+							else {
+								$value = @unserialize($fields[$field -> name]['value']);
+								if($value) $fields[$field -> name]['value'] = $value;
+							}
 						}
 						if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						
