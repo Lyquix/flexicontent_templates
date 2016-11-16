@@ -729,7 +729,7 @@ class lyquixFlexicontentTmpl {
 				foreach ($idx as $i) {
 					
 					// include/exclude by content type
-					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
+					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, explode(",", $this -> params -> get($group . '_inc_exc_types_list', array()))))) {
 						$html .= '<li class="' . 
 								$this -> params -> get($group . '_li_class', '') . 
 								($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  

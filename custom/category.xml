@@ -97,7 +97,7 @@
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
-			<field name="sub_cat_items_items_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			<field name="sub_cat_items_items_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
 			
 			<field name="sub_cat_items_items_introitems_sep" type="separator" hr="false" default="Content Items" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
@@ -208,7 +208,7 @@
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
-			<field name="map_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			<field name="map_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
 			
 			<field name="map_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="map_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
@@ -326,7 +326,7 @@
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
-			<field name="leading_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			<field name="leading_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
 			
 			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_label" type="text" default="" label="Section Label" description="Enter the lead items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
@@ -432,7 +432,7 @@
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
-			<field name="introitems_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			<field name="introitems_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
 			
 			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
@@ -541,7 +541,7 @@
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
-			<field name="featured_inc_exc_types_list" type="lqxfctypes" multiple="true" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
+			<field name="featured_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
 			
 			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_label" type="text" default="" label="Section Label" description="Enter the featured items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
