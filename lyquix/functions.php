@@ -1087,7 +1087,9 @@ class lyquixFlexicontentTmpl {
 
 		// add readmore link?
 		if ($this -> params -> get('show_readmore') && $this -> params -> get($group . '_readmore_after', 'text') == $field -> name) {
-			$html .= '<a class="readmore" href="' . $item_link . '">' . $this -> params -> get($group . '_readmore_label', 'Read More') . '</a>';
+			$readmore = $this -> params -> get($group . '_readmore_label', 'Read More');
+			$readmore = str_replace('{title}', $item -> title, $readmore);
+			$html .= '<a class="readmore" href="' . $item_link . '">' . $readmore . '</a>';
 		}
 
 		// add addthis toolbar for this item?
