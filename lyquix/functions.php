@@ -1081,7 +1081,7 @@ class lyquixFlexicontentTmpl {
 			}
 
 			// field posttext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
 			
 		}
 
