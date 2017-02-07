@@ -185,7 +185,8 @@ class lyquixFlexicontentTmpl {
 							panControl: ' . ($this -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
 							zoomControl: ' . ($this -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
 							streetViewControl: false,
-							zoom: 8
+							zoom: 8,
+							styles: ' . ($this -> params -> get('map_styles_array','[]')) .'
 						},
 						bounds : new google.maps.LatLngBounds(),
 						items : ' . self::renderCatMapItems() . ',

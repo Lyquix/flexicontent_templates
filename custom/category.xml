@@ -244,7 +244,8 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="map_google_api_key" type="text" default="" label="Google Maps API Key" description="Enter the Google Maps API key for use when displaying the map." />
-			
+			<field name="map_styles_array" type="textarea" default="" label="Map Styles Array" description="Enter an array of css styles to be added to the map"/>
+
 			<field name="map_items_sep" type="separator" hr="false" default="Map Items" description="Settings for map items" level="level3" menu="hide" />
 			<field name="map_pretext" type="text" filter="JComponentHelper::filterText" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each map item. Include wrapping HTML tags." />
 			<field name="map_posttext" type="text" filter="JComponentHelper::filterText" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each map item. Include wrapping HTML tags." />
