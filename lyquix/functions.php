@@ -789,7 +789,7 @@ class lyquixFlexicontentTmpl {
 					$item_json = array();
 					
 					// include/exclude by content type
-					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get($group . '_inc_exc_types_list', array())))) {
+					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, explode(",", $this -> params -> get($group . '_inc_exc_types_list', array()))))) {
 						
 						if($this -> params -> get($group . '_json_itemid', 1)) $item_json['id'] = $this -> items[$i] -> id;
 						if($this -> params -> get($group . '_json_url', 1)) $item_json['url'] = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));
