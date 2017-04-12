@@ -14,12 +14,14 @@ if (is_array($item_sections)) {
 
 	// keeps track of the current section number
 	$i = 0;
+	$lyquixFlexicontentTmpl = new lyquixFlexicontentTmpl($this);
+	$lyquixFlexicontentTmplCustom = new lyquixFlexicontentTmplCustom($this);
 
 	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id 
-		. (method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? ' ' . @lyquixFlexicontentTmplCustom::customItemClass($this -> item) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? ' ' . $lyquixFlexicontentTmplCustom -> customItemClass($this -> item) : '')
 		. ($this -> params -> get('item_css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
-		. (method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customItemAttrs($this -> item) : '')
+		. (method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? ' ' . $lyquixFlexicontentTmplCustom -> customItemAttrs($this -> item) : '')
 		.'>';
 
 	foreach ($item_sections as $item_section) {
@@ -36,9 +38,9 @@ if (is_array($item_sections)) {
 			if (isset($this -> item -> positions['group_' . $j])) {
 
 				echo '<div class="group-' . $j . ' ' . $this -> params -> get('item_css_group_' . $j, '') . '">';
-				
+
 				foreach ($this->item->positions['group_'.$j] as $field) {
-					echo @lyquixFlexicontentTmpl::renderItemField($this -> item, $field);
+					echo $lyquixFlexicontentTmpl -> renderItemField($this -> item, $field);
 				}
 
 				echo '</div>';
