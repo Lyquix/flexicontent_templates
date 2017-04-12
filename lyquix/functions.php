@@ -2,23 +2,28 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-
 class lyquixFlexicontentTmpl {
-	
+
+	private $jObject;
+
+	function __construct($passedJObject) {
+		$this->jObject = $passedJObject;
+	}	
+
 	function renderCatButtons() {
 
 		// Buttons
 		
 		$html = '';
 		
-		if ($this -> params -> get('show_print_icon') || $this -> params -> get('show_email_icon') || JRequest::getCmd('print') || $this -> params -> get('show_feed_icon', 1) || $add_button) {
+		if ($this-> jObject -> params -> get('show_print_icon') || $this-> jObject -> params -> get('show_email_icon') || JRequest::getCmd('print') || $this-> jObject -> params -> get('show_feed_icon', 1) || $add_button) {
 				
 			$html .= '<div class="buttons">' . 
 					
-					$this -> params -> get('show_addbutton', 1) ? flexicontent_html::addbutton($this -> params, $this -> category) : '' . 
-					flexicontent_html::printbutton($this -> print_link, $this -> params) . 
-					flexicontent_html::mailbutton('category', $this -> params, $this -> category -> slug) . 
-					flexicontent_html::feedbutton('category', $this -> params, $this -> category -> slug) . 
+					$this-> jObject -> params -> get('show_addbutton', 1) ? flexicontent_html::addbutton($this-> jObject -> params, $this-> jObject -> category) : '' . 
+					flexicontent_html::printbutton($this-> jObject -> print_link, $this-> jObject -> params) . 
+					flexicontent_html::mailbutton('category', $this-> jObject -> params, $this-> jObject -> category -> slug) . 
+					flexicontent_html::feedbutton('category', $this-> jObject -> params, $this-> jObject -> category -> slug) . 
 					
 					'</div>';
 					
@@ -30,24 +35,23 @@ class lyquixFlexicontentTmpl {
 	function renderCatTitle() {
 
 		// Title
-		
 		$html = '';
 
-		if ($this -> params -> get('show_cat_title', 1)) {
+		if ($this-> jObject -> params -> get('show_cat_title', 1)) {
 
 			// Use category title by default, or override if param not blank
 
-			$cat_title = $this -> params -> get('cat_title_override', htmlspecialchars($this -> category -> title));
+			$cat_title = $this-> jObject -> params -> get('cat_title_override', htmlspecialchars($this-> jObject -> category -> title));
 
 			// Get custom css class for title
 
-			$cat_title_css = $this -> params -> get('cat_title_css', '');
+			$cat_title_css = $this-> jObject -> params -> get('cat_title_css', '');
 
 			// Limit max length of title of param > 0
 
-			if ($this -> params -> get('title_cut_text', 120) > 0) {
+			if ($this-> jObject -> params -> get('title_cut_text', 120) > 0) {
 					
-				$cat_title = substr($cat_title, 0, $this -> params -> get('title_cut_text', 120));
+				$cat_title = substr($cat_title, 0, $this-> jObject -> params -> get('title_cut_text', 120));
 				
 			}
 
@@ -96,12 +100,12 @@ class lyquixFlexicontentTmpl {
 		
 		$html = '';
 		
-		if ($this -> params -> get('show_alpha', 1)) {
+		if ($this-> jObject -> params -> get('show_alpha', 1)) {
 				
-			$html .= '<div class="cat-filters ' . $this -> params -> get('cat_alphaindex_class', '') . '">';
-			$html .= $this -> params -> get('cat_alphaindex_label', '');
+			$html .= '<div class="cat-filters ' . $this-> jObject -> params -> get('cat_alphaindex_class', '') . '">';
+			$html .= $this-> jObject -> params -> get('cat_alphaindex_label', '');
 			
-			if($this -> params -> get('cat_alphaindex_engine', 0)) {
+			if($this-> jObject -> params -> get('cat_alphaindex_engine', 0)) {
 				
 				// Lyquix alphaindex engine
 				$html .= 'Sorry, the Lyquix alphaindex engine has not been implemented yet.</div>';
@@ -128,16 +132,16 @@ class lyquixFlexicontentTmpl {
 		
 		$html = '';
 
-		if ($this -> params -> get('show_description_image', 1) && $this -> params -> get('image')) {
+		if ($this-> jObject -> params -> get('show_description_image', 1) && $this-> jObject -> params -> get('image')) {
 
 			// get image from category parameters
 
-			$src = $this -> params -> get('image');
+			$src = $this-> jObject -> params -> get('image');
 
 			// get resized image url
-			$image_url = self::getCatImage($src, $this -> params -> get('cat_image_width', 240), $this -> params -> get('cat_image_height', 240), $this -> params -> get('cat_image_method', 1));
+			$image_url = self::getCatImage($src, $this-> jObject -> params -> get('cat_image_width', 240), $this-> jObject -> params -> get('cat_image_height', 240), $this-> jObject -> params -> get('cat_image_method', 1));
 			
-			$html .= '<div class="cat-image ' . $this -> params -> get('cat_img_align', '') . '"><img src="' . $image_url . '" /></div>';
+			$html .= '<div class="cat-image ' . $this-> jObject -> params -> get('cat_img_align', '') . '"><img src="' . $image_url . '" /></div>';
 		}
 		
 		return $html;
@@ -150,9 +154,9 @@ class lyquixFlexicontentTmpl {
 		
 		$html = '';
 
-		if ($this -> params -> get('show_description', 1) && $this -> category -> description) {
+		if ($this-> jObject -> params -> get('show_description', 1) && $this-> jObject -> category -> description) {
 				
-			$html .= '<div class="cat-description">' . $this -> category -> description . '</div>';
+			$html .= '<div class="cat-description">' . $this-> jObject -> category -> description . '</div>';
 			
 		}
 		
@@ -166,27 +170,28 @@ class lyquixFlexicontentTmpl {
 		
 		$html = '';
 
-		if ($this -> params -> get('map_display', '') != '' && $this -> params -> get('map_addr_field', '') != '') {
+		if ($this-> jObject -> params -> get('map_display', '') != '' && $this-> jObject -> params -> get('map_addr_field', '') != '') {
 			
-			$html .= '<div class="cat-map ' . $this -> params -> get('map_css_class', '') . '">';	
-			$html .= $this -> params -> get('map_label', '');
-			$html .= $this -> params -> get('map_opentag', '');
-			$html .= '<div id="cat-map" style="width:' . $this -> params -> get('map_width', '100%') . '; height:' . $this -> params -> get('map_height', '480px') . ';"></div>';
-			$html .= $this -> params -> get('map_closetag', '');
+			$html .= '<div class="cat-map ' . $this-> jObject -> params -> get('map_css_class', '') . '">';	
+			$html .= $this-> jObject -> params -> get('map_label', '');
+			$html .= $this-> jObject -> params -> get('map_opentag', '');
+			$html .= '<div id="cat-map" style="width:' . $this-> jObject -> params -> get('map_width', '100%') . '; height:' . $this-> jObject -> params -> get('map_height', '480px') . ';"></div>';
+			$html .= $this-> jObject -> params -> get('map_closetag', '');
 			$html .= '</div>';
-			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> params -> get('map_google_api_key', '') ? '?key=' . $this -> params -> get('map_google_api_key', '') : '') . '"></script>';
+			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this-> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this-> jObject -> params -> get('map_google_api_key', '') : '') . '"></script>';
 			$html .= '<script>
 					var catMap = {
 						options : {
 							center: new google.maps.LatLng(0,0),
-							mapTypeId: google.maps.MapTypeId.' . $this -> params -> get('map_type', 'ROADMAP') . ',
-							scrollwheel: ' . ($this -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
-							mapTypeControl: ' . ($this -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
-							panControl: ' . ($this -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
-							zoomControl: ' . ($this -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
+							mapTypeId: google.maps.MapTypeId.' . $this-> jObject -> params -> get('map_type', 'ROADMAP') . ',
+							scrollwheel: ' . ($this-> jObject -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
+							mapTypeControl: ' . ($this-> jObject -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
+							panControl: ' . ($this-> jObject -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
+							zoomControl: ' . ($this-> jObject -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
 							streetViewControl: false,
 							zoom: 8,
-							styles: ' . ($this -> params -> get('map_styles_array','[]')) .'
+							fullscreenControl: ' . ($this-> jObject -> params -> get('map_fullscreen_control', 0) ? 'true' : 'false') . ',
+							styles: ' . ($this-> jObject -> params -> get('map_styles_array','[]')) .'
 						},
 						bounds : new google.maps.LatLngBounds(),
 						items : ' . self::renderCatMapItems() . ',
@@ -236,13 +241,13 @@ class lyquixFlexicontentTmpl {
 		// json array
 		$json = array();
 		
-		$field_name = $this -> params -> get('map_addr_field', '');
+		$field_name = $this-> jObject -> params -> get('map_addr_field', '');
 
 		// generate json object of items
-		foreach ($this->items as $i => $item) {
+		foreach ($this-> jObject->items as $i => $item) {
 			
 			// include/exclude by content type
-			if(!($this -> params -> get('map_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, $this -> params -> get('map_inc_exc_types_list', array())))) {
+			if(!($this-> jObject -> params -> get('map_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, $this-> jObject -> params -> get('map_inc_exc_types_list', array())))) {
 				
 				// check if item has address field
 				if (array_key_exists($field_name, $item -> fields)) {
@@ -254,13 +259,13 @@ class lyquixFlexicontentTmpl {
 					if ((float)$addr['lat'] != 0 && (float)$addr['lon'] != 0) {
 						
 						$html = '';
-						$html .= $this -> params -> get('map_pretext', '');
+						$html .= $this-> jObject -> params -> get('map_pretext', '');
 						
 						for ($j = 1; $j <= 7; $j++) {
 							
 							if (isset($item -> positions['group_' . $j])) {
 								
-								$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+								$html .= '<div class="group-' . $j . ' ' . $this-> jObject -> params -> get('css_group_' . $j, '') . '">';
 								
 								foreach ($item->positions['group_' . $j] as $field) {
 									
@@ -271,9 +276,9 @@ class lyquixFlexicontentTmpl {
 							}
 						}
 						
-						$html .= $this -> params -> get('map_posttext', '');
+						$html .= $this-> jObject -> params -> get('map_posttext', '');
 
-                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? @lyquixFlexicontentTmplCustom::customMapMarker($item) : $this -> params -> get('map_marker_icon', '');
+                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? @lyquixFlexicontentTmplCustom::customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
 
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 						
@@ -294,41 +299,41 @@ class lyquixFlexicontentTmpl {
 		// Subcategories
 		// should display subcategories?
 
-		if ($this -> params -> get('map_display', '') != 'map' && $this -> params -> get('show_subcategories', 0) && count($this -> categories)) {
+		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('show_subcategories', 0) && count($this-> jObject -> categories)) {
 
 			// BASED ON THE CATEGORY SORTING BUT FORCING IT until parameter filed is finihed
 
-			$cat_sections = $this -> params -> get('cat_layout_order', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
+			$cat_sections = $this-> jObject -> params -> get('cat_layout_order', array("buttons", "title", "filters", "alpha", "image", "desc", "map", "subcats", "items", "pagination"));
 			if (!is_array($cat_sections)) {
 				$cat_sections = explode(",", $cat_sections);
 			}
 			
-			$html .= '<div class="cat-subcats ' . $this -> params -> get('sub_cat_class', '') . '">';
+			$html .= '<div class="cat-subcats ' . $this-> jObject -> params -> get('sub_cat_class', '') . '">';
 			
 			// sub categories heading
 
-			if ($this -> params -> get('show_label_subcats', 1)) {
+			if ($this-> jObject -> params -> get('show_label_subcats', 1)) {
 				
-				$html .= $this -> params -> get('sub_cat_label', '');
+				$html .= $this-> jObject -> params -> get('sub_cat_label', '');
 			}
 
-			$html .= $this -> params -> get('subcat_opentag', '');
+			$html .= $this-> jObject -> params -> get('subcat_opentag', '');
 			
-			$html .= '<ul class="cat-subcats ' . $this -> params -> get('sub_cat_ul_class', '') . '">';
+			$html .= '<ul class="cat-subcats ' . $this-> jObject -> params -> get('sub_cat_ul_class', '') . '">';
 			
-			foreach ($this->categories as $subcat) {
+			foreach ($this-> jObject->categories as $subcat) {
 				
 				$html .= '<li class="' 
-					. $this -> params -> get('sub_cat_li_class', '') 
+					. $this-> jObject -> params -> get('sub_cat_li_class', '') 
 					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatClass') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatClass($subcat) : '')
 					. '"'
 					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatAttrs($subcat) : '') 
 					. ">";
 					
-				$html .= $this -> params -> get('subcat_pretext', '');
+				$html .= $this-> jObject -> params -> get('subcat_pretext', '');
 				
 				// Subub-categories sections ordering
-				$sub_cat_sections = $this -> params -> get('sub_cat_layout_order', array("title", "image", "desc", "items", "teaser-image", "teaser-text"));
+				$sub_cat_sections = $this-> jObject -> params -> get('sub_cat_layout_order', array("title", "image", "desc", "items", "teaser-image", "teaser-text"));
 				
 				if (!is_array($sub_cat_sections)) {
 					$sub_cat_sections = explode(",", $sub_cat_sections);
@@ -356,38 +361,38 @@ class lyquixFlexicontentTmpl {
 						// sub-category title
 
 						case "title" :
-							$html .= '<' . $this -> params -> get('sub_cat_title_headding', 'h3') . '>';
-							if ($this -> params -> get('sub_cat_link_title', 1)) {
+							$html .= '<' . $this-> jObject -> params -> get('sub_cat_title_headding', 'h3') . '>';
+							if ($this-> jObject -> params -> get('sub_cat_link_title', 1)) {
 								$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">';
 							}
 
 							$html .= htmlspecialchars($subcat -> title);
 
-							if ($this -> params -> get('sub_cat_link_title', 1)) {
+							if ($this-> jObject -> params -> get('sub_cat_link_title', 1)) {
 								$html .= '</a>';
 							}
 
-							$html .= '</' . $this -> params -> get('sub_cat_title_headding', 'h3') . '>';
+							$html .= '</' . $this-> jObject -> params -> get('sub_cat_title_headding', 'h3') . '>';
 							break;
 
 						// sub-category image
 
 						case "image" :
 							
-							if ($this -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('image')) {
+							if ($this-> jObject -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('image')) {
 
 								// get sub category image from its parameters
 
 								$src = $subcat -> params -> get('image');
 
 								// get resized image url
-								$image_url = self::getCatImage($src, $this -> params -> get('subcat_image_width', 240), $this -> params -> get('subcat_image_height', 240), $this -> params -> get('subcat_image_method', 1));
+								$image_url = self::getCatImage($src, $this-> jObject -> params -> get('subcat_image_width', 240), $this-> jObject -> params -> get('subcat_image_height', 240), $this-> jObject -> params -> get('subcat_image_method', 1));
 
 								$html .= '<div class="subcat-image">';
 
 								// add link to sub category?
 
-								if ($this -> params -> get('subcat_link_image', 0)) {
+								if ($this-> jObject -> params -> get('subcat_link_image', 0)) {
 									$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">';
 								}
 
@@ -395,7 +400,7 @@ class lyquixFlexicontentTmpl {
 
 								// close link tag
 
-								if ($this -> params -> get('subcat_link_image', 0)) {
+								if ($this-> jObject -> params -> get('subcat_link_image', 0)) {
 									$html .= '</a>';
 								}
 
@@ -407,8 +412,8 @@ class lyquixFlexicontentTmpl {
 						// sub-category description stripped of HTML and cut to given length
 
 						case "desc" :
-							if ($this -> params -> get('show_description_subcat', 0) && $subcat -> description) {
-								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> description, $this -> params -> get('description_cut_text_subcat', 120)) . '</div>';
+							if ($this-> jObject -> params -> get('show_description_subcat', 0) && $subcat -> description) {
+								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> description, $this-> jObject -> params -> get('description_cut_text_subcat', 120)) . '</div>';
 							}
 
 							break;
@@ -416,13 +421,13 @@ class lyquixFlexicontentTmpl {
 						// items: displays a list of the sub-category items if they were generated, and not shown in the main items list
 
 						case "items" :
-							if ($this -> params -> get('display_subcategories_items') && $this -> params -> get('sub_cat_items', 0)) {
+							if ($this-> jObject -> params -> get('display_subcategories_items') && $this-> jObject -> params -> get('sub_cat_items', 0)) {
 								
-								if($this -> params -> get('sub_cat_items_style', 'linkslist') == 'introitems') {
+								if($this-> jObject -> params -> get('sub_cat_items_style', 'linkslist') == 'introitems') {
 									
 									$subcat_items = array();
 									
-									foreach ($this->items as $i => $item) {
+									foreach ($this-> jObject->items as $i => $item) {
 	
 										// check that the item is in this subcategory
 	
@@ -445,7 +450,7 @@ class lyquixFlexicontentTmpl {
 								
 									$html .= '<ul class="subcat-items">';
 									
-									foreach ($this->items as $i => $item) {
+									foreach ($this-> jObject->items as $i => $item) {
 	
 										// check that the item is in this subcategory
 	
@@ -457,7 +462,7 @@ class lyquixFlexicontentTmpl {
 		
 												// add link if type of items list if linklist
 		
-												if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
+												if ($this-> jObject -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
 													$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug)) . '">';
 												}
 		
@@ -465,7 +470,7 @@ class lyquixFlexicontentTmpl {
 		
 												// close link tag
 		
-												if ($this -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
+												if ($this-> jObject -> params -> get('sub_cat_items_style', 'linkslist') == 'linkslist') {
 													$html .= '</a>';
 												}
 												
@@ -487,20 +492,20 @@ class lyquixFlexicontentTmpl {
 						
 						case "teaser-image":
 							
-							if ($this -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('cat_teaser_img')) {
+							if ($this-> jObject -> params -> get('show_description_image_subcat', 0) && $subcat -> params -> get('cat_teaser_img')) {
 
 								// get sub category image from its parameters
 
 								$src = $subcat -> params -> get('cat_teaser_img');
 
 								// get resized image url
-								$image_url = self::getCatImage($src, $this -> params -> get('subcat_image_width', 240), $this -> params -> get('subcat_image_height', 240), $this -> params -> get('subcat_image_method', 1));
+								$image_url = self::getCatImage($src, $this-> jObject -> params -> get('subcat_image_width', 240), $this-> jObject -> params -> get('subcat_image_height', 240), $this-> jObject -> params -> get('subcat_image_method', 1));
 
 								$html .= '<div class="subcat-image">';
 
 								// add link to sub category?
 
-								if ($this -> params -> get('subcat_link_image', 0)) {
+								if ($this-> jObject -> params -> get('subcat_link_image', 0)) {
 									$html .= '<a href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">';
 								}
 
@@ -508,7 +513,7 @@ class lyquixFlexicontentTmpl {
 
 								// close link tag
 
-								if ($this -> params -> get('subcat_link_image', 0)) {
+								if ($this-> jObject -> params -> get('subcat_link_image', 0)) {
 									$html .= '</a>';
 								}
 
@@ -519,26 +524,26 @@ class lyquixFlexicontentTmpl {
 						// Custom teaser text
 
 						case "teaser-text":
-							if ($this -> params -> get('show_description_subcat', 0) && $subcat -> params ->get('cat_teaser_text',1)) {
-								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> params ->get('cat_teaser_text'), $this -> params -> get('description_cut_text_subcat', 120)) . '</div>';
+							if ($this-> jObject -> params -> get('show_description_subcat', 0) && $subcat -> params ->get('cat_teaser_text',1)) {
+								$html .= '<div class="subcat-description">' . flexicontent_html::striptagsandcut($subcat -> params ->get('cat_teaser_text'), $this-> jObject -> params -> get('description_cut_text_subcat', 120)) . '</div>';
 							}
 							break;	
 					}
 				}
 				
-				if($this -> params -> get('sub_cat_viewall_link', 0)) {
+				if($this-> jObject -> params -> get('sub_cat_viewall_link', 0)) {
 					// insert a "view all" link
 					$html .= '<a class="viewall" href="' . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($subcat -> slug)) . '">' . 
-						str_replace('{title}', $subcat -> title, $this -> params -> get('sub_cat_viewall_label', 'View All {title} Items')) . 
+						str_replace('{title}', $subcat -> title, $this-> jObject -> params -> get('sub_cat_viewall_label', 'View All {title} Items')) . 
 						'</a>';
 				}
 				
-				$html .= $this -> params -> get('subcat_posttext', '');
+				$html .= $this-> jObject -> params -> get('subcat_posttext', '');
 				$html .= '</li>';
 			}
 
 			$html .= '</ul>';
-			$html .= $this -> params -> get('subcat_closetag', '');
+			$html .= $this-> jObject -> params -> get('subcat_closetag', '');
 			$html .= '</div>';
 		}
 		
@@ -550,12 +555,12 @@ class lyquixFlexicontentTmpl {
 			
 		$html = '';
 		
-		if ($this -> params -> get('map_display', '') != 'map') {
+		if ($this-> jObject -> params -> get('map_display', '') != 'map') {
 				
-			$html .= '<div class="cat-items ' . $this -> params -> get('items_css_class', '') . '">';
-			$html .= $this -> params -> get('items_label', '');
+			$html .= '<div class="cat-items ' . $this-> jObject -> params -> get('items_css_class', '') . '">';
+			$html .= $this-> jObject -> params -> get('items_label', '');
 			
-			if (count($this -> items)) {
+			if (count($this-> jObject -> items)) {
 				
 				// create arrays for items
 				
@@ -565,19 +570,19 @@ class lyquixFlexicontentTmpl {
 				
 				// display featured items in separate list?
 
-				if ($this -> params -> get('featured_separate', 0)) {
+				if ($this-> jObject -> params -> get('featured_separate', 0)) {
 
-					foreach ($this->items as $i => $item) {
+					foreach ($this-> jObject->items as $i => $item) {
 						if ($item -> featured == 1) {
 
 							// skip subcategory items if they are displayed under subcategories
 
-							if ($this -> params -> get('sub_cat_items', 0)) {
+							if ($this-> jObject -> params -> get('sub_cat_items', 0)) {
 
 								// include only if the item is in the main category
 
 								foreach ($item->categories as $cat) {
-									if ($cat -> id == $this -> category -> id) {
+									if ($cat -> id == $this-> jObject -> category -> id) {
 										array_push($featured_items, $i);
 									}
 								}
@@ -594,26 +599,26 @@ class lyquixFlexicontentTmpl {
 
 				// get number of leading items, leading items are shown only in first page
 
-				if ($this -> limitstart != 0) {
+				if ($this-> jObject -> limitstart != 0) {
 					$leading_num = 0;
 				} else {
-					$leading_num = $this -> params -> get('leading_num', 0);
+					$leading_num = $this-> jObject -> params -> get('leading_num', 0);
 				}
 
 				// display leading items
 
 				if ($leading_num) {
 
-					foreach ($this->items as $i => $item) {
+					foreach ($this-> jObject->items as $i => $item) {
 
 						// skip subcategory items if they are displayed under subcategories
 
-						if ($this -> params -> get('sub_cat_items', 0)) {
+						if ($this-> jObject -> params -> get('sub_cat_items', 0)) {
 
 							// include only if the item is in the main category
 
 							foreach ($item->categories as $cat) {
-								if ($cat -> id == $this -> category -> id) {
+								if ($cat -> id == $this-> jObject -> category -> id) {
 
 									// and skip any featured items displayed above
 
@@ -643,18 +648,18 @@ class lyquixFlexicontentTmpl {
 
 				// display intro items if there are any left after displaying featured and leading items
 
-				if ((count($this -> items) - count($featured_items) - count($leading_items)) > 0) {
+				if ((count($this-> jObject -> items) - count($featured_items) - count($leading_items)) > 0) {
 
-					foreach ($this->items as $i => $item) {
+					foreach ($this-> jObject->items as $i => $item) {
 
 						// skip subcategory items if they are displayed under subcategories
 
-						if ($this -> params -> get('sub_cat_items', 0)) {
+						if ($this-> jObject -> params -> get('sub_cat_items', 0)) {
 
 							// include only if the item is in the main category
 
 							foreach ($item->categories as $cat) {
-								if ($cat -> id == $this -> category -> id) {
+								if ($cat -> id == $this-> jObject -> category -> id) {
 
 									// and skip any featured items and leading items displayed above
 
@@ -675,7 +680,7 @@ class lyquixFlexicontentTmpl {
 					}
 				}
 				
-				$items_list_layout_order = $this -> params -> get('items_list_layout_order', array("featured", "leading","intro"));
+				$items_list_layout_order = $this-> jObject -> params -> get('items_list_layout_order', array("featured", "leading","intro"));
 				if (!is_array($items_list_layout_order)) {
 					$items_list_layout_order = explode(",", $items_list_layout_order);
 				}
@@ -698,9 +703,9 @@ class lyquixFlexicontentTmpl {
 			} else {
 
 				// no items in this category
-				if($this -> params -> get('items_no_items', 0)) {
+				if($this-> jObject -> params -> get('items_no_items', 0)) {
 						
-					$html .= '<span class="no-items">' . $this -> params -> get('items_no_items_label', JText::_('FLEXI_NO_ITEMS_FOUND')) . '</span>';
+					$html .= '<span class="no-items">' . $this-> jObject -> params -> get('items_no_items_label', JText::_('FLEXI_NO_ITEMS_FOUND')) . '</span>';
 					
 				}
 				
@@ -719,43 +724,43 @@ class lyquixFlexicontentTmpl {
 		
 		if (count($idx) > 0) {
 			
-			$html_json = $this -> params -> get($group . '_html_json', 'html');
+			$html_json = $this-> jObject -> params -> get($group . '_html_json', 'html');
 			
 			// generate html
 			if($html_json != 'json') {
-				$html .= '<div class="' . $group . '-items ' . $this -> params -> get($group . '_class', '') . '">';
-				$html .= $this -> params -> get($group . '_label', '');
-				$html .= $this -> params -> get($group . '_opentag', '');
-				$html .= '<ul class="' . $group . '-items-list ' . $this -> params -> get($group . '_ul_class', '') . '">';
+				$html .= '<div class="' . $group . '-items ' . $this-> jObject -> params -> get($group . '_class', '') . '">';
+				$html .= $this-> jObject -> params -> get($group . '_label', '');
+				$html .= $this-> jObject -> params -> get($group . '_opentag', '');
+				$html .= '<ul class="' . $group . '-items-list ' . $this-> jObject -> params -> get($group . '_ul_class', '') . '">';
 				foreach ($idx as $i) {
 					
 					// include/exclude by content type
-					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, explode(",", $this -> params -> get($group . '_inc_exc_types_list', array()))))) {
+					if(!($this-> jObject -> params -> get($group . '_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, explode(",", $this-> jObject -> params -> get($group . '_inc_exc_types_list', array()))))) {
 						$html .= '<li class="' . 
-								$this -> params -> get($group . '_li_class', '') . 
-								($this -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? @lyquixFlexicontentTmplCustom::customItemClass($this -> items[$i], $group) : '') .
-								'" data-itemid="' . $this -> items[$i] -> id . '"' .
-								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? @lyquixFlexicontentTmplCustom::customItemAttrs($this -> items[$i], $group) : '') .
+								$this-> jObject -> params -> get($group . '_li_class', '') . 
+								($this-> jObject -> items[$i] -> featured ? ' featured' : '') . ' ' .  
+								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? @lyquixFlexicontentTmplCustom::customItemClass($this-> jObject -> items[$i], $group) : '') .
+								'" data-itemid="' . $this-> jObject -> items[$i] -> id . '"' .
+								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? @lyquixFlexicontentTmplCustom::customItemAttrs($this-> jObject -> items[$i], $group) : '') .
 								'>';
 						
 						// wrap item in link
-						if (($this -> params -> get($group . '_link_item', 0))) {
-							$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));	
+						if (($this-> jObject -> params -> get($group . '_link_item', 0))) {
+							$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($this-> jObject -> items[$i] -> slug, $this-> jObject -> items[$i] -> categoryslug));	
 							$html .= '<a href="' . $item_link . '">';
 						}
 						
-						$html .= $this -> params -> get($group . '_pretext', '');
+						$html .= $this-> jObject -> params -> get($group . '_pretext', '');
 							
 						for ($j = 1; $j <= 7; $j++) {
 							
-							if (isset($this -> items[$i] -> positions['group_' . $j])) {
+							if (isset($this-> jObject -> items[$i] -> positions['group_' . $j])) {
 									
-								$html .= '<div class="group-' . $j . ' ' . $this -> params -> get('css_group_' . $j, '') . '">';
+								$html .= '<div class="group-' . $j . ' ' . $this-> jObject -> params -> get('css_group_' . $j, '') . '">';
 								
-								foreach ($this->items[$i]->positions['group_' . $j] as $field) {
+								foreach ($this-> jObject->items[$i]->positions['group_' . $j] as $field) {
 									
-									$html .= self::renderCatItemsField($this -> items[$i], $field, $group);
+									$html .= self::renderCatItemsField($this-> jObject -> items[$i], $field, $group);
 									
 								}
 		
@@ -764,10 +769,10 @@ class lyquixFlexicontentTmpl {
 							
 						}
 						
-						$html .= $this -> params -> get($group . '_posttext', '');
+						$html .= $this-> jObject -> params -> get($group . '_posttext', '');
 						
 						// close the link element
-						if (($this -> params -> get($group . '_link_item', 1))) {
+						if (($this-> jObject -> params -> get($group . '_link_item', 1))) {
 								$html .= '</a>';
 						}
 						
@@ -777,7 +782,7 @@ class lyquixFlexicontentTmpl {
 				}
 	
 				$html .= '</ul>';
-				$html .= $this -> params -> get($group . '_closetag', '');
+				$html .= $this-> jObject -> params -> get($group . '_closetag', '');
 				$html .= '</div>';
 			}
 			
@@ -787,27 +792,28 @@ class lyquixFlexicontentTmpl {
 				foreach ($idx as $i) {
 					
 					$item_json = array();
-					
+
+			
 					// include/exclude by content type
-					if(!($this -> params -> get($group . '_inc_exc_types', 0) xor in_array($this -> items[$i] -> document_type, explode(",", $this -> params -> get($group . '_inc_exc_types_list', array()))))) {
+					if(!($this-> jObject -> params -> get($group . '_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, explode(",", $this-> jObject -> params -> get($group . '_inc_exc_types_list', array()))))) {
 						
-						if($this -> params -> get($group . '_json_itemid', 1)) $item_json['id'] = $this -> items[$i] -> id;
-						if($this -> params -> get($group . '_json_url', 1)) $item_json['url'] = JRoute::_(FlexicontentHelperRoute::getItemRoute($this -> items[$i] -> slug, $this -> items[$i] -> categoryslug));
+						if($this-> jObject -> params -> get($group . '_json_itemid', 1)) $item_json['id'] = $this-> jObject -> items[$i] -> id;
+						if($this-> jObject -> params -> get($group . '_json_url', 1)) $item_json['url'] = JRoute::_(FlexicontentHelperRoute::getItemRoute($this-> jObject -> items[$i] -> slug, $this-> jObject -> items[$i] -> categoryslug));
 						
 						// get fields in the group 1-7 positions
-						if($this -> params -> get($group . '_json_group_fields', 1)) {
+						if($this-> jObject -> params -> get($group . '_json_group_fields', 1)) {
 							for ($j = 1; $j <= 7; $j++) {
 								
-								if (isset($this -> items[$i] -> positions['group_' . $j])) {
+								if (isset($this-> jObject -> items[$i] -> positions['group_' . $j])) {
 										
-									foreach ($this->items[$i]->positions['group_' . $j] as $field) {
+									foreach ($this-> jObject->items[$i]->positions['group_' . $j] as $field) {
 										
-										if($this -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this -> items[$i] -> fields[$field -> name] -> id;
+										if($this-> jObject -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this-> jObject -> items[$i] -> fields[$field -> name] -> id;
 
 										$item_json[$field -> name] = array();
 										
-										if($this -> params -> get($group . '_json_field_value', 1)) {
-											$item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+										if($this-> jObject -> params -> get($group . '_json_field_value', 1)) {
+											$item_json[$field -> name]['value'] = $this-> jObject -> items[$i] -> fields[$field -> name] -> iscore ? $this-> jObject -> items[$i] -> {$field -> name} : $this-> jObject -> items[$i] -> fieldvalues [$field -> id];
 											// process serialized data
 											if(is_array($item_json[$field -> name]['value'])) {
 												foreach($item_json[$field -> name]['value'] as $value_idx => $value) {
@@ -821,7 +827,7 @@ class lyquixFlexicontentTmpl {
 											}
 										}
 
-										if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
+										if($this-> jObject -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this-> jObject -> items[$i], $field, $group);
 										
 									}
 								
@@ -831,16 +837,16 @@ class lyquixFlexicontentTmpl {
 						}
 						
 						// get fields in the renderonly position
-						if ($this -> params -> get($group . '_json_renderonly_fields', 1) && isset($this -> items[$i] -> positions['renderonly'])) {
+						if ($this-> jObject -> params -> get($group . '_json_renderonly_fields', 1) && isset($this-> jObject -> items[$i] -> positions['renderonly'])) {
 								
-							foreach ($this->items[$i]->positions['renderonly'] as $field) {
+							foreach ($this-> jObject->items[$i]->positions['renderonly'] as $field) {
 								
-								if($this -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this -> items[$i] -> fields[$field -> name] -> id;
+								if($this-> jObject -> params -> get($group . '_json_field_id', 0)) $item_json[$field -> name]['id'] = $this-> jObject -> items[$i] -> fields[$field -> name] -> id;
 
 								$item_json[$field -> name] = array();
 								
-								if($this -> params -> get($group . '_json_field_value', 1)) {
-									$item_json[$field -> name]['value'] = $this -> items[$i] -> fields[$field -> name] -> iscore ? $this -> items[$i] -> {$field -> name} : $this -> items[$i] -> fieldvalues [$field -> id];
+								if($this-> jObject -> params -> get($group . '_json_field_value', 1)) {
+									$item_json[$field -> name]['value'] = $this-> jObject -> items[$i] -> fields[$field -> name] -> iscore ? $this-> jObject -> items[$i] -> {$field -> name} : $this-> jObject -> items[$i] -> fieldvalues [$field -> id];
 									// process serialized data
 									if(is_array($item_json[$field -> name]['value'])) {
 										foreach($item_json[$field -> name]['value'] as $value_idx => $value) {
@@ -854,7 +860,7 @@ class lyquixFlexicontentTmpl {
 									}
 								}
 
-								if($this -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this -> items[$i], $field, $group);
+								if($this-> jObject -> params -> get($group . '_json_field_display', 1)) $item_json[$field -> name]['display'] = self::renderCatItemsField($this-> jObject -> items[$i], $field, $group);
 								
 							}
 						
@@ -879,7 +885,7 @@ class lyquixFlexicontentTmpl {
 
 	function renderCatItemsField(&$item, &$field, $group) {
 		
-		$css_fields = (object) json_decode($this -> params -> get('item_css_fields', '{}'));
+		$css_fields = (object) json_decode($this-> jObject -> params -> get('item_css_fields', '{}'));
 		
 		$html = '';
 		
@@ -900,21 +906,21 @@ class lyquixFlexicontentTmpl {
 				// if title or the title override field
 	
 				case "title" :
-				case $this->params->get($group . '_title_field', '') :
+				case $this-> jObject->params->get($group . '_title_field', '') :
 	
 					// format title
 	
-					if (($field -> name == 'title' && !$this -> params -> get($group . '_title_field', 0)) || $field -> name == $this -> params -> get($group . '_title_field', 0)) {
+					if (($field -> name == 'title' && !$this-> jObject -> params -> get($group . '_title_field', 0)) || $field -> name == $this-> jObject -> params -> get($group . '_title_field', 0)) {
 	
 						// show item title?
 	
-						if ($this -> params -> get('show_title', 1)) {
-							$html .= '<' . $this -> params -> get($group . '_title_headding', 'h3');
+						if ($this-> jObject -> params -> get('show_title', 1)) {
+							$html .= '<' . $this-> jObject -> params -> get($group . '_title_headding', 'h3');
 							$html .= (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>';
 	
 							// make title clickable?
 	
-							if ($this -> params -> get('link_titles', 0)) {
+							if ($this-> jObject -> params -> get('link_titles', 0)) {
 								$html .= '<a href="' . $item_link . '">';
 							}
 	
@@ -922,11 +928,11 @@ class lyquixFlexicontentTmpl {
 	
 							// make title clickable?
 	
-							if ($this -> params -> get('link_titles', 0)) {
+							if ($this-> jObject -> params -> get('link_titles', 0)) {
 								$html .= '</a>';
 							}
 	
-							$html .= '</' . $this -> params -> get($group . '_title_headding', 'h3') . '>';
+							$html .= '</' . $this-> jObject -> params -> get($group . '_title_headding', 'h3') . '>';
 						}
 					} else {
 						$html .= '<div class="field field_' . $field -> name . '">';
@@ -948,30 +954,30 @@ class lyquixFlexicontentTmpl {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
 	
-					$html .= JHTML::_('date', $item -> fields[$field -> name] -> value[0], $this -> params -> get($group . '_date_format', "l, F jS, Y")) . '</div>';
+					$html .= JHTML::_('date', $item -> fields[$field -> name] -> value[0], $this-> jObject -> params -> get($group . '_date_format', "l, F jS, Y")) . '</div>';
 					break;
 	
 				// designated image field
 	
-				case $this->params->get($group . '_img', '') :
+				case $this-> jObject->params->get($group . '_img', '') :
 	
-					$image = self::getItemImage($item, $this->params->get($group . '_img', ''), $this -> params -> get($group . '_img_size', 'l'), $this -> params -> get($group . '_img_width', 160), $this -> params -> get($group . '_img_height', 90), $this -> params -> get($group . '_img_method', '0'));
+					$image = self::getItemImage($item, $this-> jObject->params->get($group . '_img', ''), $this-> jObject -> params -> get($group . '_img_size', 'l'), $this-> jObject -> params -> get($group . '_img_width', 160), $this-> jObject -> params -> get($group . '_img_height', 90), $this-> jObject -> params -> get($group . '_img_method', '0'));
 
 					/*
 					// get image source, use selected size or get large
 	
 					$img_size_map = array('l' => 'large', 'm' => 'medium', 's' => 'small');
-					$img_field_size = $img_size_map[$this -> params -> get($group . '_img_size', 'l')];
+					$img_field_size = $img_size_map[$this-> jObject -> params -> get($group . '_img_size', 'l')];
 					$src = str_replace(JURI::root(), '', $item -> fields[$field -> name] -> thumbs_src[$img_field_size][0]);
 	
 					// if custom size generate url with phpthumb
 	
-					if (!$this -> params -> get($group . '_img_size')) {
-						$w = '&amp;w=' . $this -> params -> get($group . '_img_width', 160);
-						$h = '&amp;h=' . $this -> params -> get($group . '_img_height', 90);
+					if (!$this-> jObject -> params -> get($group . '_img_size')) {
+						$w = '&amp;w=' . $this-> jObject -> params -> get($group . '_img_width', 160);
+						$h = '&amp;h=' . $this-> jObject -> params -> get($group . '_img_height', 90);
 						$aoe = '&amp;aoe=1';
 						$q = '&amp;q=95';
-						$zc = $this -> params -> get($group . '_img_method', '0') ? '&amp;zc=' . $this -> params -> get($group . '_img_method', '0') : '';
+						$zc = $this-> jObject -> params -> get($group . '_img_method', '0') ? '&amp;zc=' . $this-> jObject -> params -> get($group . '_img_method', '0') : '';
 						$ext = pathinfo($src, PATHINFO_EXTENSION);
 						$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
 						$conf = $w . $h . $aoe . $q . $zc . $f;
@@ -984,8 +990,8 @@ class lyquixFlexicontentTmpl {
 
 					// set wrapping div
 	
-					$group_img_class = $this -> params -> get($group . '_img_class', '');
-					$group_img_align = $this -> params -> get($group . '_img_align', '');
+					$group_img_class = $this-> jObject -> params -> get($group . '_img_class', '');
+					$group_img_align = $this-> jObject -> params -> get($group . '_img_align', '');
 					$html .= '<div class="image field_' . $field -> name 
 						. ($group_img_align ? ' ' . $group_img_align : '') . ($group_img_class ? ' ' . $group_img_class : '')
 						. (property_exists($css_fields, $field -> name) ? ' ' . $css_fields -> {$field -> name} : '')
@@ -996,7 +1002,7 @@ class lyquixFlexicontentTmpl {
 	
 					// image clickable?
 	
-					if ($this -> params -> get($group . '_img_link', '1')) {
+					if ($this-> jObject -> params -> get($group . '_img_link', '1')) {
 						$html .= '<a href="' . $item_link . '">';
 					}
 	
@@ -1004,7 +1010,7 @@ class lyquixFlexicontentTmpl {
 	
 					// image clickable?
 	
-					if ($this -> params -> get($group . '_img_link', '1')) {
+					if ($this-> jObject -> params -> get($group . '_img_link', '1')) {
 						$html .= '</a>';
 					}
 	
@@ -1014,21 +1020,21 @@ class lyquixFlexicontentTmpl {
 				// item description field or override field
 	
 				case "text" :
-				case $this->params->get($group . '_desc_field', '') :
-					if (($field -> name == 'text' && !$this -> params -> get($group . '_desc_field', '')) || $field -> name == $this -> params -> get($group . '_desc_field', '')) {
+				case $this-> jObject->params->get($group . '_desc_field', '') :
+					if (($field -> name == 'text' && !$this-> jObject -> params -> get($group . '_desc_field', '')) || $field -> name == $this-> jObject -> params -> get($group . '_desc_field', '')) {
 						if ($field -> name == 'text') {
 	
 							// get item description, and strip & cut html
 	
 							$item -> fields[$field -> name] -> value[0] = FlexicontentFields::getFieldDisplay($item, $field -> name, $values = null, $method = 'display');
-							$text = substr(flexicontent_html::striptagsandcut($item -> fields[$field -> name] -> value[0], $this -> params -> get($group . '_desc_cut', 200)), 0, $this -> params -> get($group . '_desc_cut', 200));
+							$text = substr(flexicontent_html::striptagsandcut($item -> fields[$field -> name] -> value[0], $this-> jObject -> params -> get($group . '_desc_cut', 200)), 0, $this-> jObject -> params -> get($group . '_desc_cut', 200));
 						} else {
 	
 							// get plain text and cut to max length
 	
 							$text = htmlspecialchars($item -> fields[$field -> name] -> value[0]);
-							if ($this -> params -> get($group . '_desc_cut', 200) >= 0 && $this -> params -> get($group . '_desc_cut', 200) < strlen($text)) {
-								$text = substr($text, 0, $this -> params -> get($group . '_desc_cut', 200));
+							if ($this-> jObject -> params -> get($group . '_desc_cut', 200) >= 0 && $this-> jObject -> params -> get($group . '_desc_cut', 200) < strlen($text)) {
+								$text = substr($text, 0, $this-> jObject -> params -> get($group . '_desc_cut', 200));
 							}
 						}
 	
@@ -1064,7 +1070,7 @@ class lyquixFlexicontentTmpl {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
 	
-					$html .= $this -> params -> get($group . '_writtenby_label', '') . $field -> display . '</div>';
+					$html .= $this-> jObject -> params -> get($group . '_writtenby_label', '') . $field -> display . '</div>';
 					
 					break;
 					
@@ -1087,22 +1093,22 @@ class lyquixFlexicontentTmpl {
 		}
 
 		// add readmore link?
-		if ($this -> params -> get('show_readmore') && $this -> params -> get($group . '_readmore_after', 'text') == $field -> name) {
-			$readmore = $this -> params -> get($group . '_readmore_label', 'Read More');
+		if ($this-> jObject -> params -> get('show_readmore') && $this-> jObject -> params -> get($group . '_readmore_after', 'text') == $field -> name) {
+			$readmore = $this-> jObject -> params -> get($group . '_readmore_label', 'Read More');
 			$readmore = str_replace('{title}', $item -> title, $readmore);
 			$html .= '<a class="readmore" href="' . $item_link . '">' . $readmore . '</a>';
 		}
 
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
-		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get('items_addthis_after', '') == $field -> name) {
+		if ($this-> jObject -> params -> get('items_addthis', 0) && $this-> jObject -> params -> get('items_addthis_after', '') == $field -> name) {
 			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
-				$this -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
 				'</div>';
 		}
 
 		// add disqus link?
-		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get('items_disqus_after', '') == $field -> name) {
+		if ($this-> jObject -> params -> get('items_disqus', 0) && $this-> jObject -> params -> get('items_disqus_after', '') == $field -> name) {
 			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 
@@ -1114,14 +1120,14 @@ class lyquixFlexicontentTmpl {
 		// Pagination
 		$html = '';
 		
-		if ($this -> params -> get('show_pagination', 0)) {
+		if ($this-> jObject -> params -> get('show_pagination', 0)) {
 			
-			$html .= '<div class="pagination ' . $this -> params -> get('pagination_css_class', '') . '">';
-			$html .= $this -> params -> get('pagination_label', '');
-			$html .= '<div class="pageslinks">' . $this -> pageNav -> getPagesLinks() . '</div>';
+			$html .= '<div class="pagination ' . $this-> jObject -> params -> get('pagination_css_class', '') . '">';
+			$html .= $this-> jObject -> params -> get('pagination_label', '');
+			$html .= '<div class="pageslinks">' . $this-> jObject -> pageNav -> getPagesLinks() . '</div>';
 			
-			if ($this -> params -> get('show_pagination_results', 1)) {
-				$html .= '<div class="pagescounter">' . $this -> pageNav -> getPagesCounter() . '</div>';
+			if ($this-> jObject -> params -> get('show_pagination_results', 1)) {
+				$html .= '<div class="pagescounter">' . $this-> jObject -> pageNav -> getPagesCounter() . '</div>';
 			}
 
 			$html .= '</div>';
@@ -1133,7 +1139,7 @@ class lyquixFlexicontentTmpl {
 
 	function renderItemField(&$item, &$field) {
 		
-		$css_fields = (object) json_decode($this -> params -> get('item_css_fields', '{}'));
+		$css_fields = (object) json_decode($this-> jObject -> params -> get('item_css_fields', '{}'));
 		
 		$html = '';
 		
@@ -1154,7 +1160,7 @@ class lyquixFlexicontentTmpl {
 	
 					// show item title?
 	
-					if ($this -> params -> get('show_title', 1)) {
+					if ($this-> jObject -> params -> get('show_title', 1)) {
 						$html .= '<h1' . (property_exists($css_fields, $field -> name) ? ' class="' . $css_fields -> {$field -> name} . '"' : '') . '>' . htmlspecialchars($item -> fields[$field -> name] -> value[0]) . '</h1>';
 					}
 	
@@ -1169,7 +1175,7 @@ class lyquixFlexicontentTmpl {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
 	
-					$html .= JHTML::_('date', $item -> fields[$field -> name] -> value[0], $this -> params -> get('item_date_format', "l, F jS, Y")) . '</div>';
+					$html .= JHTML::_('date', $item -> fields[$field -> name] -> value[0], $this-> jObject -> params -> get('item_date_format', "l, F jS, Y")) . '</div>';
 					break;
 	
 				// item description field or override field
@@ -1193,7 +1199,7 @@ class lyquixFlexicontentTmpl {
 						$html .= '<div class="label">' . $field -> label . '</div>';
 					}
 	
-					$html .= $this -> params -> get('item_writtenby_label', '') . $field -> display . '</div>';
+					$html .= $this-> jObject -> params -> get('item_writtenby_label', '') . $field -> display . '</div>';
 					
 					break;
 					
@@ -1216,14 +1222,14 @@ class lyquixFlexicontentTmpl {
 
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
-		if ($this -> params -> get('items_addthis', 0) && $this -> params -> get('items_addthis_after', '') == $field -> name) {
+		if ($this-> jObject -> params -> get('items_addthis', 0) && $this-> jObject -> params -> get('items_addthis_after', '') == $field -> name) {
 			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
-				$this -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
 				'</div>';
 		}
 
 		// add disqus link?
-		if ($this -> params -> get('items_disqus', 0) && $this -> params -> get('items_disqus_after', '') == $field -> name) {
+		if ($this-> jObject -> params -> get('items_disqus', 0) && $this-> jObject -> params -> get('items_disqus_after', '') == $field -> name) {
 			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 		
@@ -1236,67 +1242,67 @@ class lyquixFlexicontentTmpl {
 		$doc -> setMimeEncoding('application/json');
 		
 		// get category params
-		$category = $this -> category;
+		$category = $this-> jObject -> category;
 		$catparams = json_decode($category -> params);
 		
 		// generate urls
 		$tmpl = JFactory::getApplication() -> input -> get('tmpl');
 		$clayout = JFactory::getApplication() -> input -> get('clayout');
-		$limit = JFactory::getApplication() -> input -> get('limit', $this -> pageNav -> limit);
+		$limit = JFactory::getApplication() -> input -> get('limit', $this-> jObject -> pageNav -> limit);
 		$limitstart = JFactory::getApplication() -> input -> get('limitstart', 0);
-		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($this -> category -> id));
+		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($this-> jObject -> category -> id));
 		$url_json = $url . '?clayout=' . $clayout . '&tmpl=' . $tmpl . '&limit=' . $limit;
 		$url_prev = $url_json . '&limitstart=' . ($limitstart - $limit);
 		$url_next = $url_json . '&limitstart=' . ($limitstart + $limit);
 		
 		$json = array('layout' => 'category');
-		if($this -> params -> get ('display_cat_id', 1)) $json['id'] = $category -> id;
-		if($this -> params -> get ('display_cat_title', 1)) $json['title'] = $category -> title;
-		if($this -> params -> get ('display_cat_alias', 1)) $json['alias'] = $category -> alias;
-		if($this -> params -> get ('display_cat_description', 1)) $json['description'] = $category -> description;
-		if($this -> params -> get ('display_cat_image', 1)) $json['image'] = $catparams -> image ? JURI::base() . $catparams -> image : '';
-		if($this -> params -> get ('display_cat_created', 1)) $json['created'] = $category -> created_time;
-		if($this -> params -> get ('display_cat_modified', 1)) $json['modified'] = $category -> modified_time;
-		if($this -> params -> get ('display_cat_metadesc', 1)) $json['metadesc'] = $category -> metadesc;
-		if($this -> params -> get ('display_cat_metakey', 1)) $json['metakey'] = $category -> metakey;
-		if($this -> params -> get ('display_cat_url', 1)) $json['url'] = $url;
-		if($this -> params -> get ('display_cat_json', 1)) $json['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'clayout=' . $clayout . '&tmpl=' . $tmpl;
-		if($this -> params -> get ('display_cat_params', 0)) $json['params'] = $catparams;
+		if($this-> jObject -> params -> get ('display_cat_id', 1)) $json['id'] = $category -> id;
+		if($this-> jObject -> params -> get ('display_cat_title', 1)) $json['title'] = $category -> title;
+		if($this-> jObject -> params -> get ('display_cat_alias', 1)) $json['alias'] = $category -> alias;
+		if($this-> jObject -> params -> get ('display_cat_description', 1)) $json['description'] = $category -> description;
+		if($this-> jObject -> params -> get ('display_cat_image', 1)) $json['image'] = $catparams -> image ? JURI::base() . $catparams -> image : '';
+		if($this-> jObject -> params -> get ('display_cat_created', 1)) $json['created'] = $category -> created_time;
+		if($this-> jObject -> params -> get ('display_cat_modified', 1)) $json['modified'] = $category -> modified_time;
+		if($this-> jObject -> params -> get ('display_cat_metadesc', 1)) $json['metadesc'] = $category -> metadesc;
+		if($this-> jObject -> params -> get ('display_cat_metakey', 1)) $json['metakey'] = $category -> metakey;
+		if($this-> jObject -> params -> get ('display_cat_url', 1)) $json['url'] = $url;
+		if($this-> jObject -> params -> get ('display_cat_json', 1)) $json['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'clayout=' . $clayout . '&tmpl=' . $tmpl;
+		if($this-> jObject -> params -> get ('display_cat_params', 0)) $json['params'] = $catparams;
 
-		$json['total_items'] = $this -> pageNav -> total;
-		$json['items_per_page'] = $this -> pageNav -> limit;
-		$json['current_page'] = $this -> pageNav -> pagesCurrent;
-		$json['total_pages'] = $this -> pageNav -> pagesTotal;
-		$json['prev_page'] = ($this -> pageNav -> pagesCurrent <= 1 ? '' : $url_prev);
-		$json['next_page'] = ($this -> pageNav -> pagesCurrent >= $this -> pageNav -> pagesTotal ? '' : $url_next);
+		$json['total_items'] = $this-> jObject -> pageNav -> total;
+		$json['items_per_page'] = $this-> jObject -> pageNav -> limit;
+		$json['current_page'] = $this-> jObject -> pageNav -> pagesCurrent;
+		$json['total_pages'] = $this-> jObject -> pageNav -> pagesTotal;
+		$json['prev_page'] = ($this-> jObject -> pageNav -> pagesCurrent <= 1 ? '' : $url_prev);
+		$json['next_page'] = ($this-> jObject -> pageNav -> pagesCurrent >= $this-> jObject -> pageNav -> pagesTotal ? '' : $url_next);
 		
 		// process category items
 		$json['items'] = array();
 		
-		foreach($this -> items as $item) {
+		foreach($this-> jObject -> items as $item) {
 			$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
 			$json_item = array();
 			$json_item['layout'] = 'item';
-			if($this -> params -> get ('display_item_id', 1)) $json_item['id'] = $item -> id;
-			if($this -> params -> get ('display_item_title', 1)) $json_item['title'] = $item -> title;
-			if($this -> params -> get ('display_item_alias', 1)) $json_item['alias'] = $item -> alias;
-			if($this -> params -> get ('display_item_author', 1)) $json_item['author'] = $item -> author;
-			if($this -> params -> get ('display_item_description', 1)) $json_item['description'] = $item -> text;
-			if($this -> params -> get ('display_item_created', 1)) $json_item['created'] = $item -> created;
-			if($this -> params -> get ('display_item_modified', 1)) $json_item['modified'] = $item -> modified;
-			if($this -> params -> get ('display_item_metadesc', 1)) $json_item['metadesc'] = $item -> metadesc;
-			if($this -> params -> get ('display_item_metakey', 1))  $json_item['metakey'] = $item -> metakey;
-			if($this -> params -> get ('display_item_url', 1)) $json_item['url'] = $url;
-			if($this -> params -> get ('display_item_json', 1)) $json_item['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'ilayout=' . $clayout . '&tmpl=' . $tmpl;
-			if($this -> params -> get ('display_item_params', 0)) $json_item['params'] = json_decode($item -> params);
-			if($this -> params -> get ('display_item_fields', 1)) {
+			if($this-> jObject -> params -> get ('display_item_id', 1)) $json_item['id'] = $item -> id;
+			if($this-> jObject -> params -> get ('display_item_title', 1)) $json_item['title'] = $item -> title;
+			if($this-> jObject -> params -> get ('display_item_alias', 1)) $json_item['alias'] = $item -> alias;
+			if($this-> jObject -> params -> get ('display_item_author', 1)) $json_item['author'] = $item -> author;
+			if($this-> jObject -> params -> get ('display_item_description', 1)) $json_item['description'] = $item -> text;
+			if($this-> jObject -> params -> get ('display_item_created', 1)) $json_item['created'] = $item -> created;
+			if($this-> jObject -> params -> get ('display_item_modified', 1)) $json_item['modified'] = $item -> modified;
+			if($this-> jObject -> params -> get ('display_item_metadesc', 1)) $json_item['metadesc'] = $item -> metadesc;
+			if($this-> jObject -> params -> get ('display_item_metakey', 1))  $json_item['metakey'] = $item -> metakey;
+			if($this-> jObject -> params -> get ('display_item_url', 1)) $json_item['url'] = $url;
+			if($this-> jObject -> params -> get ('display_item_json', 1)) $json_item['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'ilayout=' . $clayout . '&tmpl=' . $tmpl;
+			if($this-> jObject -> params -> get ('display_item_params', 0)) $json_item['params'] = json_decode($item -> params);
+			if($this-> jObject -> params -> get ('display_item_fields', 1)) {
 				$fields = array();
 				if(isset($item -> positions)) {
 					foreach($item -> positions as $position) {
 						foreach($position as $field) {
 							$fields[$field -> name] = array();
-							if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
-							if($this -> params -> get ('display_item_field_value', 1)) {
+							if($this-> jObject -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
+							if($this-> jObject -> params -> get ('display_item_field_value', 1)) {
 								$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
 								// process serialized data
 								if(is_array($fields[$field -> name]['value'])) {
@@ -1310,7 +1316,7 @@ class lyquixFlexicontentTmpl {
 									if($value) $fields[$field -> name]['value'] = $value;
 								}
 							}
-							if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
+							if($this-> jObject -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						}
 					}
 				}
@@ -1332,32 +1338,32 @@ class lyquixFlexicontentTmpl {
 		$doc =& JFactory::getDocument();
 		$doc->setMimeEncoding('application/json');
 		
-		$item = $this -> item;
+		$item = $this-> jObject -> item;
 		
 		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
 		$json = array();
 		$json['layout'] = 'item';
-		if($this -> params -> get ('display_item_id', 1)) $json['id'] = $item -> id;
-		if($this -> params -> get ('display_item_title', 1)) $json['title'] = $item -> title;
-		if($this -> params -> get ('display_item_alias', 1)) $json['alias'] = $item -> alias;
-		if($this -> params -> get ('display_item_author', 1)) $json['author'] = $item -> author;
-		if($this -> params -> get ('display_item_description', 1)) $json['description'] = $item -> text;
-		if($this -> params -> get ('display_item_created', 1)) $json['created'] = $item -> created;
-		if($this -> params -> get ('display_item_modified', 1)) $json['modified'] = $item -> modified;
-		if($this -> params -> get ('display_item_metadesc', 1)) $json['metadesc'] = $item -> metadesc;
-		if($this -> params -> get ('display_item_metakey', 1)) $json['metakey'] = $item -> metakey;
-		if($this -> params -> get ('display_item_url', 1)) $json['url'] = $url;
-		if($this -> params -> get ('display_item_json', 1)) $json['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'iclayout=' . JFactory::getApplication() -> input -> get('ilayout') . '&tmpl=' . JFactory::getApplication() -> input -> get('tmpl');
-		if($this -> params -> get ('display_item_params', 0)) $json['params'] = json_decode($item -> params);
-		if($this -> params -> get ('display_item_fields', 1)) {
+		if($this-> jObject -> params -> get ('display_item_id', 1)) $json['id'] = $item -> id;
+		if($this-> jObject -> params -> get ('display_item_title', 1)) $json['title'] = $item -> title;
+		if($this-> jObject -> params -> get ('display_item_alias', 1)) $json['alias'] = $item -> alias;
+		if($this-> jObject -> params -> get ('display_item_author', 1)) $json['author'] = $item -> author;
+		if($this-> jObject -> params -> get ('display_item_description', 1)) $json['description'] = $item -> text;
+		if($this-> jObject -> params -> get ('display_item_created', 1)) $json['created'] = $item -> created;
+		if($this-> jObject -> params -> get ('display_item_modified', 1)) $json['modified'] = $item -> modified;
+		if($this-> jObject -> params -> get ('display_item_metadesc', 1)) $json['metadesc'] = $item -> metadesc;
+		if($this-> jObject -> params -> get ('display_item_metakey', 1)) $json['metakey'] = $item -> metakey;
+		if($this-> jObject -> params -> get ('display_item_url', 1)) $json['url'] = $url;
+		if($this-> jObject -> params -> get ('display_item_json', 1)) $json['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'iclayout=' . JFactory::getApplication() -> input -> get('ilayout') . '&tmpl=' . JFactory::getApplication() -> input -> get('tmpl');
+		if($this-> jObject -> params -> get ('display_item_params', 0)) $json['params'] = json_decode($item -> params);
+		if($this-> jObject -> params -> get ('display_item_fields', 1)) {
 			$fields = array();
 			if(isset($item -> positions)) {
 				foreach($item -> positions as $position) {
 					foreach($position as $field) {
 						$fields[$field -> name] = array();
-						if($this -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
-						if($this -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
-						if($this -> params -> get ('display_item_field_value', 1)) {
+						if($this-> jObject -> params -> get ('display_item_field_label', 1)) $fields[$field -> name]['label'] = $field -> label;
+						if($this-> jObject -> params -> get ('display_item_field_value', 1)) $fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
+						if($this-> jObject -> params -> get ('display_item_field_value', 1)) {
 							$fields[$field -> name]['value'] = $item -> fields[$field -> name] -> iscore ? $item -> {$field -> name} : $item -> fieldvalues [$field -> id];
 							// process serialized data
 							if(is_array($fields[$field -> name]['value'])) {
@@ -1371,7 +1377,7 @@ class lyquixFlexicontentTmpl {
 								if($value) $fields[$field -> name]['value'] = $value;
 							}
 						}
-						if($this -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
+						if($this-> jObject -> params -> get ('display_item_field_display', 1)) $fields[$field -> name]['display'] = $field -> display;
 						
 					}
 				}
