@@ -843,6 +843,10 @@ class lyquixFlexicontentTmpl {
 				$subcat = $subcat ? preg_replace("/[^A-Za-z0-9]/", '', $subcat -> title) : '';
 
 				$html .= '<script>var ' . ($group == 'sub_cat_items_items' ? 'subcat' . $subcat : $group) . 'Items = ' . json_encode($json) . ';</script>';
+
+				// detect silent error
+				if (json_last_error_msg() != 'No error')
+					echo '<script>console.log("WARNING json_decode failed silently on /components/com_flexicontent/templates/lyquix/functions.php, line 872: " + "' . json_last_error_msg() .'")</script>';				
 				
 			}
 			
@@ -1055,6 +1059,8 @@ class lyquixFlexicontentTmpl {
 					break;
 			}
 
+			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
+
 			// field posttext
 			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
 			
@@ -1182,6 +1188,8 @@ class lyquixFlexicontentTmpl {
 					$html .= $field -> display . '</div>';
 					break;
 			}
+
+			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
 
 			// field pretext
 			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
