@@ -3,6 +3,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'functions.php');
+if (!class_exists('lyquixFlexicontentTmplCustom')) require_once (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'custom' . DS . 'category-custom.dist.php');
+
 // Item sections ordering
 $item_sections = $this -> params -> get('item_layout_order', array("group1", "group2", "group3", "group4", "group5", "group6", "group7"));
 
