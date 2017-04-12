@@ -9,8 +9,6 @@ JFormHelper::loadFieldClass('list');
 
 class JFormFieldLqxfccatlayout extends JFormField {
 
-	var $type = 'lqxfccatlayout';
-
 	function getInput() {
 		$doc = JFactory::getDocument();
 		$db = JFactory::getDBO();
