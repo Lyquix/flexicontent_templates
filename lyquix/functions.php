@@ -62,38 +62,6 @@ class lyquixFlexicontentTmpl {
 		return $html;
 	}
 
-	function renderCatFilters() {
-
-		// Filters
-		
-		$html = '';
-
-		if ($this -> params -> get('use_filters', 0)) {
-				
-			$html .= '<div class="cat-filters ' . $this -> params -> get('cat_filters_class', '') . '">';
-			$html .= $this -> params -> get('cat_filters_label', '');
-			
-			if($this -> params -> get('cat_filters_engine', 0)) {
-					
-				require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
-				$html .= lyquixFlexicontentTmplFilters::renderFilters();
-				$html .= '</div>';
-				
-			}
-			else {
-				
-				echo $html;
-				include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
-				echo '</div>';
-				$html = '';
-				
-			}
-			
-		}
-		
-		return $html;
-	}
-
 	function renderCatAlpha() {
 
 		// Alpha index

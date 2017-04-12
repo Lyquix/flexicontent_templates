@@ -34,6 +34,28 @@ if (is_array($cat_sections)) {
 			
 			echo '</div>';
 
+		} elseif ($cat_section == 'filters') {
+			$html = '';
+			if ($this-> params -> get('use_filters', 0)) {
+					
+				$html .= '<div class="cat-filters ' . $this-> params -> get('cat_filters_class', '') . '">';
+				$html .= $this-> params -> get('cat_filters_label', '');
+				if($this-> params -> get('cat_filters_engine', 0)) {
+					require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
+					$html .= $lyquixFlexicontentTmpl -> renderFilters();
+					$html .= '</div>';
+					
+				}
+				else {
+					// this is the problem right now, the included file below requires that $this variable refers to the context: flexicontentCategoryView.
+					// since it is called inside the class lyquixFlexicontentTmpl, $this variable refers to the lyquixFlexicontentTmpl...				
+					echo $html;
+					include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
+					echo '</div>';
+					$html = '';
+				}
+			}
+
 		} else {
 			
 			$html = '';
