@@ -3,4 +3,5 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'functions.php');
 
-echo lyquixFlexicontentTmpl::renderJSONitem();
+$lyquixFlexicontentTmpl = new lyquixFlexicontentTmpl($this);
+echo $lyquixFlexicontentTmpl -> renderJSONitem();
