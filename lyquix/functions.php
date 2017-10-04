@@ -5,10 +5,15 @@ defined('_JEXEC') or die('Restricted access');
 class lyquixFlexicontentTmpl {
 
 	private $jObject;
+	private $tmplCustomObject;
 
 	function __construct($passedJObject) {
 		$this->jObject = $passedJObject;
-	}	
+	}
+
+	function setTmplCustomObject($passedTmplCustomObject) {
+		$this -> tmplCustomObject = $passedTmplCustomObject;
+	}
 
 	function renderCatButtons() {
 
