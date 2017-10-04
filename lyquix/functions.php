@@ -143,28 +143,26 @@ class lyquixFlexicontentTmpl {
 		
 		$html = '';
 
-		if ($this-> jObject -> params -> get('map_display', '') != '' && $this-> jObject -> params -> get('map_addr_field', '') != '') {
+		if ($this -> jObject -> params -> get('map_display', '') != '' && $this -> jObject -> params -> get('map_addr_field', '') != '') {
 			
-			$html .= '<div class="cat-map ' . $this-> jObject -> params -> get('map_css_class', '') . '">';	
-			$html .= $this-> jObject -> params -> get('map_label', '');
-			$html .= $this-> jObject -> params -> get('map_opentag', '');
-			$html .= '<div id="cat-map" style="width:' . $this-> jObject -> params -> get('map_width', '100%') . '; height:' . $this-> jObject -> params -> get('map_height', '480px') . ';"></div>';
-			$html .= $this-> jObject -> params -> get('map_closetag', '');
+			$html .= '<div class="cat-map ' . $this -> jObject -> params -> get('map_css_class', '') . '">';	
+			$html .= $this -> jObject -> params -> get('map_label', '');
+			$html .= $this -> jObject -> params -> get('map_opentag', '');
+			$html .= '<div id="cat-map" style="width:' . $this -> jObject -> params -> get('map_width', '100%') . '; height:' . $this -> jObject -> params -> get('map_height', '480px') . ';"></div>';
+			$html .= $this -> jObject -> params -> get('map_closetag', '');
 			$html .= '</div>';
-			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this-> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this-> jObject -> params -> get('map_google_api_key', '') : '') . '"></script>';
+			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') . '"></script>';
 			$html .= '<script>
 					var catMap = {
 						options : {
 							center: new google.maps.LatLng(0,0),
-							mapTypeId: google.maps.MapTypeId.' . $this-> jObject -> params -> get('map_type', 'ROADMAP') . ',
-							scrollwheel: ' . ($this-> jObject -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
-							mapTypeControl: ' . ($this-> jObject -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
-							panControl: ' . ($this-> jObject -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
-							zoomControl: ' . ($this-> jObject -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
+							mapTypeId: google.maps.MapTypeId.' . $this -> jObject -> params -> get('map_type', 'ROADMAP') . ',
+							scrollwheel: ' . ($this -> jObject -> params -> get('map_zoom_scrollwheel', 0) ? 'true' : 'false') . ',
+							mapTypeControl: ' . ($this -> jObject -> params -> get('map_type_control', 0) ? 'true' : 'false') . ',
+							panControl: ' . ($this -> jObject -> params -> get('map_pan_control', 0) ? 'true' : 'false') . ',
+							zoomControl: ' . ($this -> jObject -> params -> get('map_zoom_control', 1) ? 'true' : 'false') . ',
 							streetViewControl: false,
-							zoom: 8,
-							fullscreenControl: ' . ($this-> jObject -> params -> get('map_fullscreen_control', 0) ? 'true' : 'false') . ',
-							styles: ' . ($this-> jObject -> params -> get('map_styles_array','[]')) .'
+							zoom: 8
 						},
 						bounds : new google.maps.LatLngBounds(),
 						items : ' . self::renderCatMapItems() . ',
