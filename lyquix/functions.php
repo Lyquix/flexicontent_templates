@@ -341,7 +341,7 @@ class lyquixFlexicontentTmpl {
 						
 						$html .= $this-> jObject -> params -> get('map_posttext', '');
 
-                        $icon = method_exists('lyquixFlexicontentTmplCustom','customMapMarker') ? @lyquixFlexicontentTmplCustom::customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
+                        $icon = method_exists($this -> tmplCustomObject,'customMapMarker') ? $this -> tmplCustomObject -> customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
 
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 						
@@ -362,7 +362,10 @@ class lyquixFlexicontentTmpl {
 		// Subcategories
 		// should display subcategories?
 
-		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('show_subcategories', 0) && count($this-> jObject -> categories)) {
+/*		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('show_subcategories', 0) && count($this-> jObject -> categories)) {
+*/
+		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('display_subcategories_items', 0) && count($this-> jObject -> categories)) {
+
 
 			// BASED ON THE CATEGORY SORTING BUT FORCING IT until parameter filed is finihed
 
@@ -388,9 +391,9 @@ class lyquixFlexicontentTmpl {
 				
 				$html .= '<li class="' 
 					. $this-> jObject -> params -> get('sub_cat_li_class', '') 
-					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatClass') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatClass($subcat) : '')
+					. (method_exists($this -> tmplCustomObject,'customSubcatClass') ? ' ' . $this -> tmplCustomObject -> customSubcatClass($subcat) : '')
 					. '"'
-					. (method_exists('lyquixFlexicontentTmplCustom','customSubcatAttrs') ? ' ' . @lyquixFlexicontentTmplCustom::customSubcatAttrs($subcat) : '') 
+					. (method_exists($this -> tmplCustomObject,'customSubcatAttrs') ? ' ' . $this -> tmplCustomObject -> customSubcatAttrs($subcat) : '') 
 					. ">";
 					
 				$html .= $this-> jObject -> params -> get('subcat_pretext', '');
@@ -796,15 +799,14 @@ class lyquixFlexicontentTmpl {
 				$html .= $this-> jObject -> params -> get($group . '_opentag', '');
 				$html .= '<ul class="' . $group . '-items-list ' . $this-> jObject -> params -> get($group . '_ul_class', '') . '">';
 				foreach ($idx as $i) {
-					
-					// include/exclude by content type
 					if(!($this-> jObject -> params -> get($group . '_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, explode(",", $this-> jObject -> params -> get($group . '_inc_exc_types_list', array()))))) {
+
 						$html .= '<li class="' . 
 								$this-> jObject -> params -> get($group . '_li_class', '') . 
 								($this-> jObject -> items[$i] -> featured ? ' featured' : '') . ' ' .  
-								(method_exists('lyquixFlexicontentTmplCustom','customItemClass') ? @lyquixFlexicontentTmplCustom::customItemClass($this-> jObject -> items[$i], $group) : '') .
+								(method_exists($this -> tmplCustomObject,'customItemClass') ? $this -> tmplCustomObject -> customItemClass($this-> jObject -> items[$i], $group) : '') .
 								'" data-itemid="' . $this-> jObject -> items[$i] -> id . '"' .
-								(method_exists('lyquixFlexicontentTmplCustom','customItemAttrs') ? @lyquixFlexicontentTmplCustom::customItemAttrs($this-> jObject -> items[$i], $group) : '') .
+								(method_exists($this -> tmplCustomObject,'customItemAttrs') ? $this -> tmplCustomObject -> customItemAttrs($this-> jObject -> items[$i], $group) : '') .
 								'>';
 						
 						// wrap item in link
@@ -961,12 +963,12 @@ class lyquixFlexicontentTmpl {
 		$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
 		
 		// try custom rendering first
-		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? @lyquixFlexicontentTmplCustom::customFieldRendering($item, $field, $group) : '';
+		$html .= method_exists($this -> tmplCustomObject,'customFieldRendering') ? $this -> tmplCustomObject -> customFieldRendering($item, $field, $group) : '';
 		
 		if(!$html) {
 			
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPretext') ? $this -> tmplCustomObject -> customFieldRenderingPretext($item, $field, $group) : '';
 
 			switch ($field->name) {
 	
@@ -1157,7 +1159,7 @@ class lyquixFlexicontentTmpl {
 			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
 
 			// field posttext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
+			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPosttext') ? $this -> tmplCustomObject -> customFieldRenderingPosttext($item, $field, $group) : '';
 			
 		}
 
@@ -1207,19 +1209,16 @@ class lyquixFlexicontentTmpl {
 	}
 
 	function renderItemField(&$item, &$field) {
-		
 		$css_fields = (object) json_decode($this-> jObject -> params -> get('item_css_fields', '{}'));
 		
 		$html = '';
 		
 		// try custom rendering first
-		
-		$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRendering') ? @lyquixFlexicontentTmplCustom::customFieldRendering($item, $field) : '';
-		
+		$html .= method_exists($this -> tmplCustomObject,'customFieldRendering') ? $this -> tmplCustomObject -> customFieldRendering($item, $field) : '';
 		if(!$html) {
 			
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPretext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPretext($item, $field, $group) : '';
+			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPretext') ? $this -> tmplCustomObject -> customFieldRenderingPretext($item, $field, $group) : '';
 
 			switch ($field->name) {
 	
@@ -1287,7 +1286,7 @@ class lyquixFlexicontentTmpl {
 			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
 
 			// field pretext
-			$html .= method_exists('lyquixFlexicontentTmplCustom','customFieldRenderingPosttext') ? @lyquixFlexicontentTmplCustom::customFieldRenderingPosttext($item, $field, $group) : '';
+			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPosttext') ? $this -> tmplCustomObject -> customFieldRenderingPosttext($item, $field, $group) : '';
 
 		}
 
