@@ -9,7 +9,7 @@
 	<description>Render an item placing fields in designated positions. Item Type includes additional options for other non-field elements.</description>
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
-			<field name="item_layout_order" type="lqxfccatlayout"  options="group1,group2,group3,group4,group5,group6,group7,buttons,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="group1,group2,group3,group4,group5,group6,group7" label="Item Sections" description="Select and order the groups and separators to be rendered" />
+			<field name="item_layout_order" type="lqxfccatlayout" options="group1,group2,group3,group4,group5,group6,group7,buttons,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="group1,group2,group3,group4,group5,group6,group7" label="Item Sections" description="Select and order the groups and separators to be rendered" />
 			<field name="item_date_format" type="text" default="l, F jS, Y" label="Date Format" description="Enter the format for dates. Uses JDate::format specification, based on PHP date function http://php.net/manual/en/function.date.php" />
 			<field name="item_writtenby_label" type="text" filter="JComponentHelper::filterText" default="" label="Written by Label" description="Label to use before author name" />
 			<field name="items_addthis" type="radio" default="0" label="Sharing Buttons" description="Show or hide AddThis sharing buttons on individual items." class="btn-group btn-group-yesno">

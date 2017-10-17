@@ -69,7 +69,7 @@ class lyquixFlexicontentTmplFilters {
 					(in_array($filter_value['value'], $request_filters) ? '" class="checked' : '') . 
 					'">';
 				$cat_url = JRoute::_(FlexicontentHelperRoute::getCategoryRoute($this -> category -> slug));
-				$html .= '<a href="' . $cat_url .  (strpos($cat_url, '?') === false ? '?' : '&') .'filter_' . $filter -> id . '[]=' . $filter_value['value'] . '">';
+				$html .= '<a href="' . $cat_url . (strpos($cat_url, '?') === false ? '?' : '&') .'filter_' . $filter -> id . '[]=' . $filter_value['value'] . '">';
 				
 				$html .= $filter_value['text'] . '</a></li>';
 			}

@@ -11,7 +11,7 @@
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
 <!--- BEGIN LAYOUT ORDERING -->		
 			<field name="cat_layout_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
-			<field name="cat_layout_order" type="lqxfccatlayout"  options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
+			<field name="cat_layout_order" type="lqxfccatlayout" options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
 <!-- END LAYOUT ORDERING -->
 <!-- BEGIN CATEGORY SETTINGS -->
 			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
@@ -53,7 +53,7 @@
 			
 			<field name="sub_cat_items_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for the sub-categories items (LI)" level="level2" menu="hide" />
 			<field name="sub_cat_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for sub-categories items (LI)" />
-			<field name="sub_cat_layout_order" type="lqxfccatlayout"  options="title,image,desc,items,teaser-image,teaser-text,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items" label="Sub-Category Sections Ordering" description="Select and order the sections of sub-categories to be rendered" />
+			<field name="sub_cat_layout_order" type="lqxfccatlayout" options="title,image,desc,items,teaser-image,teaser-text,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items" label="Sub-Category Sections Ordering" description="Select and order the sections of sub-categories to be rendered" />
 			<field name="sub_cat_title_headding" type="list" default="h3" label="Title Heading" description="Select the heading level for sub-categories titles">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
@@ -317,7 +317,7 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="items_no_items_label" type="text" filter="JComponentHelper::filterText" default="" label="&quot;No Items Found&quot; Label Override" description="Text to use for the &quot;No Items Found&quot; label. Leave blank to use default." />
-			<field name="items_list_layout_order" type="lqxfccatlayout"  options="featured,intro,leading" default="leading,featured,intro," label="Item List Order" description="Select and order the item lists that will be shown." />
+			<field name="items_list_layout_order" type="lqxfccatlayout" options="featured,intro,leading" default="leading,featured,intro," label="Item List Order" description="Select and order the item lists that will be shown." />
 	<!-- BEGIN LEAD ITEMS -->
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
 			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />
@@ -529,7 +529,7 @@
 				<option value="right">Right</option>
 			</field>
 			<field name="introitems_img_class" type="text" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
-	<!-- END ITEMS  LIST -->
+	<!-- END ITEMS LIST -->
 	<!-- BEGIN FEATURED ITEMS -->
 			<field name="featured_sep" type="separator" hr="false" default="Featured Items" description="" level="level2" menu="hide" />
 			<field name="featured_separate" type="radio" default="0" label="Separate Featured Items" description="To separate Fetured Items list" class="btn-group btn-group-yesno">

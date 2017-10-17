@@ -46,18 +46,18 @@ class JFormFieldLqxfccatlayout extends JFormField {
 		
 		$html .= '<script>
 jQuery(document).ready(function() {
-  jQuery("#' . $element_id . '_options").select2({
-	  createSearchChoice: null, // to restrict any user inputs
-	  tags:["' . implode('","', $options) . '"],
-	  tokenSeparators: [","],
-	  maximumSelectionSize: ' . count($options) . '
-  });
-  jQuery("#' . $element_id . '_options").on("change", function() { jQuery("#' . $element_id . '_options_val").html(jQuery("#' . $element_id . '_options").val());});
-  jQuery("#' . $element_id . '_options").select2("container").find("ul.select2-choices").sortable({
-	  containment: \'parent\',
-	  start: function() { jQuery("#' . $element_id . '_options").select2("onSortStart"); },
-	  update: function() { jQuery("#' . $element_id . '_options").select2("onSortEnd"); }
-  });
+	jQuery("#' . $element_id . '_options").select2({
+		createSearchChoice: null, // to restrict any user inputs
+		tags:["' . implode('","', $options) . '"],
+		tokenSeparators: [","],
+		maximumSelectionSize: ' . count($options) . '
+	});
+	jQuery("#' . $element_id . '_options").on("change", function() { jQuery("#' . $element_id . '_options_val").html(jQuery("#' . $element_id . '_options").val());});
+	jQuery("#' . $element_id . '_options").select2("container").find("ul.select2-choices").sortable({
+		containment: \'parent\',
+		start: function() { jQuery("#' . $element_id . '_options").select2("onSortStart"); },
+		update: function() { jQuery("#' . $element_id . '_options").select2("onSortEnd"); }
+	});
 });
 </script>';
 		

@@ -387,7 +387,7 @@ class lyquixFlexicontentTmpl {
 						
 						$html .= $this-> jObject -> params -> get('map_posttext', '');
 
-                        $icon = method_exists($this -> tmplCustomObject,'customMapMarker') ? $this -> tmplCustomObject -> customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
+						$icon = method_exists($this -> tmplCustomObject,'customMapMarker') ? $this -> tmplCustomObject -> customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
 
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 						
@@ -847,7 +847,7 @@ class lyquixFlexicontentTmpl {
 
 						$html .= '<li class="' . 
 								$this-> jObject -> params -> get($group . '_li_class', '') . 
-								($this-> jObject -> items[$i] -> featured ? ' featured' : '') . ' ' .  
+								($this-> jObject -> items[$i] -> featured ? ' featured' : '') . ' ' . 
 								(method_exists($this -> tmplCustomObject,'customItemClass') ? $this -> tmplCustomObject -> customItemClass($this-> jObject -> items[$i], $group) : '') .
 								'" data-itemid="' . $this-> jObject -> items[$i] -> id . '"' .
 								(method_exists($this -> tmplCustomObject,'customItemAttrs') ? $this -> tmplCustomObject -> customItemAttrs($this-> jObject -> items[$i], $group) : '') .
@@ -1218,7 +1218,7 @@ class lyquixFlexicontentTmpl {
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
 		if ($this-> jObject -> params -> get('items_addthis', 0) && $this-> jObject -> params -> get('items_addthis_after', '') == $field -> name) {
 			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
-				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') . 
 				'</div>';
 		}
 
@@ -1408,7 +1408,7 @@ class lyquixFlexicontentTmpl {
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
 		if ($this-> jObject -> params -> get('items_addthis', 0) && $this-> jObject -> params -> get('items_addthis_after', '') == $field -> name) {
 			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' . 
-				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .  
+				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') . 
 				'</div>';
 		}
 
@@ -1475,7 +1475,7 @@ class lyquixFlexicontentTmpl {
 			if($this-> jObject -> params -> get ('display_item_created', 1)) $json_item['created'] = $item -> created;
 			if($this-> jObject -> params -> get ('display_item_modified', 1)) $json_item['modified'] = $item -> modified;
 			if($this-> jObject -> params -> get ('display_item_metadesc', 1)) $json_item['metadesc'] = $item -> metadesc;
-			if($this-> jObject -> params -> get ('display_item_metakey', 1))  $json_item['metakey'] = $item -> metakey;
+			if($this-> jObject -> params -> get ('display_item_metakey', 1)) $json_item['metakey'] = $item -> metakey;
 			if($this-> jObject -> params -> get ('display_item_url', 1)) $json_item['url'] = $url;
 			if($this-> jObject -> params -> get ('display_item_json', 1)) $json_item['json'] = $url . (strpos($url, '?') ? '&' : '?') . 'ilayout=' . $clayout . '&tmpl=' . $tmpl;
 			if($this-> jObject -> params -> get ('display_item_params', 0)) $json_item['params'] = json_decode($item -> params);
@@ -1638,7 +1638,7 @@ class lyquixFlexicontentTmpl {
 						$image_file .= $dir_url . $extra_folder . '/original';
 					}
 					
-					$image_file .= '/' .  $image_name;
+					$image_file .= '/' . $image_name;
 
 					$w		= '&amp;w=' . $image_width;
 					$h		= '&amp;h=' . $image_height;
