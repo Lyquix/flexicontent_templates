@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class lyquixFlexicontentTmplCustom {
+    
     private $jObject;
 
     function __construct($passedJObject) {
