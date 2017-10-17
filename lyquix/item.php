@@ -49,6 +49,10 @@ if (is_array($item_sections)) {
 				echo '</div>';
 
 			}
+		} elseif ($item_section == 'buttons')){
+
+			echo $lyquixFlexicontentTmpl -> renderItemButtons($this -> item);
+
 		} elseif (strstr($item_section, 'close')){
 			
 			echo '</div>';

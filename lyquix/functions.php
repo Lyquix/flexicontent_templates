@@ -1252,6 +1252,76 @@ class lyquixFlexicontentTmpl {
 		
 	}
 
+	function renderItemButtons(&$item) {
+
+		// Buttons
+		
+		$html = '';
+
+		if (JRequest::getCmd('print')) {
+
+			if ($this -> jObject -> params -> get('print_behaviour', 'auto') == 'auto') {
+
+				$html .= '<script>jQuery(document).ready(function(){window.print();});</script>';
+
+			}
+			elseif ($this -> jObject -> params -> get('print_behaviour') == 'button') {
+
+				$html .= '<div class="buttons">'
+							. '<input type="button" id="printBtn" name="printBtn" value="' . JText::_('Print') . '" class="btn btn-info" onclick="this.style.display=\'none\'; window.print(); return false;">'
+						. '</div>';
+
+			}
+
+		}
+		else {
+
+			$pdfbutton = flexicontent_html::pdfbutton( $item, $this -> jObject -> params );
+			$mailbutton = flexicontent_html::mailbutton( FLEXI_ITEMVIEW, $this -> jObject -> params, $item -> categoryslug, $item -> slug, 0, $item );
+			$printbutton = flexicontent_html::printbutton( $this -> jObject -> print_link, $this -> jObject -> params );
+			$editbutton = flexicontent_html::editbutton( $item, $this -> jObject -> params );
+			$statebutton = flexicontent_html::statebutton( $item, $this -> jObject -> params );
+			$deletebutton = flexicontent_html::deletebutton( $item, $this -> jObject -> params );
+			$approvalbutton = flexicontent_html::approvalbutton( $item, $this -> jObject -> params );
+			
+			if ($pdfbutton || $mailbutton || $printbutton || $editbutton || $deletebutton || $statebutton || $approvalbutton) {
+
+				if ($this -> jObject -> params -> get('btn_grp_dropdown')) {
+
+					$html .= '<div class="buttons btn-group">'
+								. '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">'
+									. '<span class="' . $this -> jObject -> params -> get('btn_grp_dropdown_class', 'icon-options') . '"></span>'
+								. '</button>'
+								. '<ul class="dropdown-menu" role="menu">'
+									. ($_add_btn ? '<li>' . $_add_btn . '</li>' : '')
+									. ($_print_btn ? '<li>' . $_print_btn . '</li>' : '')
+									. ($_mail_btn ? '<li>' . $_mail_btn . '</li>' : '')
+									. ($_csv_btn ? '<li>' . $_csv_btn . '</li>' : '')
+									. ($_feed_btn ? '<li>' . $_feed_btn . '</li>' : '')
+								. '</ul>'
+							. '</div>';
+
+				}
+				else {
+					
+					$html .= '<div class="buttons">'
+								. $_add_btn
+								. $_print_btn
+								. $_mail_btn
+								. $_csv_btn
+								. $_feed_btn
+							. '</div>';
+
+				}
+
+			}
+
+		}
+		
+		return $html;
+		
+	}
+
 	function renderItemField(&$item, &$field) {
 		$css_fields = (object) json_decode($this-> jObject -> params -> get('item_css_fields', '{}'));
 		
