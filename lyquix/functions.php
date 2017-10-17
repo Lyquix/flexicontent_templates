@@ -30,7 +30,9 @@ class lyquixFlexicontentTmpl {
 			}
 			elseif ($this -> jObject -> params -> get('print_behaviour') == 'button') {
 
-				$html .= '<input type="button" id="printBtn" name="printBtn" value="' . JText::_('Print') . '" class="btn btn-info" onclick="this.style.display=\'none\'; window.print(); return false;">';
+				$html .= '<div class="buttons">'
+							. '<input type="button" id="printBtn" name="printBtn" value="' . JText::_('Print') . '" class="btn btn-info" onclick="this.style.display=\'none\'; window.print(); return false;">'
+						. '</div>';
 
 			}
 
@@ -80,7 +82,6 @@ class lyquixFlexicontentTmpl {
 		return $html;
 		
 	}
-
 
 	function renderCatTitle() {
 
@@ -407,8 +408,6 @@ class lyquixFlexicontentTmpl {
 		// Subcategories
 		// should display subcategories?
 
-/*		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('show_subcategories', 0) && count($this-> jObject -> categories)) {
-*/
 		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('display_subcategories_items', 0) && count($this-> jObject -> categories)) {
 
 
