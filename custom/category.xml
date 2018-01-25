@@ -244,6 +244,10 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="map_google_api_key" type="text" default="" label="Google Maps API Key" description="Enter the Google Maps API key for use when displaying the map." />
+			<field name="map_google_api_places" type="radio" default="0" label="Google Maps Places Library" description="Select whether the places library will be loaded alongside the Google Maps API Key." class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
 			<field name="map_styles_array" type="textarea" default="" label="Map Styles Array" description="Enter an array of css styles to be added to the map"/>
 
 			<field name="map_items_sep" type="separator" hr="false" default="Map Items" description="Settings for map items" level="level3" menu="hide" />

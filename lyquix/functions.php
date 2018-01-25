@@ -197,7 +197,7 @@ class lyquixFlexicontentTmpl {
 			$html .= '<div id="cat-map" style="width:' . $this -> jObject -> params -> get('map_width', '100%') . '; height:' . $this -> jObject -> params -> get('map_height', '480px') . ';"></div>';
 			$html .= $this -> jObject -> params -> get('map_closetag', '');
 			$html .= '</div>';
-			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') . '"></script>';
+			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') . $this -> jObject -> params -> get('map_google_places_library', '')? '&libraries=places' : '') '"></script>';
 			$html .= '<script>
 					var catMap = {
 						options : {
