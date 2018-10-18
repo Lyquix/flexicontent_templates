@@ -22,7 +22,7 @@ if (is_array($cat_sections)) {
 	// keeps track of the current section number
 	$i = 0;
 
-	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . ' cat-' . $this -> category -> id 
+	echo '<div class="fc-category tmpl-' . str_replace('.category.', '', $this -> tmpl) . ' cat-' . $this -> category -> alias . ' cat-' . $this -> category -> id
 		. (method_exists($lyquixFlexicontentTmplCustom,'customCatClass') ? ' ' . $lyquixFlexicontentTmplCustom -> customCatClass($this -> category) : '')
 		. ($this -> params -> get('css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
@@ -37,7 +37,7 @@ if (is_array($cat_sections)) {
 			echo '<div class="section-' . $i . ' ' . $this -> params -> get('css_section_' . $i) . '">';
 
 		} elseif (strstr($cat_section, 'close')){
-			
+
 			echo '</div>';
 
 		} elseif ($cat_section == 'filters') {
@@ -52,11 +52,11 @@ if (is_array($cat_sections)) {
 						require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'templates'.DS.'lyquix'.DS.'filters.php');
 						$html .= $lyquixFlexicontentTmpl -> renderFilters();
 						$html .= '</div>';
-						
+
 					}
 					else {
 						// this is the problem right now, the included file below requires that $this variable refers to the context: flexicontentCategoryView.
-						// since it is called inside the class lyquixFlexicontentTmpl, $this variable refers to the lyquixFlexicontentTmpl...				
+						// since it is called inside the class lyquixFlexicontentTmpl, $this variable refers to the lyquixFlexicontentTmpl...
 						echo $html;
 						include (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'tmpl_common' . DS . 'listings_filter_form_html5.php');
 						echo '</div>';
@@ -69,7 +69,7 @@ if (is_array($cat_sections)) {
 			}
 
 		} else {
-			
+
 			$html = '';
 			$section = 'renderCat' . ucfirst($cat_section);
 
@@ -85,7 +85,7 @@ if (is_array($cat_sections)) {
 		}
 
 	}
-	
+
 	echo '</div>';
 
 }

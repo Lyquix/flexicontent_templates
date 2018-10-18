@@ -9,7 +9,7 @@
 	<description>Presents category items in a List. Each field put in the list position will be rendered as a column</description>
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
-<!--- BEGIN LAYOUT ORDERING -->		
+<!--- BEGIN LAYOUT ORDERING -->
 			<field name="cat_layout_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
 			<field name="cat_layout_order" type="lqxfccatlayout" options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
 <!-- END LAYOUT ORDERING -->
@@ -43,14 +43,14 @@
 				<option value="1">Lyquix</option>
 			</field>
 <!-- END ALPHA INDEX -->
-<!-- BEGIN SUB-CATEGORIES -->	
+<!-- BEGIN SUB-CATEGORIES -->
 			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />
 			<field name="sub_cat_label" type="text" default="" label="Section Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="sub_cat_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
-			
+
 			<field name="sub_cat_list_sep" type="separator" hr="false" default="Sub-Categories List" description="Settings for the sub-categories list (UL)" level="level2" menu="hide" />
 			<field name="sub_cat_ul_class" type="text" default="" label="List CSS Class" description="Add a CSS class string for sub-categories list" />
-			
+
 			<field name="sub_cat_items_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for the sub-categories items (LI)" level="level2" menu="hide" />
 			<field name="sub_cat_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for sub-categories items (LI)" />
 			<field name="sub_cat_layout_order" type="lqxfccatlayout" options="title,image,desc,items,teaser-image,teaser-text,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items" label="Sub-Category Sections Ordering" description="Select and order the sections of sub-categories to be rendered" />
@@ -80,7 +80,7 @@
 				<option value="1">FLEXI_YES</option>
 			</field>
 			<field name="sub_cat_viewall_label" type="text" filter="JComponentHelper::filterText" default="View All {title} Items" label="View All Link Label" description="Custom label for the view all link. Use the {title} code to replace with the title of the subcategory." />
-			
+
 			<field name="sub_cat_items_items_sep" type="separator" hr="false" default="Sub-Categories Content Items" description="Settings for the content items under the sub-categories" level="level2" menu="hide" />
 			<field name="sub_cat_items" type="radio" default="0" label="Show Content Items" description="Show or hide items under each sub-category. Make sure the option &lt;strong&gt;Display Subcategories Items&lt;/strong&gt; is enabled in &lt;strong&gt;Items List Creation&lt;/strong&gt;, and the option &lt;strong&gt;Sub-categories&lt;/strong&gt; is enabled in &lt;strong&gt;Sub-categories&lt;/strong&gt; sections above. When this option is set to Yes items in subcategories will be displayed under each subcategory instead of the main items list." class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
@@ -91,19 +91,19 @@
 				<option value="textlist">Text List</option>
 				<option value="introitems">Intro Items List Style</option>
 			</field>
-			
+
 			<field name="sub_cat_items_items_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
 			<field name="sub_cat_items_items_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
-			
+
 			<field name="sub_cat_items_items_introitems_sep" type="separator" hr="false" default="Content Items" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="sub_cat_items_items_opentag" type="text" filter="JComponentHelper::filterText" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_closetag" type="text" filter="JComponentHelper::filterText" default="" label="Secetion Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			
+
 			<field name="sub_cat_items_items_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_ul_class" type="text" default="" label="List CSS Class" description="Add a CSS class string for items list" />
 			<field name="sub_cat_items_items_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
@@ -143,11 +143,11 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			
-			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" /> 
+
+			<field name="sub_cat_items_items_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="sub_cat_items_items_pretext" type="text" filter="JComponentHelper::filterText" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="sub_cat_items_items_posttext" type="text" filter="JComponentHelper::filterText" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="sub_cat_items_items_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for items" />			
+			<field name="sub_cat_items_items_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for items" />
 			<field name="sub_cat_items_items_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
@@ -202,21 +202,21 @@
 				<option value="map">Map Only</option>
 				<option value="map_list">Map + Items List</option>
 			</field>
-			
+
 			<field name="map_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
 			<field name="map_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
 			<field name="map_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
-			
+
 			<field name="map_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="map_label" type="text" default="" label="Section Label" description="Enter the label for the map section. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="map_css_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
 			<field name="map_opentag" type="text" filter="JComponentHelper::filterText" default="" label="Section Pre-Text" description="Enter text to be displayed before the map, after the label. Include wrapping HTML tags." />
 			<field name="map_closetag" type="text" filter="JComponentHelper::filterText" default="" label="Section Post-Text" description="Enter text to be displayed after the map. Include wrapping HTML tags." />
 			<field name="map_addr_field" type="fields" field_type="addressint" default="" label="Address Field" description="Select an address field that contains the latitude/longitude information for items." fieldnameasvalue="1" />
-			
+
 			<field name="map_settings_sep" type="separator" hr="false" default="Map Settings" description="Settings for map display" level="level2" menu="hide" />
 			<field name="map_width" type="text" default="100%" label="Map Width" description="Width of the map container in px or %" />
 			<field name="map_height" type="text" default="480px" label="Map Height" description="Height of the map container in px or %" />
@@ -274,7 +274,7 @@
 			<field name="map_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="JComponentHelper::filterText" />
 			<field name="map_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="map_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			
+
 			<field name="map_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="map_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
 			<field name="map_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
@@ -298,7 +298,7 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="map_img_class" type="text" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />			
+			<field name="map_img_class" type="text" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
 	<!-- END MAP ITEMS -->
 <!-- END MAP SETTINGS -->
 <!-- BEGIN ITEMS LIST -->
@@ -325,20 +325,20 @@
 	<!-- BEGIN LEAD ITEMS -->
 			<field name="leading_sep" type="separator" hr="false" default="Leading Items" description="" level="level2" menu="hide" />
 			<field name="leading_num" type="text" size="3" default="0" label="# Leading Items" description="Number of leading items. Use 0 to skip leading items section." />
-			
+
 			<field name="leading_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
 			<field name="leading_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
 			<field name="leading_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
-			
+
 			<field name="leading_list_sep" type="separator" hr="false" default="List" description="Item list settings" level="level3" menu="hide" />
 			<field name="leading_label" type="text" default="" label="Section Label" description="Enter the lead items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="leading_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
 			<field name="leading_opentag" type="text" filter="JComponentHelper::filterText" default="" label="Section Pre-Text" description="Enter text to be displayed before the item list, after the section label. Include wrapping HTML tags." />
 			<field name="leading_closetag" type="text" filter="JComponentHelper::filterText" default="" label="Section Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			<field name="leading_ul_class" type="text" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />						
+			<field name="leading_ul_class" type="text" default="" label="List CSS Class" description="Add a CSS class string for items (LI)" />
 			<field name="leading_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
@@ -376,11 +376,11 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			
+
 			<field name="leading_items_sep" type="separator" hr="false" default="Items" description="Items settings" level="level3" menu="hide" />
 			<field name="leading_pretext" type="text" filter="JComponentHelper::filterText" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="leading_posttext" type="text" filter="JComponentHelper::filterText" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="leading_li_class" type="text" default="" label="Item CSS Class" description="Add a CSS class string for items (LI)" />						
+			<field name="leading_li_class" type="text" default="" label="Item CSS Class" description="Add a CSS class string for items (LI)" />
 			<field name="leading_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
@@ -402,7 +402,7 @@
 			<field name="leading_writtenby_label" type="text" default="" label="Written by Label" description="Label to use before author name" filter="JComponentHelper::filterText" />
 			<field name="leading_addthis_after" type="fields" field_type="" default="text" label="Sharing Buttons After" description="Select the position of sharing buttons after a field" fieldnameasvalue="1" />
 			<field name="leading_disqus_after" type="fields" field_type="" default="text" label="Comments Count After" description="Select the position of comments count after a field" fieldnameasvalue="1" />
-			
+
 			<field name="leading_img_sep" type="separator" hr="false" default="Image" description="Item image settings" level="level3" menu="hide" />
 			<field name="leading_img" type="fields" field_type="image" default="" label="Image Field" description="Select the field to use for item image" fieldnameasvalue="1" />
 			<field name="leading_img_size" type="radio" default="s" label="Image Size" description="Select image size to use" class="btn-group group-fcinfo">
@@ -426,19 +426,19 @@
 				<option value="left">Left</option>
 				<option value="right">Right</option>
 			</field>
-			<field name="leading_img_class" type="text" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />			
+			<field name="leading_img_class" type="text" default="" label="Image CSS Class" description="Add a CSS class string for item's image" />
 	<!-- END LEAD ITEMS -->
-	
-	<!-- BEGIN INTRO ITEMS LIST -->	
+
+	<!-- BEGIN INTRO ITEMS LIST -->
 			<field name="introitems_sep" type="separator" hr="false" default="Intro Items" description="" level="level2" menu="hide" />
-			
+
 			<field name="introitems_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
 			<field name="introitems_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
 			<field name="introitems_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
-			
+
 			<field name="introitems_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="introitems_label" type="text" default="" label="Section Label" description="Enter the intro items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="introitems_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
@@ -482,11 +482,11 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			
+
 			<field name="introitems_items_sep" type="separator" hr="false" default="Items" description="" level="level3" menu="hide" />
 			<field name="introitems_pretext" type="text" filter="JComponentHelper::filterText" default="" label="Items Pre-Text" description="Enter text to be displayed at the beginning of each item. Include wrapping HTML tags." />
 			<field name="introitems_posttext" type="text" filter="JComponentHelper::filterText" default="" label="Items Post-Text" description="Enter text to be displayed at the end of each item. Include wrapping HTML tags." />
-			<field name="introitems_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for items" />			
+			<field name="introitems_li_class" type="text" default="" label="Items CSS Class" description="Add a CSS class string for items" />
 			<field name="introitems_title_headding" type="list" default="h3" label="Title Heading" description="To select the Title heading level">
 				<option value="">Please select</option>
 				<option value="h1">H1</option>
@@ -540,20 +540,20 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			
+
 			<field name="featured_inc_exc_sep" type="separator" hr="false" default="Include/Exclude Content Types" description="" level="level3" menu="hide" />
 			<field name="featured_inc_exc_types" type="radio" default="0" label="Method" description="" class="btn-group btn-group-yesno">
 				<option value="0">Exclude</option>
 				<option value="1">Include</option>
 			</field>
 			<field name="featured_inc_exc_types_list" type="lqxfctypes" default="" label="Types" description="Select the content types that will be included or excluded from sub categories items lists" />
-			
+
 			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_label" type="text" default="" label="Section Label" description="Enter the featured items list label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
 			<field name="featured_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
 			<field name="featured_opentag" type="text" filter="JComponentHelper::filterText" default="" label="Items List Pre-Text" description="Enter text to be displayed before the item list. Include wrapping HTML tags." />
 			<field name="featured_closetag" type="text" filter="JComponentHelper::filterText" default="" label="Items List Post-Text" description="Enter text to be displayed after the item list. Include wrapping HTML tags." />
-			
+
 			<field name="featured_list_sep" type="separator" hr="false" default="List" description="" level="level3" menu="hide" />
 			<field name="featured_ul_class" type="text" default="" label="List CSS Class" description="Add a CSS class string for items" />
 			<field name="featured_link_item" type="radio" default="0" label="Linked Items" description="Render list items and their children wrapped in a link" class="btn-group btn-group-yesno">
@@ -690,5 +690,5 @@
 	<csscategory>
 	</csscategory>
 	<jscategory>
-	</jscategory>	
+	</jscategory>
 </form>

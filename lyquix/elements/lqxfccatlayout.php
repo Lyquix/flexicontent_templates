@@ -43,7 +43,7 @@ class JFormFieldLqxfccatlayout extends JFormField {
 		$fieldname .= !FLEXI_J16GE ? "[]" : "";
 
 		$html .= '<input id="' . $element_id . '_options" name="' . $fieldname . ' "type="hidden" class="' . @$attributes['class'] . '" style="' . $style . '" value="' . $values[0] . '">';
-		
+
 		$html .= '<script>
 jQuery(document).ready(function() {
 	jQuery("#' . $element_id . '_options").select2({
@@ -60,7 +60,7 @@ jQuery(document).ready(function() {
 	});
 });
 </script>';
-		
+
 		return $html;
 	}
 

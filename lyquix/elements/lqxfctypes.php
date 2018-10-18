@@ -21,13 +21,13 @@ class JFormFieldLqxfctypes extends JFormField
 		$doc = JFactory::getDocument();
 		$db = JFactory::getDBO();
 		$cparams = JComponentHelper::getParams('com_flexicontent');
-		$html = '';	
+		$html = '';
 		$query = 'SELECT name AS value, name AS text'
 		. ' FROM #__flexicontent_types'
 		. ' WHERE published = 1'
 		. ' ORDER BY name ASC, id ASC'
 		;
-		
+
 		$db->setQuery($query);
 		$types = $db->loadObjectList();
 		$i = 0;
@@ -35,7 +35,7 @@ class JFormFieldLqxfctypes extends JFormField
 			$types[$i] = $type->value;
 			$i++;
 		}
-		
+
 
 		if (FLEXI_J16GE) {
 			$node = &$this -> element;
@@ -46,7 +46,7 @@ class JFormFieldLqxfctypes extends JFormField
 		}
 
 		$values = FLEXI_J16GE ? $this -> value : $value;
-		
+
 		if (empty($values))
 			$values = array();
 		else if (!is_array($values))
@@ -65,7 +65,7 @@ class JFormFieldLqxfctypes extends JFormField
 		$fieldname .= !FLEXI_J16GE ? "[]" : "";
 
 		$html .= '<input id="' . $element_id . '_options" name="' . $fieldname . ' "type="hidden" class="' . @$attributes['class'] . '" style="' . $style . '" value="' . $values[0] . '">';
-		
+
 		$html .= '<script>
 jQuery(document).ready(function() {
 	jQuery("#' . $element_id . '_options").select2({

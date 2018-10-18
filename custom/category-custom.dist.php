@@ -3,7 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class lyquixFlexicontentTmplCustom {
-	
+
 	private $jObject;
 
 	function __construct($passedJObject) {
@@ -15,10 +15,10 @@ class lyquixFlexicontentTmplCustom {
 		$css = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * you can use $category to get the properties
 		 * $css[] = 'prefix-' . $category->alias;
-		 * 
+		 *
 		*/
 
 		return implode(' ', $css);
@@ -30,12 +30,12 @@ class lyquixFlexicontentTmplCustom {
 		$attrs = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * you can use $item->fields['field_name'] to get the field value, properties and display
 		 * add your custom attributes to the $attrs array, using the key as the attribute name
-		 * and the value as the attribute value: 
+		 * and the value as the attribute value:
 		 * $css['data-lat'] = 40.735178;
-		 * 
+		 *
 		*/
 
 		$html = array();
@@ -67,9 +67,9 @@ class lyquixFlexicontentTmplCustom {
 		$css = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * example: $css[] = 'prefix-' . $subcat -> alias;
-		 * 
+		 *
 		*/
 
 		return implode(' ', $css);
@@ -81,12 +81,12 @@ class lyquixFlexicontentTmplCustom {
 		$attrs = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * you can use $item->fields['field_name'] to get the field value, properties and display
 		 * add your custom attributes to the $attrs array, using the key as the attribute name
-		 * and the value as the attribute value: 
+		 * and the value as the attribute value:
 		 * $css['data-lat'] = 40.735178;
-		 * 
+		 *
 		*/
 
 		$html = array();
@@ -105,11 +105,11 @@ class lyquixFlexicontentTmplCustom {
 		$css = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * you can use $item->fields['field_name'] to get the field value, properties and display
-		 * add your custom classes to the $css array, for example: 
+		 * add your custom classes to the $css array, for example:
 		 * $css[] = 'prefix-' . $item->alias;
-		 * 
+		 *
 		*/
 
 		return implode(' ', $css);
@@ -121,12 +121,12 @@ class lyquixFlexicontentTmplCustom {
 		$attrs = array();
 
 		/* your custom code here
-		 * 
+		 *
 		 * you can use $item->fields['field_name'] to get the field value, properties and display
 		 * add your custom attributes to the $attrs array, using the key as the attribute name
-		 * and the value as the attribute value: 
+		 * and the value as the attribute value:
 		 * $css['data-lat'] = 40.735178;
-		 * 
+		 *
 		*/
 
 		$html = array();
@@ -152,8 +152,8 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-			
-				
+
+
 			default:
 				break;
 
@@ -174,8 +174,8 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-			
-				
+
+
 			default:
 				break;
 
@@ -183,7 +183,7 @@ class lyquixFlexicontentTmplCustom {
 		return $html;
 
 	}
-	
+
 	function customFieldRenderingPosttext(&$item, &$field, $group) {
 
 		$html = '';
@@ -196,8 +196,8 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-			
-				
+
+
 			default:
 				break;
 
@@ -207,7 +207,7 @@ class lyquixFlexicontentTmplCustom {
 	}
 
 	function customSectionRenderingPretext($section) {
-		
+
 		$html = '';
 
 		switch ($section) {
@@ -218,18 +218,18 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-				
+
 			default:
 				break;
 
 		}
-		
+
 		return $html;
-		
+
 	}
 
 	function customSectionRendering($section) {
-		
+
 		$html = '';
 
 		switch ($section) {
@@ -240,18 +240,18 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-				
+
 			default:
 				break;
 
 		}
-		
+
 		return $html;
-		
+
 	}
 
 	function customSectionRenderingPosttext($section) {
-		
+
 		$html = '';
 
 		switch ($section) {
@@ -262,14 +262,14 @@ class lyquixFlexicontentTmplCustom {
 				$html .= 'my custom output';
 				break;
 			*/
-				
+
 			default:
 				break;
 
 		}
-		
+
 		return $html;
-		
+
 	}
 
 }

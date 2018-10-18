@@ -20,7 +20,7 @@ if (is_array($item_sections)) {
 
 	$lyquixFlexicontentTmpl -> setTmplCustomObject($lyquixFlexicontentTmplCustom);
 
-	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id 
+	echo '<div class="fc-item tmpl-' . str_replace('.items.', '', $this -> tmpl) . ' item-' . $this -> item -> alias . ' item-' . $this -> item -> id
 		. (method_exists($lyquixFlexicontentTmplCustom,'customItemClass') ? ' ' . $lyquixFlexicontentTmplCustom -> customItemClass($this -> item) : '')
 		. ($this -> params -> get('item_css_wrapper') ? ' ' . $this -> params -> get('css_wrapper') : '')
 		. '"'
@@ -54,9 +54,9 @@ if (is_array($item_sections)) {
 			echo $lyquixFlexicontentTmpl -> renderItemButtons($this -> item);
 
 		} elseif (strstr($item_section, 'close')){
-			
+
 			echo '</div>';
-			
+
 		}
 	}
 

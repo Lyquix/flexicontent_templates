@@ -58,7 +58,7 @@
 				<option value="0">FLEXI_NO</option>
 				<option value="1">FLEXI_YES</option>
 			</field>
-			
+
 			<field name="item_sep" type="separator" hr="false" default="Items Settings" description="" class="btn-group btn-group-yesno" level="level1" menu="hide" />
 			<field name="display_item_title" type="radio" default="1" label="Item Title" description="" class="btn-group btn-group-yesno">
 				<option value="0">FLEXI_NO</option>
@@ -128,5 +128,5 @@
 	<csscategory>
 	</csscategory>
 	<jscategory>
-	</jscategory>	
+	</jscategory>
 </form>
