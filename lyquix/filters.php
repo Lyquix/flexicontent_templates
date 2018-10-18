@@ -1,7 +1,17 @@
 <?php
+/**
+ * filters.php
+ *
+ * @version     2.0.0
+ * @package     flexicontent_templates
+ * @author      Lyquix
+ * @copyright   Copyright (C) 2015 - 2018 Lyquix
+ * @license     GNU General Public License version 2 or later
+ * @link        https://github.com/Lyquix/flexicontent_templates
+ */
 
+// No direct access
 defined('_JEXEC') or die('Restricted access');
-
 
 class lyquixFlexicontentTmplFilters {
 
