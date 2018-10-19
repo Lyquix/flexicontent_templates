@@ -208,7 +208,9 @@ class lyquixFlexicontentTmpl {
 			$html .= '<div id="cat-map" style="width:' . $this -> jObject -> params -> get('map_width', '100%') . '; height:' . $this -> jObject -> params -> get('map_height', '480px') . ';"></div>';
 			$html .= $this -> jObject -> params -> get('map_closetag', '');
 			$html .= '</div>';
-			$html .= '<script src="//maps.googleapis.com/maps/api/js' . ($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') . $this -> jObject -> params -> get('map_google_places_library', '')? '&libraries=places' : '') '"></script>';
+			$html .= '<script src="//maps.googleapis.com/maps/api/js' .
+				($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') .
+				($this -> jObject -> params -> get('map_google_places_library', '') ? '&libraries=places' : '') . '"></script>';
 			$html .= '<script>
 					var catMap = {
 						options : {
@@ -408,7 +410,7 @@ class lyquixFlexicontentTmpl {
 		}
 
 		// print json array
-
+		$json = self::toUTF8($json);
 		return json_encode($json);
 	}
 
@@ -994,12 +996,8 @@ class lyquixFlexicontentTmpl {
 
 				$subcat = $subcat ? preg_replace("/[^A-Za-z0-9]/", '', $subcat -> title) : '';
 
+				$json = self::toUTF8($json);
 				$html .= '<script>var ' . ($group == 'sub_cat_items_items' ? 'subcat' . $subcat : $group) . 'Items = ' . json_encode($json) . ';</script>';
-
-				// detect silent error
-				if (json_last_error_msg() != 'No error')
-					echo '<script>console.log("WARNING json_decode failed silently on /components/com_flexicontent/templates/lyquix/functions.php, line 872: " + "' . json_last_error_msg() .'")</script>';
-
 			}
 
 		}
@@ -1086,31 +1084,6 @@ class lyquixFlexicontentTmpl {
 				case $this-> jObject->params->get($group . '_img', '') :
 
 					$image = self::getItemImage($item, $this-> jObject->params->get($group . '_img', ''), $this-> jObject -> params -> get($group . '_img_size', 'l'), $this-> jObject -> params -> get($group . '_img_width', 160), $this-> jObject -> params -> get($group . '_img_height', 90), $this-> jObject -> params -> get($group . '_img_method', '0'));
-
-					/*
-					// get image source, use selected size or get large
-
-					$img_size_map = array('l' => 'large', 'm' => 'medium', 's' => 'small');
-					$img_field_size = $img_size_map[$this-> jObject -> params -> get($group . '_img_size', 'l')];
-					$src = str_replace(JURI::root(), '', $item -> fields[$field -> name] -> thumbs_src[$img_field_size][0]);
-
-					// if custom size generate url with phpthumb
-
-					if (!$this-> jObject -> params -> get($group . '_img_size')) {
-						$w = '&amp;w=' . $this-> jObject -> params -> get($group . '_img_width', 160);
-						$h = '&amp;h=' . $this-> jObject -> params -> get($group . '_img_height', 90);
-						$aoe = '&amp;aoe=1';
-						$q = '&amp;q=95';
-						$zc = $this-> jObject -> params -> get($group . '_img_method', '0') ? '&amp;zc=' . $this-> jObject -> params -> get($group . '_img_method', '0') : '';
-						$ext = pathinfo($src, PATHINFO_EXTENSION);
-						$f = in_array($ext, array('png', 'ico', 'gif')) ? '&amp;f=' . $ext : '';
-						$conf = $w . $h . $aoe . $q . $zc . $f;
-						$base_url = (!preg_match("#^http|^https|^ftp#i", $src)) ? JURI::base(true) . '/' : '';
-						$img_url = JURI::base(true) . '/components/com_flexicontent/librairies/phpthumb/phpThumb.php?src=' . $base_url . $src . $conf;
-					} else {
-						$img_url = $src;
-					}
-					*/
 
 					// set wrapping div
 
@@ -1211,8 +1184,6 @@ class lyquixFlexicontentTmpl {
 					break;
 			}
 
-			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
-
 			// field posttext
 			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPosttext') ? $this -> tmplCustomObject -> customFieldRenderingPosttext($item, $field, $group) : '';
 
@@ -1238,6 +1209,7 @@ class lyquixFlexicontentTmpl {
 			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 
+		$html = self::toUTF8($html);
 		return $html;
 	}
 
@@ -1408,8 +1380,6 @@ class lyquixFlexicontentTmpl {
 					break;
 			}
 
-			$html = iconv("UTF-8", "ASCII//TRANSLIT", $html);
-
 			// field pretext
 			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPosttext') ? $this -> tmplCustomObject -> customFieldRenderingPosttext($item, $field, $group) : '';
 
@@ -1428,6 +1398,7 @@ class lyquixFlexicontentTmpl {
 			$html .= '<div class="disqus_comments"><a href="' . JURI::root() . substr($item_link, 1) . '#disqus_thread">Comments</a></div>';
 		}
 
+		$html = self::toUTF8($html);
 		return $html;
 	}
 
@@ -1520,6 +1491,7 @@ class lyquixFlexicontentTmpl {
 			$json['items'][] = $json_item;
 		}
 
+		$json = self::toUTF8($json);
 		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
 			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
 		}
@@ -1580,6 +1552,7 @@ class lyquixFlexicontentTmpl {
 			$json['fields'] = $fields;
 		}
 
+		$json = self::toUTF8($json);
 		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
 			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
 		}
@@ -1687,5 +1660,27 @@ class lyquixFlexicontentTmpl {
 		}
 
 		return $value;
+	}
+
+	function toUTF8($text) {
+		if(is_array($text)) {
+			foreach($text as $k => $v) {
+				$text[$k] = self::toUTF8($v);
+			}
+			return $text;
+		}
+
+		if(!is_string($text)) {
+			return $text;
+		}
+
+		$arr = [];
+		for($i = 0; $i < mb_strlen($text, 'UTF-8'); $i += 1) {
+			$char = mb_substr($text, $i, 1, 'UTF-8');
+			if(mb_detect_encoding($char, 'UTF-8') == 'UTF-8') $arr[] = mb_convert_encoding($char, 'UTF-8', 'UTF-8');
+			else $arr[] = mb_convert_encoding($char, 'UTF-8', 'Windows-1252');
+		}
+
+		return implode('', $arr);
 	}
 }
