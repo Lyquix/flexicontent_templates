@@ -400,8 +400,8 @@ class lyquixFlexicontentTmpl {
 
 						$html .= $this-> jObject -> params -> get('map_posttext', '');
 
-						$icon = method_exists($this -> tmplCustomObject,'customMapMarker') ? $this -> tmplCustomObject -> customMapMarker($item) : $this-> jObject -> params -> get('map_marker_icon', '');
-						if ($icon == '') $icon = $this-> jObject -> params -> get('map_marker_icon', '');
+						if(method_exists($this -> tmplCustomObject,'customMapMarker')) $icon = $this -> tmplCustomObject -> customMapMarker($item);
+						if($icon == '') $icon = $this-> jObject -> params -> get('map_marker_icon', '');
 
 						array_push($json, array('id' => $item -> id, 'title' => $item -> title, 'lat' => (float)$addr['lat'], 'lon' => (float)$addr['lon'], 'html' => $html, 'icon' => $icon));
 
