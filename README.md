@@ -1,16 +1,16 @@
 # flexicontent_templates
 
-##What is this?##
+## What is this?
 
 Lyquix has been using FLEXIcontent since 2010 and we have developed countless custom templates for FLEXIcontent. In our experience the template structure provides great flexibility to generate categories and items exactly how we need them. However, it also requires a lot of code writing.
 
 The purpose of the Lyquix FLEXIcontent templates is to allow us to deploy highly-customized templated, without having to rewrite a lot of PHP code. The JSON template can be used to provide a simple API for external systems to read content published using FLEXIcontent. The Redirect template can be used to redirect categories and items to another URL.
 
-##Who is this for?##
+## Who is this for?
 
 These templates are for advanced developers only. Don't expect to install it and see something pretty right away. They require a lot of configuration but provide you a high level of customization.
 
-##Features##
+## Features
 
   * General layout
     * Provides a select2 sortable field for defining what parts of the category should be included and in what order (description, image, subcategories, buttons, filters, items, pagination...)
@@ -54,7 +54,7 @@ These templates are for advanced developers only. Don't expect to install it and
 
 (*) While many of these customizations are available directly on the fields settings, having them on the template allow to set them on a category- and type-level.
 
-##Positions##
+## Positions
 
 One of the most practical features of the FLEXIcontent templating system is the ability to drag-and-drop fields into pre-defined positions. The Lyquix template provides 7 positions plus render-only both in the category and item templates. In our experience, 7 positions provide enough room for the most complex layouts and designs.
 
@@ -62,7 +62,7 @@ It is possible to add CSS classes to each position for styling purposes.
 
 In the future we want to add the option to group some of the position DIVs in order to allow for even more complex layouts.
 
-##File Structure and Mechanics of the Template##
+## File Structure and Mechanics of the Template
 
 The template is structured the directories: `lyquix`, `custom`, `json` and `redirect`.
 
@@ -104,7 +104,7 @@ The files `category.php` and `item.php` are very simple and they only perform th
 1. Load `category-custom.php` and `item-custom.php` if they exist - these files contain customizations for field display and CSS classes (described later)
 2. Load the main `category.php` and `item.php` files found in the `lyquix` folder
 
-###Category View###
+### Category View
 
 The file `category.php` in the `lyquix` folder is quite simple too. It loads the file `functions.php` that defines a private class with several functions. 
 
@@ -112,13 +112,13 @@ In the case of the category view the layout can be fully customized to a specifi
 
 Each section of the category has a corresponding function in `functions.php` that takes care of rendering it. If you inspect the file you will see that have take care of making our naming convention consistent so that we can reuse code as much as possible.
 
-###Item View###
+### Item View
 
 There aren't as many features for the item view as for the category view.
 
 The file `item.php` is similar to the category counterpart. It loads the file `functions.php` that provide the function for rendering fields. It is possible to define where to load the sharing buttons, and specify custom CSS classes for the field positions.
 
-##Advanced Customization##
+## Advanced Customization
 
 The template allows for advanced customization. You can add custom CSS classes to subcategories and items using PHP, customize the rendering of fields, and the rendering of category sections (title, image, description, alphaindex, filters, sub-categories, items and pagination) to fit your needs. This feature is available for category and item views. 
 
