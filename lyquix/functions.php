@@ -337,7 +337,7 @@ class lyquixFlexicontentTmpl {
 									html: infoWindowHTML,
 									label: (labelString == \'\' ? \'\' : {text: labelString.toString(), color: "white"})
 								}
-								if(catMap.items[i].icon != \'\') markerParams.icon = catMap.items[i].icon;
+								if(catMap.items[i].icon != \'\') markerParams.icon = {url: catMap.items[i].icon, '. ($this -> jObject -> params -> get('map_marker_icon_scaled_size_width', '') && $this -> jObject -> params -> get('map_marker_icon_scaled_size_height', '') ? 'scaledSize: new google.maps.Size('. $this -> jObject -> params -> get('map_marker_icon_scaled_size_width').','. $this -> jObject -> params -> get('map_marker_icon_scaled_size_height', 0).')' : '').'};
 								catMap.markers[itemid] = new google.maps.Marker(markerParams);
 								google.maps.event.addListener(catMap.markers[itemid], \'click\', function() {
 									catMap.infoWindows[itemid].setContent(this.html);
