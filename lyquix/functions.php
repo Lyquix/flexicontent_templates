@@ -1388,6 +1388,7 @@ class lyquixFlexicontentTmpl {
 
 		// add addthis toolbar for this item?
 		// to do: we need to add some parameters that indicate the configuration of the addthis bar
+		$item_link = JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
 		if ($this-> jObject -> params -> get('items_addthis', 0) && $this-> jObject -> params -> get('items_addthis_after', '') == $field -> name) {
 			$html .= '<div class="addthis_toolbox addthis_default_style " addthis:url="' . JURI::root() . substr($item_link, 1) . '">' .
 				$this-> jObject -> params -> get('items_addthis_services','<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a>') .
