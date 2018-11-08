@@ -421,7 +421,7 @@ class lyquixFlexicontentTmpl {
 
 		// Subcategories
 		// should display subcategories?
-
+		// RE the following line: We might want to delete the display_subcategories_items condition at some point in order to ensure that subcats render
 		if ($this-> jObject -> params -> get('map_display', '') != 'map' && $this-> jObject -> params -> get('display_subcategories_items', 0) && count($this-> jObject -> categories)) {
 
 
