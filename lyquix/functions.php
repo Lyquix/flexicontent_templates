@@ -64,13 +64,70 @@ class lyquixFlexicontentTmpl {
 
 	function renderCatAlpha() {
 		return '';
+	}
 
+	function renderCatFilters() {
 
+		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($this-> jObject -> category -> id));
+		$url .= (strpos($url, '?') ? '&' : '?') . 'clayout=' . $this-> jObject -> params -> get('filter_fc_tmpl', 'filters') . '&tmpl=' . $this-> jObject -> params -> get('filter_j_tmpl', 'raw');
 
+		$html = '
+		<script>
+		var catFiltersOpts = {
+			url: "' . $url . '",
+			totalItems: ' . $this-> jObject -> pageNav -> total . ',
+			itemsPerPage: ' . $this-> jObject -> pageNav -> limit . ',
+			filters: ' . self::renderFiltersCat() . '
+		};
+		</script>
+		<script defer src="' . trim(JURI::base(), "/") . '/components/com_flexicontent/templates/lyquix/js/cat-filters.js?v=' . date("YmdHis", filemtime(__DIR__ . '/js/cat-filters.js')) . '"></script>
+		';
+		return $html;
+	}
+
+	function renderFiltersCat() {
+		// Types of filter displays
+		$display = [
+			0 => 'select',
+			1 => 'text',
+			2 => 'select-range',
+			3 => 'text-range',
+			4 => 'radio',
+			5 => 'checkbox',
+			6 => 'multiselect',
+			7 => 'slider'
+		];
+
+		// Filters object
+		$filters = [];
+
+		foreach($this -> jObject -> filters as $field_name => $filter) {
+			$options = $filter -> options;
+			foreach($options as $i => $option) {
+				preg_match('/(.+)\s\((\d+)\)$/', $option['text'], $matches);
+				if(count($matches)) {
+					$options[$i]['text'] = $matches[1];
+					$options[$i]['count'] = $matches[2];
+				}
+				else {
+					$options[$i]['count'] = '';
+				}
 			}
 
+			$filters[$field_name] = [
+				'id' => $filter -> id,
+				'ordering' => $filter -> ordering,
+				'field_type' => $filter -> field_type,
+				'name' => $filter -> name,
+				'label' => $filter -> label,
+				'display' => $display[$filter -> parameters['display_filter_as']],
+				'value' => $filter -> value,
+				'options' => $options
+			];
 		}
 
+		$filters = self::toUTF8($filters);
+		return json_encode($filters);
 	}
 
 	function renderCatImage() {

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<author>Lyquix</author>
+	<website>http://www.lyquix.com</website>
+	<email>info@lyquix.com</email>
+	<license>GPLv2</license>
+	<version>1.0.0</version>
+	<release>2015-07-09</release>
+	<description>Generates category and items in JSON/JSONP format</description>
+	<fields name="attribs">
+		<fieldset name="attribs" addpath="/administrator/components/com_flexicontent/elements">
+			<field name="fil_sep" type="separator" hr="false" default="Filter Settings" description="" class="btn-group btn-group-yesno" level="level1" menu="hide" />
+			<field name="filter_fc_tmpl" type="text" default="filters" label="FC Filters Template" description="FLEXIcontent template for rendering filters info in JSON" />
+			<field name="filter_j_tmpl" type="text" default="raw" label="Joomla Raw Template" description="Joomla raw data template" />
+
+			<field name="cat_sep" type="separator" hr="false" default="Category Settings" description="" class="btn-group btn-group-yesno" level="level1" menu="hide" />
+			<field name="display_cat_id" type="radio" default="0" label="Category ID" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_title" type="radio" default="0" label="Category Title" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_alias" type="radio" default="0" label="Category Alias" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_description" type="radio" default="0" label="Category Description" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_image" type="radio" default="0" label="Category Image" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_created" type="radio" default="0" label="Category Created Date" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_modified" type="radio" default="0" label="Category Modified Date" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_metadesc" type="radio" default="0" label="Category Meta Description" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_metakey" type="radio" default="0" label="Category Meta Keywords" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_url" type="radio" default="0" label="Category URL" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_json" type="radio" default="0" label="Category JSON URL" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_cat_params" type="radio" default="0" label="Category Author" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+
+			<field name="item_sep" type="separator" hr="false" default="Items Settings" description="" class="btn-group btn-group-yesno" level="level1" menu="hide" />
+			<field name="display_item_title" type="radio" default="1" label="Item Title" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_alias" type="radio" default="1" label="Item Alias" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_author" type="radio" default="1" label="Item Author" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_description" type="radio" default="1" label="Item Description" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_created" type="radio" default="1" label="Item Created Date" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_modified" type="radio" default="1" label="Item Modified Date" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_metadesc" type="radio" default="1" label="Item Meta Description" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_metakey" type="radio" default="1" label="Item Meta Keywords" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_url" type="radio" default="1" label="Item URL" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_json" type="radio" default="1" label="Item JSON URL" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_fields" type="radio" default="1" label="Item Fields" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_field_label" type="radio" default="1" label="Field Label" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_field_value" type="radio" default="1" label="Field Value" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_field_display" type="radio" default="1" label="Field Display" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+			<field name="display_item_params" type="radio" default="0" label="Item Params" description="" class="btn-group btn-group-yesno">
+				<option value="0">FLEXI_NO</option>
+				<option value="1">FLEXI_YES</option>
+			</field>
+		</fieldset>
+	</fields>
+	<fieldgroups>
+		<group>renderonly</group>
+	</fieldgroups>
+	<csscategory>
+	</csscategory>
+	<jscategory>
+	</jscategory>
+</form>

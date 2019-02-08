@@ -25,15 +25,6 @@
 				<option value="right">Right</option>
 			</field>
 <!-- END CATEGORY SETTINGS -->
-<!-- BEGIN FILTERS -->
-			<field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
-			<field name="cat_filters_label" type="text" default="" description="Enter the filter area heading. Include wrapping HTML tags." label="Section Label" filter="JComponentHelper::filterText" />
-			<field name="cat_filters_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
-			<field name="cat_filters_engine" type="radio" default="0" label="Render Engine" description="Select the filters section render engine. Default is FLEXIcontent." class="btn-group group-fcinfo">
-				<option value="0">FLEXIcontent</option>
-				<option value="1">Lyquix</option>
-			</field>
-<!-- END FILTERS -->
 <!-- BEGIN SUB-CATEGORIES -->
 			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />
 			<field name="sub_cat_label" type="text" default="" label="Section Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
