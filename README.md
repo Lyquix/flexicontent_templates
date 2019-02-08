@@ -1,5 +1,7 @@
 # flexicontent_templates
 
+@version     2.3.0
+
 ## What is this?
 
 Lyquix has been using FLEXIcontent since 2010 and we have developed countless custom templates for FLEXIcontent. In our experience the template structure provides great flexibility to generate categories and items exactly how we need them. However, it also requires a lot of code writing.
@@ -44,7 +46,7 @@ These templates are for advanced developers only. Don't expect to install it and
     * Option to insert AddThis bar in category and item views, and customize AddThis embed code
     * Option to insert Disqus comment count in category view
     * Custom CSS classes for each field position
-    * Custom CSS classes for field wrappers 
+    * Custom CSS classes for field wrappers
   * Advanced development
     * Customize rendering of any section of categories (title, description, image, alphaindex, filters, items, subcategories, pagination)
     * Customize rendering of fields
@@ -72,12 +74,12 @@ The **`custom`** directory contains the base files for custom template. Do not a
 
 The **`json`** directory contains the base files for the JSON templates. Do not assign this template directly to categories and types, instead make copies of this template for your project. For example: json-services, json-people, etc. You may not want to assign these templates to categories and content types, instead call them by adding the `clayout` and `ilayout` parameters to categories and items to generate a JSON file. You can also include a `callback` parameter to generate a JSONP output.
 
-Examples: 
+Examples:
 `http://domain/path/to/category/services?clayout=json-services`
 `http://domain/path/to/category/people?clauout=json-people&callback=myFunc`
 `http://domain/path/to/item/people?ilauout=json-people`
 
-The **`redirect`** directory contains the base files for the Redirect template. You may assign this template directly to categories and content types, and items, and enter the redirect URL in the template parameters. 
+The **`redirect`** directory contains the base files for the Redirect template. You may assign this template directly to categories and content types, and items, and enter the redirect URL in the template parameters.
 
 In the custom directories you will find the following typical files:
 
@@ -88,7 +90,7 @@ item.php
 item.xml
 ```
 
-Do not modify these files! They are overwritten when the template is updated. If you open the XML files you can find all the fields that we have created to make it easy to configure the template. 
+Do not modify these files! They are overwritten when the template is updated. If you open the XML files you can find all the fields that we have created to make it easy to configure the template.
 
 You will also find the files
 
@@ -106,9 +108,9 @@ The files `category.php` and `item.php` are very simple and they only perform th
 
 ### Category View
 
-The file `category.php` in the `lyquix` folder is quite simple too. It loads the file `functions.php` that defines a private class with several functions. 
+The file `category.php` in the `lyquix` folder is quite simple too. It loads the file `functions.php` that defines a private class with several functions.
 
-In the case of the category view the layout can be fully customized to a specific order. The various sections: title, buttons, filters, alpha-index, image, description, map, sub categories, items and pagination can be enabled, disabled and sorted via the Joomla backend. Additionally, these sections can be wrapped by additional DIVs to provide the necessary structure for your design. 
+In the case of the category view the layout can be fully customized to a specific order. The various sections: title, buttons, filters, alpha-index, image, description, map, sub categories, items and pagination can be enabled, disabled and sorted via the Joomla backend. Additionally, these sections can be wrapped by additional DIVs to provide the necessary structure for your design.
 
 Each section of the category has a corresponding function in `functions.php` that takes care of rendering it. If you inspect the file you will see that have take care of making our naming convention consistent so that we can reuse code as much as possible.
 
@@ -120,44 +122,44 @@ The file `item.php` is similar to the category counterpart. It loads the file `f
 
 ## Advanced Customization
 
-The template allows for advanced customization. You can add custom CSS classes to subcategories and items using PHP, customize the rendering of fields, and the rendering of category sections (title, image, description, alphaindex, filters, sub-categories, items and pagination) to fit your needs. This feature is available for category and item views. 
+The template allows for advanced customization. You can add custom CSS classes to subcategories and items using PHP, customize the rendering of fields, and the rendering of category sections (title, image, description, alphaindex, filters, sub-categories, items and pagination) to fit your needs. This feature is available for category and item views.
 
 This is implemented by adding files `category-custom.php` and `item-custom.php` in your template folder that are loaded only if they exist. Refer to the files `category-custom.dist.php` and `item-custom.dist.php` as samples of the basic structures that these customizations must have. They load a PHP class with specific functions that are executed by the template. Remember that you can use `$this` to access all the information of the category, subcategories and items.
 
 **`customCatClass`**
 Custom CSS classes for the category wrapper element
 
-Inputs: 
+Inputs:
   * `$category` an object representing the current category being rendered
 
-Output: 
+Output:
   * String containing the CSS classes to be applied to the category wrapper element.
 
 **`customCatAttrs`**
 Custom HTML attributes for the category wrapper element
 
-Inputs: 
+Inputs:
   * `$category` an object representing the current category being rendered
 
-Output: 
+Output:
   * String containing the HTML attributes to be applied to the category wrapper element.
 
 **`customMapMarker`**
 Custom marker icon for individual items
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
 
-Output: 
+Output:
   * String containing the URL of custom marker icon to use.
 
 **`customSubcatClass`**
 Custom CSS classes for sub categories
 
-Inputs: 
+Inputs:
   * `$subcat` an object representing the current sub category being rendered
 
-Output: 
+Output:
   * String containing the CSS classes to be applied to the sub-category element.
 
 **`customItemClass`**
@@ -165,69 +167,69 @@ Output:
 **`customSubcatAttrs`**
 Custom HTML attributes for sub categories
 
-Inputs: 
+Inputs:
   * `$subcat` an object representing the current sub category being rendered
 
-Output: 
+Output:
   * String containing the HTML attributes to be applied to the sub-category element.
 
 **`customItemClass`**
 Custom CSS class for items
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
   * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-Output: 
+Output:
   * String containing the CSS classes to be applied to the item element.
 
 **`customItemAttrs`**
 Custom HTML attributes for items
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
   * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-Output: 
+Output:
   * String containing the HTML attributes to be applied to the item element.
 
 **`customFieldRenderingPretext`**
 Text to be added before rendering a field
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
   * `$field` an object representing the current field object
   * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-Output: 
+Output:
   * String
 
 **`customFieldRendering`**
 Custom rendering of specific fields
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
   * `$field` an object representing the current field object
   * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-Output: 
+Output:
   * String containing the rendered HTML
 
 **`customFieldRenderingPosttext`**
 Text to be added after rendering a field
 
-Inputs: 
+Inputs:
   * `$item` an object representing the current item being rendered
   * `$field` an object representing the current field object
   * `$group` a string that indicates the item group: subcategory, map, leading, intro, featured
 
-Output: 
+Output:
   * String
 
 **`customSectionRenderingPretext`**
 Custom text to be added before rendering of a category section
 
-Inputs: 
+Inputs:
   * `$section` a string that indicates what section is currently being rendered
 
 Output:
@@ -236,7 +238,7 @@ Output:
 **`customSectionRendering`**
 Custom rendering of a category section
 
-Inputs: 
+Inputs:
   * `$section` a string that indicates what section is currently being rendered
 
 Output:
@@ -245,7 +247,7 @@ Output:
 **`customSectionRenderingPosttext`**
 Custom text to be added after rendering of a category section
 
-Inputs: 
+Inputs:
   * `$section` a string that indicates what section is currently being rendered
 
 Output:

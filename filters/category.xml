@@ -4,8 +4,8 @@
 	<website>http://www.lyquix.com</website>
 	<email>info@lyquix.com</email>
 	<license>GPLv2</license>
-	<version>1.0.0</version>
-	<release>2015-07-09</release>
+	<version>2.3.0</version>
+	<release>2019-02-08</release>
 	<description>Generates category and items in JSON/JSONP format</description>
 	<fields name="attribs">
 		<fieldset name="attribs" addpath="/administrator/components/com_flexicontent/elements">
