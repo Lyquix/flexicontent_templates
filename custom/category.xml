@@ -11,7 +11,7 @@
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
 <!--- BEGIN LAYOUT ORDERING -->
 			<field name="cat_layout_sep" type="separator" hr="false" default="Layout" description="" level="level1" menu="hide" />
-			<field name="cat_layout_order" type="lqxfccatlayout" options="buttons,title,filters,alpha,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
+			<field name="cat_layout_order" type="lqxfccatlayout" options="title,filters,image,desc,subcats,map,items,pagination,open1,open2,open3,open4,open5,open6,open7,open8,open9,close1,close2,close3,close4,close5,close6,close7,close8,close9" default="title,image,desc,items,pagination" label="Category Sections" description="Select and order the sections and separators to be rendered" />
 <!-- END LAYOUT ORDERING -->
 <!-- BEGIN CATEGORY SETTINGS -->
 			<field name="cat_setting_sep" type="separator" hr="false" default="Category Title and Image" description="" level="level1" menu="hide" />
@@ -34,15 +34,6 @@
 				<option value="1">Lyquix</option>
 			</field>
 <!-- END FILTERS -->
-<!-- BEGIN ALPHA INDEX -->
-			<field name="alphaindex_sep" type="separator" hr="false" default="Alpha Index" description="" level="level1" menu="hide" />
-			<field name="cat_alphaindex_label" type="text" default="" description="Enter the alpha index area heading. Include wrapping HTML tags." label="Section Label" filter="JComponentHelper::filterText" />
-			<field name="cat_alphaindex_class" type="text" default="" description="Add a CSS class string for this section" label="Section CSS Class" />
-			<field name="cat_alphaindex_engine" type="radio" default="0" label="Render Engine" description="Select the alpha index section render engine. Default is FLEXIcontent." class="btn-group group-fcinfo">
-				<option value="0">FLEXIcontent</option>
-				<option value="1">Lyquix</option>
-			</field>
-<!-- END ALPHA INDEX -->
 <!-- BEGIN SUB-CATEGORIES -->
 			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />
 			<field name="sub_cat_label" type="text" default="" label="Section Label" description="Enter the sub-categories area label. Include wrapping HTML tags." filter="JComponentHelper::filterText" />
