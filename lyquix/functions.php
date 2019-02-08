@@ -653,7 +653,7 @@ class lyquixFlexicontentTmpl {
 				$html .= $this-> jObject -> params -> get($group . '_opentag', '');
 				$html .= '<ul class="' . $group . '-items-list ' . $this-> jObject -> params -> get($group . '_ul_class', '') . '">';
 				foreach ($idx as $i) {
-					if(!($this-> jObject -> params -> get($group . '_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, explode(",", $this-> jObject -> params -> get($group . '_inc_exc_types_list', array()))))) {
+					if(!($this-> jObject -> params -> get($group . '_inc_exc_types', 0) xor in_array($this-> jObject -> items[$i] -> document_type, explode(",", $this-> jObject -> params -> get($group . '_inc_exc_types_list'))))) {
 
 						$html .= '<li class="' .
 								$this-> jObject -> params -> get($group . '_li_class', '') .
@@ -1211,7 +1211,7 @@ class lyquixFlexicontentTmpl {
 		$limit = JFactory::getApplication() -> input -> get('limit', $this-> jObject -> pageNav -> limit);
 		$limitstart = JFactory::getApplication() -> input -> get('limitstart', 0);
 		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getCategoryRoute($this-> jObject -> category -> id));
-		$url_json = $url . '?clayout=' . $clayout . '&tmpl=' . $tmpl . '&limit=' . $limit;
+		$url_json = $url . (strpos($url, '?') ? '&' : '?') . 'clayout=' . $clayout . '&tmpl=' . $tmpl . '&limit=' . $limit;
 		$url_prev = $url_json . '&limitstart=' . ($limitstart - $limit);
 		$url_next = $url_json . '&limitstart=' . ($limitstart + $limit);
 
