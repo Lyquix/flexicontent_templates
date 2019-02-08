@@ -1322,10 +1322,6 @@ class lyquixFlexicontentTmpl {
 	}
 
 	function renderJSONcat () {
-		// Set mime type to JSON
-		$doc = &JFactory::getDocument();
-		$doc -> setMimeEncoding('application/json');
-
 		// get category params
 		$category = $this-> jObject -> category;
 		$catparams = json_decode($category -> params);
@@ -1411,19 +1407,10 @@ class lyquixFlexicontentTmpl {
 		}
 
 		$json = self::toUTF8($json);
-		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
-			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
-		}
-		else {
-			return json_encode($json);
-		}
+		return json_encode($json);
 	}
 
 	function renderJSONitem () {
-		// Set mime type to JSON
-		$doc =& JFactory::getDocument();
-		$doc->setMimeEncoding('application/json');
-
 		$item = $this-> jObject -> item;
 
 		$url = trim(JURI::base(), "/") . JRoute::_(FlexicontentHelperRoute::getItemRoute($item -> slug, $item -> categoryslug));
@@ -1472,14 +1459,7 @@ class lyquixFlexicontentTmpl {
 		}
 
 		$json = self::toUTF8($json);
-		if (JFactory::getApplication() -> input -> get('callback', '') != '') {
-			return JFactory::getApplication() -> input -> get('callback') . '(' . json_encode($json) . ')';
-		}
-		else {
-			return json_encode($json);
-		}
-
-
+		return json_encode($json);
 	}
 
 	function getCatImage($image_src, $image_width = 240, $image_height = 240, $image_resize = 1) {

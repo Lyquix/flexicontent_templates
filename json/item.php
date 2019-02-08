@@ -13,6 +13,16 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
+// Set mime type to JSON
+$doc = JFactory::getDocument();
+$doc->setMimeEncoding('application/json');
+
 require_once (JPATH_SITE . DS . 'components' . DS . 'com_flexicontent' . DS . 'templates' . DS . 'lyquix' . DS . 'functions.php');
 $lyquixFlexicontentTmpl = new lyquixFlexicontentTmpl($this);
-echo $lyquixFlexicontentTmpl -> renderJSONitem();
+
+if (JFactory::getApplication() -> input -> get('callback', '') != '') {
+	echo JFactory::getApplication() -> input -> get('callback') . '(' . $lyquixFlexicontentTmpl -> renderJSONitem() . ');';
+}
+else {
+	echo $lyquixFlexicontentTmpl -> renderJSONitem();
+}
