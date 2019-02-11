@@ -200,6 +200,10 @@ class lyquixFlexicontentTmpl {
 				items: ' . self::renderCatMapItems() . ',
 				infoWindows: {},
 				markers: {},
+				markerSize: {
+					scaledWidth: ' . ($this -> jObject -> params -> get('map_marker_icon_scaled_size_width', 32)) . ',
+					scaledHeight: ' . ($this -> jObject -> params -> get('map_marker_icon_scaled_size_height', 32)) . '
+				},
 				groupedItems: [],
 			};
 			</script>

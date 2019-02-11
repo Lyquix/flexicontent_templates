@@ -119,7 +119,10 @@ for (var i = 0; i < catMap.items.length; i++) {
 			html: infoWindowHTML,
 			label: (labelString == '' ? '' : {text: labelString.toString(), color: "white"})
 		}
-		if(catMap.items[i].icon != '') markerParams.icon = catMap.items[i].icon;
+		if(catMap.items[i].icon != '') markerParams.icon = {
+			url: catMap.items[i].icon,
+			scaledSize: new google.maps.Size(catMap.markerSize.scaledWidth,catMap.markerSize.scaledHeight)
+		}
 		catMap.markers[itemid] = new google.maps.Marker(markerParams);
 		google.maps.event.addListener(catMap.markers[itemid], 'click', function() {
 			catMap.infoWindows[itemid].setContent(this.html);
