@@ -1515,13 +1515,12 @@ class lyquixFlexicontentTmpl {
 			return $text;
 		}
 
-		$arr = [];
-		for($i = 0; $i < mb_strlen($text, 'UTF-8'); $i += 1) {
-			$char = mb_substr($text, $i, 1, 'UTF-8');
-			if(mb_detect_encoding($char, 'UTF-8') == 'UTF-8') $arr[] = mb_convert_encoding($char, 'UTF-8', 'UTF-8');
-			else $arr[] = mb_convert_encoding($char, 'UTF-8', 'Windows-1252');
+		$text = explode("\n", $text);
+
+		foreach($text as $i => $line) {
+			if(mb_detect_encoding($line, 'UTF-8') != 'UTF-8') $text[$i] = mb_convert_encoding($line, 'UTF-8', 'Windows-1252');
 		}
 
-		return implode('', $arr);
+		return implode("\n", $text);
 	}
 }
