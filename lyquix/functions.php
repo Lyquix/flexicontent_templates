@@ -186,7 +186,7 @@ class lyquixFlexicontentTmpl {
 			$html .= '</div>';
 			$html .= '<script src="//maps.googleapis.com/maps/api/js' .
 				($this -> jObject -> params -> get('map_google_api_key', '') ? '?key=' . $this -> jObject -> params -> get('map_google_api_key', '') : '') .
-				($this -> jObject -> params -> get('map_google_places_library', '') ? '&libraries=places' : '') . '"></script>';
+				($this -> jObject -> params -> get('map_google_api_places', '') ? '&libraries=places' : '') . '"></script>';
 			$html .= '
 			<script>
 			var catMap = {
