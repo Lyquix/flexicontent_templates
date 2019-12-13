@@ -1518,7 +1518,7 @@ class lyquixFlexicontentTmpl {
 		$text = explode("\n", $text);
 
 		foreach($text as $i => $line) {
-			if(mb_detect_encoding($line, 'UTF-8') != 'UTF-8') $text[$i] = mb_convert_encoding($line, 'UTF-8', 'Windows-1252');
+			if(!mb_check_encoding($line, 'UTF-8')) $text[$i] = mb_convert_encoding($line, 'UTF-8', 'Windows-1252');
 		}
 
 		return implode("\n", $text);
