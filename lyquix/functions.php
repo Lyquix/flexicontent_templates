@@ -55,7 +55,7 @@ class lyquixFlexicontentTmpl {
 
 			}
 
-			$html .= '<h1' . ($cat_title_css ? '' : ' class="' . $cat_title_css . '"') . '>' . $cat_title . '</h1>';
+			$html .= '<h1' . (! $cat_title_css ? '' : ' class="' . $cat_title_css . '"') . '>' . $cat_title . '</h1>';
 
 		}
 
