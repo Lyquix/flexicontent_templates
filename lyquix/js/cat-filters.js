@@ -12,9 +12,6 @@
 if(typeof catFilters != 'undefined') {
 	console.error('catFilters is already defined');
 }
-else if(typeof catFiltersOpts == 'undefined') {
-	console.error('catFiltersOpts is not defined');
-}
 else {
 	var catFilters = (function(){
 		// Working variables
@@ -36,11 +33,11 @@ else {
 		};
 
 		// Initialize function
-		var init = function(){
+		var init = function(opts){
 			vars.status = 'init';
 
 			// Merge options into vars
-			jQuery.extend(true, vars, catFiltersOpts);
+			jQuery.extend(true, vars, opts);
 
 			// Process filterAliases and generate filterAliasesReverse
 			Oject.keys(vars.filterAliases).forEach(function(alias){
@@ -490,5 +487,6 @@ else {
 	})();
 
 	// Initialize catFilters
-	catFilters.init();
+	if(typeof catFiltersOpts == 'object') catFilters.init(catFiltersOpts);
+	else console.error('catFiltersOpts is not defined, catFilters not initialized');
 }
