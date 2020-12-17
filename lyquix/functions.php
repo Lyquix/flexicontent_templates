@@ -79,7 +79,8 @@ class lyquixFlexicontentTmpl {
 			itemsPerPage: ' . $this-> jObject -> pageNav -> limit . ',
 			totalPages: ' . intval($this-> jObject -> pageNav -> total / $this-> jObject -> pageNav -> limit) . ',
 			callback: "' . $this-> jObject -> params -> get('filters_callback', 'catFiltersCallback') . '",
-			filters: ' . self::renderJSONfilters() . '
+			filters: ' . self::renderJSONfilters() . ',
+			filterAliases: ' . $this-> jObject -> params -> get('filters_aliases', '{}') . '
 		};
 		</script>
 		<script defer src="' . trim(JURI::base(), "/") . '/components/com_flexicontent/templates/lyquix/js/cat-filters.js?v=' . date("YmdHis", filemtime(__DIR__ . '/js/cat-filters.js')) . '"></script>
@@ -129,6 +130,7 @@ class lyquixFlexicontentTmpl {
 		}
 
 		$filters = self::toUTF8($filters);
+		ksort($filters);
 		return json_encode($filters);
 	}
 

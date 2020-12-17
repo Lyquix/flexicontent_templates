@@ -26,10 +26,11 @@
 			</field>
 <!-- END CATEGORY SETTINGS -->
 <!-- BEGIN FILTERS -->
-            <field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
-            <field name="filters_fc_tmpl" type="text" default="filters" description="Name of the FLEXIcontent template to use for filters" label="Filter FLEXIcontent Template" />
-            <field name="filters_j_tmpl" type="text" default="raw" description="Name of the Joomla template to use for filters" label="Filter Joomla Template" />
-            <field name="filters_callback" type="text" default="catFiltersCallback" description="Name of the JavaScript default callback function to be used if no other callback function is specificed" label="Filter Default Callback" />
+			<field name="filters_sep" type="separator" hr="false" default="Filters" description="" level="level1" menu="hide" />
+			<field name="filters_fc_tmpl" type="text" default="filters" description="Name of the FLEXIcontent template to use for filters" label="Filter FLEXIcontent Template" />
+			<field name="filters_j_tmpl" type="text" default="raw" description="Name of the Joomla template to use for filters" label="Filter Joomla Template" />
+			<field name="filters_callback" type="text" default="catFiltersCallback" description="Name of the JavaScript default callback function to be used if no other callback function is specificed" label="Filter Default Callback" />
+			<field name="filters_aliases" type="textarea" default="{}" description="JSON string of filter aliases" label="Filter Aliases" />
 <!-- END FILTERS -->
 <!-- BEGIN SUB-CATEGORIES -->
 			<field name="sub_cat_sep" type="separator" hr="false" default="Sub-Categories" description="Settings for sub-categories section" level="level1" menu="hide" />

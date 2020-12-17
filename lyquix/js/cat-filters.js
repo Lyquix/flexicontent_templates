@@ -26,6 +26,8 @@ else {
 			totalPages: null,
 			callback: null,
 			filters: {},
+			filterAliases: {},
+			filterAliasesReverse: {},
 			page: null,
 			category: {},
 			items: {},
@@ -39,6 +41,11 @@ else {
 
 			// Merge options into vars
 			jQuery.extend(true, vars, catFiltersOpts);
+
+			// Process filterAliases and generate filterAliasesReverse
+			Oject.keys(vars.filterAliases).forEach(function(alias){
+				vars.filterAliasesReverse[vars.filterAliases[alias]] = alias;
+			});
 
 			// Parse hash for filters and page number
 			parseHash();
@@ -97,10 +104,11 @@ else {
 			// Parse filters
 			if(hash.length) {
 				hash.forEach(function(filterStr){
-					filterStr = filterStr.match(/([A-Za-z0-9\-_]+):(.+)/);
-					if(filterStr !== null) {
-						var filterName = filterStr[1];
-						var filterValue = filterStr[2].split('|');
+					filterNameVal = filterStr.match(/([A-Za-z0-9\-_]+):(.+)/);
+					if(filterNameVal == null && filterStr in vars.filterAliases) filterNameVal = vars.filterAliases[filterStr];
+					if(filterNameVal != null) {
+						var filterName = filterNameVal[1];
+						var filterValue = filterNameVal[2].split('|');
 						if(filterValue.length == 1) filterValue = filterValue[0];
 						if(filterName in vars.filters) {
 							if(typeof filterValue == 'string') {
@@ -138,10 +146,12 @@ else {
 
 			// Filters
 			Object.keys(params.filters).forEach(function(filterName){
-				hash += filterName + ':'
-				if(typeof params.filters[filterName] == 'string') hash += encodeURIComponent(params.filters[filterName]);
-				else hash += encodeURIComponent(params.filters[filterName].join('|'));
-				hash += '/';
+				var segment = filterName + ':'
+				if(typeof params.filters[filterName] == 'string') segment += encodeURIComponent(params.filters[filterName]);
+				else segment += encodeURIComponent(params.filters[filterName].join('|'));
+				// Attempt to replace filter with alias
+				if(segment in vars.filterAliasesReverse) segment = vars.filterAliasesReverse[segment];
+				hash += segment + '/';
 			});
 
 			// Search
