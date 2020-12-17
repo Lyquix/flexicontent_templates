@@ -241,7 +241,7 @@ class lyquixFlexicontentTmplCustom {
 
 	function customSectionRendering($section) {
 
-		$html = '';
+		$html = null;
 
 		switch ($section) {
 

@@ -57,7 +57,7 @@ if (is_array($cat_sections)) {
 			$section = 'renderCat' . ucfirst($cat_section);
 
 			$html .= method_exists($lyquixFlexicontentTmplCustom,'customSectionRendering') ? $lyquixFlexicontentTmplCustom -> customSectionRendering($section) : '';
-			if(!$html) {
+			if($html !== null) {
 				$html .= method_exists($lyquixFlexicontentTmplCustom,'customSectionRenderingPretext') ? $lyquixFlexicontentTmplCustom -> customSectionRenderingPretext($section) : '';
 				$html .= $lyquixFlexicontentTmpl -> $section();
 				$html .= method_exists($lyquixFlexicontentTmplCustom,'customSectionRenderingPosttext') ? $lyquixFlexicontentTmplCustom -> customSectionRenderingPosttext($section) : '';

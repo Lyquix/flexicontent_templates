@@ -85,7 +85,7 @@ class lyquixFlexicontentTmplCustom {
 
 	function customFieldRendering(&$item, &$field) {
 
-		$html = '';
+		$html = null;
 
 		switch ($field->name) {
 

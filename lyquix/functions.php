@@ -1174,7 +1174,7 @@ class lyquixFlexicontentTmpl {
 
 		// try custom rendering first
 		$html .= method_exists($this -> tmplCustomObject,'customFieldRendering') ? $this -> tmplCustomObject -> customFieldRendering($item, $field) : '';
-		if(!$html) {
+		if($html !== null) {
 
 			// field pretext
 			$html .= method_exists($this -> tmplCustomObject,'customFieldRenderingPretext') ? $this -> tmplCustomObject -> customFieldRenderingPretext($item, $field, $group) : '';
