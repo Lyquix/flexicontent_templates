@@ -32,6 +32,10 @@ These templates are for advanced developers only. Don't expect to install it and
     * Render pins on map using lat/lon coordinates from AddressInt field
     * Include item information in map bubbles
     * Custom marker icons set for the whole map or on an item-by-item basis
+  * Filters
+    * Provides a JavaScript API that interacts with FLEXIcontent advanced filters
+    * Allows to provide filtering functionality without reloading page
+    * Provides a mechanism for creating aliases for specific filters
   * Item lists
     * Ability to separate featured items in its own list (UL)
     * Control the order in which leading, intro and featured items groups are displayed
@@ -161,8 +165,6 @@ Inputs:
 
 Output:
   * String containing the CSS classes to be applied to the sub-category element.
-
-**`customItemClass`**
 
 **`customSubcatAttrs`**
 Custom HTML attributes for sub categories
