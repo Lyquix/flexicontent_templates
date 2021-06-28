@@ -17,8 +17,7 @@ $redirect_url = $this -> params -> get('redirect_url', '/');
 
 // if HTTP headers have not been sent
 if (!headers_sent()) {
-	header('HTTP/1.1 301 Moved Permanently');
-	header('Location: ' . $redirect_url);
+	header('Location: ' . $redirect_url, true, 301);
 	exit;
 }
 // headers have been sent, use meta-tag, javascript and HTML failsafe
