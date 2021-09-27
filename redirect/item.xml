@@ -6,7 +6,7 @@
 	<license></license>
 	<version>2.3.0</version>
 	<release>2019-02-08</release>
-	<description>Use this template to force redirects of category view</description>
+	<description>Use this template to force redirects of item view</description>
 	<fields name="attribs">
 		<fieldset name="attribs" addfieldpath="/components/com_flexicontent/templates/lyquix/elements">
 			<field name="redirect_url" type="text" default="/" label="Redirect URL" description="" />
